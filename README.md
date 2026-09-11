@@ -1,85 +1,85 @@
-# Improved TIME
+# Evaluating TSFMs
 
-Improved TIME is the maintained, source-only layer between the public
-[TIME benchmark](https://github.com/zqiao11/TIME) and thesis experiment
-repositories. It preserves TIME's saved-Arrow dataset and GluonTS evaluation
-interfaces while collecting reusable correctness, model-adapter, covariate,
-timing, feature, and run-lifecycle improvements.
+Evaluating TSFMs studies how representation and input choices affect
+zero-shot time-series foundation models on the public TIME benchmark. It is an
+experiment repository derived from the source-only
+[Improved TIME](https://github.com/3gaspo/improved_TIME) layer.
 
-This repository is not an experiment checkout. It is not cloned onto compute
-clusters and it never publishes experiment logs or outputs. Cluster launchers,
-experiment grids, result analysis, and scientific conclusions belong in
-downstream repositories such as `evaluating_tsfms`, `adaptime`, and
-`classic_template` descendants.
+The initial migration preserves the former Improved repository's five-model
+foundation benchmark, Chronos-2 channel comparison, dataset diagnostics,
+feature-performance analysis, task recovery, and DGX/Selena launch machinery.
+No result is claimed for this new repository until those experiments are
+rerun under its own artifact lineage.
 
-## Installation
+## Scientific scope
 
-The declared Python 3.12 environment is prepared by the user on the execution
-host:
+The migrated runnable studies are:
 
-```bash
-uv sync
-```
+- Seasonal Naive followed by Chronos-Bolt, Chronos-2, TimesFM-3, and TS-ICL,
+  with Seasonal-Naive-scaled MASE and inference timing;
+- Chronos-2 native multivariate, independent univariate, and past-target-as-
+  covariate comparison;
+- reusable dataset/window diagnostics and feature-performance associations.
 
-Learned-model adapters require local checkpoints. Runtime locations use one
-portable path contract:
+Planned additions will evaluate covariate use across capable foundation
+models, input normalization, and context-size effects. Those axes remain
+planned until their exact configurations and launchers are implemented.
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `TIME_DATA_ROOT` | `datasets/` | Prepared/intermediate data root |
-| `TIME_DATASET` | `datasets/hf_dataset/` | Saved-Arrow TIME datasets |
-| `TIME_METADATA` | `datasets/time_metadata/` | Dataset-derived audits and features |
-| `TIME_WEIGHTS` | `weights/` | Model checkpoints and caches |
-| `TIME_OUTPUTS` | `outputs/` | Project-owned generated artifacts |
-| `TIME_LOGS` | `logs/` | Project-owned runtime logs |
+## Setup
 
-The official TIME dataset can be prepared on an internet-connected host with:
+Prepare the project environment on each execution host with `uv`. Learned
+models run offline from checkpoints below `TIME_WEIGHTS`; the default names
+are `chronos2/`, `chronos-bolt-base/`, `timesfm3/`, and
+`tsicl/tsicl-v1.ckpt`. Download the official saved-Arrow TIME data on an
+internet-connected preparation host with:
 
 ```bash
 PYTHONPATH=src uv run --no-sync python scripts/download_time_dataset.py \
   --destination datasets/hf_dataset
 ```
 
-## Reusable execution surface
+## Current experiment entry points
 
-The retained Python runners are `chronos_bolt`, `chronos2`, `timesfm3`,
-`ts_icl`, and `seasonal_naive`. They expose the model and evaluation adapters
-that downstream projects compose into their own experiment workflows. The
-common layer also provides:
+From a prepared DGX or Selena checkout:
 
-- corrected chronological train, validation, and official test boundaries;
-- deterministic Seasonal Naive quantiles and finite-pair MASE scaling;
-- explicit target-mode and covariate capability checks;
-- local-only foundation-model checkpoint loading;
-- accelerator-synchronized inference timing;
-- schema-1 task manifests, recovery, and result-selection policies;
-- compact metric summaries with finite-value coverage;
-- saved-Arrow feature extraction and reusable window auditing.
+```bash
+bash scripts/submit_foundation_models.sh dgx
+bash scripts/channels_comparison.sh dgx
+bash scripts/dataset_diagnostics.sh dgx
+```
 
-The complete divergence from upstream TIME is recorded in
-[docs/IMPROVEMENTS.md](docs/IMPROVEMENTS.md).
+Replace `dgx` by `selena` for the Selena fronts. The foundation workflow runs
+Seasonal Naive first, releases learned models after the baseline succeeds, and
+runs the summary after every model terminates. Each task is addressed by its
+complete scientific configuration and has schema-1 lifecycle metadata.
+
+`sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`
+retain this project's code and artifacts without touching another TIME
+project. Generated results live in `outputs/`; runtime streams live in
+`logs/`.
+
+## Documentation
+
+- [Architecture](docs/architecture.md) describes ownership and execution flow.
+- [Experiment catalog](docs/experiment_catalog.md) distinguishes runnable and
+  planned experiment families.
+- [Method overview](latex/method_overview.tex) states the evaluation questions.
+- [Results recap](docs/results_recap.md) defines the current evidence boundary.
+- [TIME dataset format](docs/DATASET_FORMAT.md) documents the inherited
+  saved-Arrow representation.
 
 ## Source tree
 
 ```text
-experiments/               reusable TIME model/evaluation entry points
-scripts/                   preparation and task-lifecycle utilities
-src/timebench/evaluation/  datasets, windows, metrics, timing, and saving
-src/timebench/models/      shared external-model adapters
-src/timebench/pipeline/    task manifests, recovery, and result selection
-src/timebench/feature/     dataset features and performance associations
-src/tests/                 focused reusable contract checks
-datasets/, weights/        ignored local input placeholders
-outputs/, logs/            ignored local artifact placeholders
+experiments/               inherited model/evaluation entry points
+scripts/                   public experiment and analysis commands
+slurm/                     DGX and Selena scheduler fronts
+src/slurm/                 scheduler workflow implementations
+src/timebench/             inherited reusable benchmark implementation
+src/tests/                 shared and experiment-specific contract checks
+docs/, latex/              architecture, protocol, and evidence documents
+outputs/, logs/            ignored project-owned runtime artifacts
 ```
 
-## Lineage
-
-The repository starts from the exact Git history of `zqiao11/TIME`. Its
-fetch-only `time-template` remote is the sole upstream. Reusable changes flow
-one way from `TIME_template` to Improved TIME and then to downstream projects.
-Experiment-specific changes never flow back automatically; supported findings
-are reimplemented here as focused reusable changes before propagation.
-
-The inherited code remains under the Apache-2.0 license. Dataset licenses are
-owned by their original providers.
+The code derives from the ICML 2026 TIME benchmark and remains under its
+Apache-2.0 license.

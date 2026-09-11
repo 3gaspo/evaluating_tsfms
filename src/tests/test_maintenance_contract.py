@@ -1,4 +1,4 @@
-"""Dependency-light maintenance checks for the source-only Improved TIME layer."""
+"""Dependency-light maintenance checks for Evaluating TSFMs."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 LOCAL_LINK = re.compile(r"(?<!!)\[[^]]+\]\(([^)]+)\)")
 
 
-class ImprovedMaintenanceContractTest(unittest.TestCase):
+class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
     def test_python_sources_parse(self) -> None:
         roots = [PROJECT_ROOT / "src", PROJECT_ROOT / "experiments", PROJECT_ROOT / "scripts"]
         paths = sorted(path for root in roots for path in root.rglob("*.py"))
@@ -63,7 +63,7 @@ class ImprovedMaintenanceContractTest(unittest.TestCase):
         self.assertIn("math.floor(self._test_length / self.prediction_length)", source)
         self.assertIn("math.floor(self._val_length / self.prediction_length)", source)
 
-    def test_foundation_adapters_are_offline_and_fail_fast(self) -> None:
+    def test_foundation_runners_are_offline_and_fail_fast(self) -> None:
         experiments = {
             "chronos_bolt.py": ("local_files_only=True", "chronos-bolt-{model_size}"),
             "chronos2.py": (
@@ -80,6 +80,13 @@ class ImprovedMaintenanceContractTest(unittest.TestCase):
             self.assertNotIn("except Exception", source, name)
             for text in required:
                 self.assertIn(text, source, name)
+
+        runtime = (PROJECT_ROOT / "src/slurm/selena_runtime.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("export HF_HUB_OFFLINE=1", runtime)
+        self.assertIn("export HF_DATASETS_OFFLINE=1", runtime)
+        self.assertIn("export TRANSFORMERS_OFFLINE=1", runtime)
 
     def test_seasonal_naive_uses_direct_deterministic_quantiles(self) -> None:
         experiment = (PROJECT_ROOT / "experiments/seasonal_naive.py").read_text(
@@ -112,12 +119,24 @@ class ImprovedMaintenanceContractTest(unittest.TestCase):
 
         self.assertFalse((PROJECT_ROOT / "experiments/tirex_model.py").exists())
         self.assertFalse((PROJECT_ROOT / "scripts/run_tirex.sh").exists())
+        self.assertFalse(
+            (PROJECT_ROOT / "slurm/dgx/foundation_models/tirex.slurm").exists()
+        )
+        self.assertFalse(
+            (PROJECT_ROOT / "slurm/selena/foundation_models/tirex_selena.slurm").exists()
+        )
         dependencies = tomllib.loads(
             (PROJECT_ROOT / "pyproject.toml").read_text(encoding="utf-8")
         )["project"]["dependencies"]
         self.assertFalse(any("tirex" in dependency.lower() for dependency in dependencies))
-        self.assertFalse((PROJECT_ROOT / "slurm").exists())
-        self.assertFalse(any((PROJECT_ROOT / "src/slurm").iterdir()))
+        registry = (PROJECT_ROOT / "src/slurm/foundation_model_runners.sh").read_text(
+            encoding="utf-8"
+        )
+        summary = (PROJECT_ROOT / "scripts/compute_foundation_summary.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("tirex", registry.lower())
+        self.assertNotIn('"tirex"', summary.lower())
 
 
 if __name__ == "__main__":

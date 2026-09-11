@@ -51,8 +51,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/3gaspo/improved_TIME"
-Repository = "https://github.com/3gaspo/improved_TIME"
+Homepage = "https://github.com/3gaspo/evaluating_tsfms"
+Repository = "https://github.com/3gaspo/evaluating_tsfms"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/timebench"]

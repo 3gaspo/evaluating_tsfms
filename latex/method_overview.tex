@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{Evaluating Time-Series Foundation Models}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Question}
+
+This project evaluates how foundation-model forecasts on the official TIME
+test tasks change with target representation, usable covariates, input
+normalization, and available context length. Each comparison holds the TIME
+dataset windows and metric implementation fixed unless its protocol explicitly
+declares another factor.
+
+\section{Current migrated comparisons}
+
+The initial executable surface contains a five-model foundation benchmark and
+a Chronos-2 comparison between native multivariate targets, independent
+univariate targets, and other target histories supplied as past-only
+covariates. Seasonal Naive is deterministic and provides the taskwise MASE
+normalizer. Inference timing excludes loading, dataset construction, metric
+computation, and artifact saving.
+
+\section{Evidence boundary}
+
+The repository makes no result claim until its migrated experiments are rerun
+and their project-owned manifests and aggregates are inspected. Covariate,
+normalization, and context-size extensions remain planned until their exact
+grids are implemented.
+
+\end{document}
