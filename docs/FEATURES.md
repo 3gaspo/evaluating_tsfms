@@ -78,8 +78,8 @@ the hard-coded 0.05 threshold and `0` otherwise; the inherited implementation
 falls back to `1` if the test fails.
 
 Dataset-level Seasonal-Naive-scaled MASE can be plotted against explicit
-features or the five with
-the largest mean absolute within-model Spearman correlation:
+features or the five with the largest mean absolute within-model Spearman
+correlation:
 
 ```bash
 python scripts/plot_feature_performance.py \
