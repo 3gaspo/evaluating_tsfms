@@ -23,6 +23,13 @@
         "launched_at": "2026-09-15T09:43:52.273926+00:00",
         "slurm_array_task_id": null,
         "slurm_job_id": "3432381"
+      },
+      {
+        "action": "reuse",
+        "launch_id": "selena_20260915T140649Z_45401",
+        "launched_at": "2026-09-15T14:09:07.426200+00:00",
+        "slurm_array_task_id": null,
+        "slurm_job_id": "3435865"
       }
     ],
     "launch_id": "selena_20260915T093434Z_46580",
@@ -71,5 +78,5 @@
   "schema_version": 1,
   "started_at": "2026-09-15T09:43:52.273926+00:00",
   "status": "completed",
-  "updated_at": "2026-09-15T09:43:57.973149+00:00"
+  "updated_at": "2026-09-15T14:09:07.426200+00:00"
 }

@@ -1,0 +1,1502 @@
+2026-09-15 16:06:52 | workflow foundation_models started launch_id=selena_20260915T140649Z_45401 task=ts_icl slurm_job_id=3435866 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-15 16:06:52 | stage evaluate started
+2026-09-15 16:06:52 | task model=ts_icl runner=run_tsicl.sh environment=uv covariate_mode=none target_mode=auto started
+[2026-09-15 16:06:52] TIME runner: run_tsicl.sh
+[2026-09-15 16:06:52] datasets: /scratch/users/h61084/datasets/hf_dataset
+[2026-09-15 16:06:52] weights: /scratch/users/h61084/weights
+[2026-09-15 16:06:52] outputs: /scratch/users/h61084/codes/evaluating_tsfms/outputs
+[2026-09-15 16:06:52] covariate mode: none
+[2026-09-15 16:06:52] target mode: auto
+
+############################################################
+# Dataset 1/1: Water_Quality_Darwin/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Water_Quality_Darwin/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:05.516630+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:05.550433+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:05.583796+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Water_Quality_Darwin/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:09.431704+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:09.475182+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:09.517884+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/5T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/10T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/10T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=18, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:12.937638+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=144, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:12.986054+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=432, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:13.034179+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/10T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:16.431887+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:16.466934+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:16.500271+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/20T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/20T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:19.904190+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:19.925898+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:19.945716+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/20T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:23.309079+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:23.335242+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:23.356556+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/current_velocity/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: CPHL/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:26.709923+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:26.725148+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:26.741197+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/30T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: CPHL/30T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:30.087067+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=48, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:30.102352+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=144, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:30.117039+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/30T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: CPHL/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:33.473334+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:33.487416+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:33.501127+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/CPHL/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:36.955118+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:37.039197+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:37.121323+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/5T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:40.489584+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:40.516990+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:40.544098+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/20T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/20T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:43.933722+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:43.954227+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:43.974300+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/20T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:47.350356+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:47.371621+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:47.392727+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Coastal_T_S/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Weather/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: SG_Weather/D
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=3, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:50.757393+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=7, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:50.775473+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=14, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:50.793668+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Weather/D/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_PM25/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: SG_PM25/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:54.255126+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:54.306884+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:54.356154+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_PM25/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: NE_China_Wind/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: NE_China_Wind/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:57.707929+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:57.730223+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:07:57.752164+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/NE_China_Wind/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Australia_Solar/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Australia_Solar/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:01.130204+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:01.166576+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:01.202137+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Australia_Solar/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: epf_electricity_price/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: epf_electricity_price/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:04.582465+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:04.601729+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:04.620582+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/epf_electricity_price/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: OpenElectricity_NEM/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: OpenElectricity_NEM/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:08.109019+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:08.215389+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:08.318942+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/OpenElectricity_NEM/5T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: EWELD_Load/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: EWELD_Load/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:11.718615+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:11.773481+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:11.826818+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/EWELD_Load/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Carpark/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: SG_Carpark/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:15.192391+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:15.208016+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:15.223133+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/SG_Carpark/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Finland_Traffic/15T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Finland_Traffic/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:18.570706+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:18.587860+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:18.605260+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Finland_Traffic/15T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Port_Activity/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:21.976910+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Port_Activity/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/W
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/W
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Port_Activity/W/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:25.365975+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Port_Activity/W/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=150, val_length=30
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/ECDC_COVID/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:28.760936+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/ECDC_COVID/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/W
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/W
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/ECDC_COVID/W/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:32.126418+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/ECDC_COVID/W/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Influenza/W
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Global_Influenza/W
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Global_Influenza/W/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:35.505817+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Global_Influenza/W/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Crypto/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Crypto/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=273, val_length=92
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Crypto/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:38.908839+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Crypto/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Term_Structure/B
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: US_Term_Structure/B
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/US_Term_Structure/B/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:42.365745+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/US_Term_Structure/B/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Oil_Price/B
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Oil_Price/B
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Oil_Price/B/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:45.758843+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Oil_Price/B/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Job_Claims/W
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Job_Claims/W
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Job_Claims/W/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:49.102641+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Job_Claims/W/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Uncertainty_1M/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Uncertainty_1M/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=6, test_length=42, val_length=18
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Uncertainty_1M/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:52.453441+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Uncertainty_1M/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Housing_Inventory/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Housing_Inventory/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=36, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Housing_Inventory/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:55.805537+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Housing_Inventory/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: JOLTS/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: JOLTS/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/JOLTS/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:08:59.165484+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/JOLTS/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Labor/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: US_Labor/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/US_Labor/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:02.513300+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/US_Labor/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Supply/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Supply/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Vehicle_Supply/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:05.850035+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Vehicle_Supply/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Auto_Production_SF/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Auto_Production_SF/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Auto_Production_SF/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:09.212043+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Auto_Production_SF/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Production/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Production/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Commodity_Production/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:12.569857+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Commodity_Production/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Import/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Import/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Commodity_Import/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:15.922656+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Commodity_Import/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: WUI_Global/Q
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: WUI_Global/Q
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=20
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/WUI_Global/Q/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:19.293817+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/WUI_Global/Q/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Price/Q
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Global_Price/Q
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=8
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Global_Price/Q/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:22.669570+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Global_Price/Q/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Sales/M
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Sales/M
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Vehicle_Sales/M/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:26.034409+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Vehicle_Sales/M/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Online_Retail_2_UCI/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Online_Retail_2_UCI/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=180, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Online_Retail_2_UCI/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:29.384279+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Online_Retail_2_UCI/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Customer/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Customer/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Supply_Chain_Customer/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:32.748194+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Supply_Chain_Customer/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Location/D
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Location/D
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Supply_Chain_Location/D/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:36.105593+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Supply_Chain_Location/D/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_D/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: azure2019_D/5T
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_D/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:39.561401+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_D/5T/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_I/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: azure2019_I/5T
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_I/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:43.084057+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_I/5T/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_U/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: azure2019_U/5T
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=288, val_length=96
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_U/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:46.463677+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/azure2019_U/5T/short/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Smart_Manufacturing/H
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: Smart_Manufacturing/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:49.854435+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:49.873025+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:49.890713+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/Smart_Manufacturing/H/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: MetroPT-3/5T
+############################################################
+Loading configuration...
+
+============================================================
+Dataset: MetroPT-3/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/short/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:53.263852+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/short/run_1
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/medium/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:53.298501+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/medium/run_1
+
+--- Term: long ---
+  Config: prediction_length=576, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/long/run_1 source_launch=selena_20260915T093434Z_46580 launch_id=selena_20260915T140649Z_45401 slurm_job_id=3435866 launched_at=2026-09-15T14:09:53.332003+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/ts_icl/univariate/MetroPT-3/5T/long/run_1
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+2026-09-15 16:09:53 | task model=ts_icl runner=run_tsicl.sh environment=uv covariate_mode=none target_mode=auto completed status=success
+2026-09-15 16:09:53 | stage evaluate completed status=success
+2026-09-15 16:09:53 | workflow foundation_models completed status=success exit_code=0
