@@ -17,7 +17,7 @@ The migrated runnable studies are:
 
 - a reusable Seasonal Naive baseline plus parallel Chronos-Bolt, Chronos-2,
   TimesFM-3, and TS-ICL evaluations, with Seasonal-Naive-scaled MASE and
-  inference timing;
+  inference timing on one shared Seasonal-defined evaluation grid;
 - Chronos-2 native multivariate, independent univariate, and past-target-as-
   covariate comparison;
 - reusable dataset/window diagnostics and feature-performance associations.
@@ -52,8 +52,12 @@ bash scripts/dataset_diagnostics.sh dgx
 
 Replace `dgx` by `selena` for the Selena fronts. Run the Seasonal Naive command
 once and wait for it to complete. It writes the shared baseline selected by
-`TIME_SEASONAL_ROOT`. Foundation-model and channel launchers then run without a
-Seasonal job dependency and may be submitted together. The four learned
+`TIME_SEASONAL_ROOT`, including the grid of cells with finite ground-truth
+support, finite Seasonal Naive predictions on that support, and finite
+Seasonal Naive MASE. Foundation-model and channel launchers require that grid,
+then run without a Seasonal job dependency and may be submitted together. A
+learned model that produces a non-finite forecast on the grid fails its task
+instead of silently changing metric coverage. The four learned
 foundation models run concurrently; their summary runs once after every model
 terminates and reads the shared baseline. Each task is addressed by its
 complete scientific configuration and has schema-1 lifecycle metadata.

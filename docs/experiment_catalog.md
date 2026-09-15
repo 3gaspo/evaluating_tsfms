@@ -6,9 +6,13 @@
 
 Compares `chronos_bolt`, `chronos2`, `timesfm3`, `ts_icl`, and deterministic
 `seasonal_naive` over the official TIME test tasks. It records actual target
-mode, scaled MASE, finite-value coverage, and inference seconds. Generate the
-reusable baseline once with `scripts/submit_seasonal_naive.sh`; then launch the
-parallel learned-model jobs with `scripts/submit_foundation_models.sh`.
+mode, scaled MASE, finite/grid/total coverage, and inference seconds. Seasonal
+Naive defines one reusable evaluation grid from finite ground-truth support,
+finite Seasonal predictions, and finite Seasonal MASE. Every learned model is
+evaluated on that grid, and a non-finite forecast on expected support fails the
+task. Generate the baseline once with `scripts/submit_seasonal_naive.sh`; then
+launch the parallel learned-model jobs with
+`scripts/submit_foundation_models.sh`.
 
 ### Chronos-2 channel comparison
 

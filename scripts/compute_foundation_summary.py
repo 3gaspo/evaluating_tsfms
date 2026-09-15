@@ -71,7 +71,9 @@ def load_result_cells(
                 "horizon": identity["term"],
                 "MASE": mase,
                 "MASE_finite_values": int(mase_summary["finite_values"]),
+                "MASE_evaluation_values": int(mase_summary["evaluation_values"]),
                 "MASE_total_values": int(mase_summary["total_values"]),
+                "evaluation_grid": dict(summary["evaluation_grid"]),
                 "inference_seconds": inference_seconds,
                 "manifest_path": str(run_dir / "manifest.json"),
                 "scientific_config": selection.get(
@@ -103,6 +105,11 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
 
     config_means = []
     for key, repeats in by_exact_config.items():
+        grids = {
+            json.dumps(cell["evaluation_grid"], sort_keys=True) for cell in repeats
+        }
+        if len(grids) != 1:
+            raise ValueError("exact repeats use different evaluation grids")
         timed = [
             cell["inference_seconds"]
             for cell in repeats
@@ -120,9 +127,13 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in repeats
                 ),
+                "MASE_evaluation_values": sum(
+                    cell["MASE_evaluation_values"] for cell in repeats
+                ),
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in repeats
                 ),
+                "evaluation_grid": repeats[0]["evaluation_grid"],
                 "inference_seconds": (
                     float(np.mean(timed)) if len(timed) == len(repeats) else None
                 ),
@@ -142,6 +153,11 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
         ].append(cell)
     effective_cells = []
     for key, configs in by_task.items():
+        grids = {
+            json.dumps(cell["evaluation_grid"], sort_keys=True) for cell in configs
+        }
+        if len(grids) != 1:
+            raise ValueError("selected configurations use different evaluation grids")
         timed = [cell["inference_seconds"] for cell in configs if cell["inference_seconds"] is not None]
         effective_cells.append(
             {
@@ -154,9 +170,13 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in configs
                 ),
+                "MASE_evaluation_values": sum(
+                    cell["MASE_evaluation_values"] for cell in configs
+                ),
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in configs
                 ),
+                "evaluation_grid": configs[0]["evaluation_grid"],
                 "inference_seconds": (
                     float(np.mean(timed)) if len(timed) == len(configs) else None
                 ),
@@ -186,12 +206,21 @@ def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list
     baseline = {
         key: float(np.mean(values)) for key, values in baseline_by_task.items()
     }
+    baseline_grids = {
+        (cell["dataset_id"], cell["horizon"]): cell["evaluation_grid"]
+        for cell in baseline_cells
+    }
     for cell in effective_cells:
         key = (cell["dataset_id"], cell["horizon"])
         denominator = baseline.get(key)
         if denominator is None or not np.isfinite(denominator) or denominator <= 0:
             raise ValueError(
                 f"missing positive Seasonal Naive MASE for {cell['dataset_id']}/{cell['horizon']}"
+            )
+        if cell["evaluation_grid"] != baseline_grids[key]:
+            raise ValueError(
+                f"evaluation grid differs from Seasonal Naive for "
+                f"{cell['dataset_id']}/{cell['horizon']}"
             )
         cell["scaled_MASE"] = float(cell["MASE"] / denominator)
 
@@ -225,6 +254,9 @@ def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list
                 "timed_tasks": len(timed),
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in model_cells
+                ),
+                "MASE_evaluation_values": sum(
+                    cell["MASE_evaluation_values"] for cell in model_cells
                 ),
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in model_cells
@@ -289,6 +321,7 @@ def add_model_status(
                     "tasks": 0,
                     "timed_tasks": 0,
                     "MASE_finite_values": 0,
+                    "MASE_evaluation_values": 0,
                     "MASE_total_values": 0,
                 }
             )
@@ -324,6 +357,7 @@ def write_csv(rows: list[dict], path: Path) -> None:
         "tasks",
         "timed_tasks",
         "MASE_finite_values",
+        "MASE_evaluation_values",
         "MASE_total_values",
     ]
     with path.open("w", encoding="utf-8", newline="") as stream:
@@ -342,7 +376,7 @@ def write_markdown(rows: list[dict], path: Path) -> None:
         "Inference seconds are summed over the same test forecasting tasks; "
         "a blank total means at least one task lacks timing metadata.",
         "",
-        "| Model | Target mode | State | Exit | Scaled MASE (GM) | Inference seconds | Datasets | Tasks | Timed tasks | MASE finite/total |",
+        "| Model | Target mode | State | Exit | Scaled MASE (GM) | Inference seconds | Datasets | Tasks | Timed tasks | MASE finite/grid/total |",
         "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
@@ -353,7 +387,7 @@ def write_markdown(rows: list[dict], path: Path) -> None:
             f"{'' if mase is None else f'{mase:.6f}'} | "
             f"{'' if seconds is None else f'{seconds:.3f}'} | "
             f"{row['datasets']} | {row['tasks']} | {row['timed_tasks']} | "
-            f"{row['MASE_finite_values']}/{row['MASE_total_values']} |"
+            f"{row['MASE_finite_values']}/{row['MASE_evaluation_values']}/{row['MASE_total_values']} |"
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -559,7 +593,8 @@ def main() -> None:
             f"scaled_MASE={mase_text}  "
             f"inference={seconds_text}  "
             f"coverage={row['timed_tasks']}/{row['tasks']} timed tasks, "
-            f"{row['MASE_finite_values']}/{row['MASE_total_values']} finite MASE values"
+            f"{row['MASE_finite_values']}/{row['MASE_evaluation_values']}/"
+            f"{row['MASE_total_values']} finite/grid/total MASE values"
         )
 
 

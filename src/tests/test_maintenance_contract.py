@@ -104,6 +104,18 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         channels = (
             PROJECT_ROOT / "src/slurm/run_chronos2_comparison.sh"
         ).read_text(encoding="utf-8")
+        seasonal_experiment = (
+            PROJECT_ROOT / "experiments/seasonal_naive.py"
+        ).read_text(encoding="utf-8")
+        evaluation_grid = (
+            PROJECT_ROOT / "src/timebench/evaluation/grid.py"
+        ).read_text(encoding="utf-8")
+        grid_resolver = (
+            PROJECT_ROOT / "src/timebench/pipeline/evaluation_grid.py"
+        ).read_text(encoding="utf-8")
+        saver = (
+            PROJECT_ROOT / "src/timebench/evaluation/saver.py"
+        ).read_text(encoding="utf-8")
 
         self.assertIn("dgx|selena", producer)
         self.assertIn("OUTPUTS_ROOT=$TIME_SEASONAL_ROOT", producer)
@@ -117,6 +129,10 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         self.assertIn(
             '--seasonal-naive-results-dir "$TIME_SEASONAL_TASKS_ROOT"', channels
         )
+        self.assertIn("create_evaluation_grid=True", seasonal_experiment)
+        self.assertIn("finite_ground_truth_and_seasonal_naive_mase", evaluation_grid)
+        self.assertIn("TIME_SEASONAL_TASKS_ROOT", grid_resolver)
+        self.assertIn("evaluation_grid_path is required", saver)
 
     def test_seasonal_naive_uses_direct_deterministic_quantiles(self) -> None:
         experiment = (PROJECT_ROOT / "experiments/seasonal_naive.py").read_text(

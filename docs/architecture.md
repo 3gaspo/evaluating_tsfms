@@ -27,8 +27,11 @@ dataset features and reusable association calculations. Experiment scripts
 compose these components but do not redefine their contracts.
 
 The Seasonal Naive producer owns one reusable task store outside the learned
-model and channel output roots. Consumers receive that store explicitly;
-learned-model jobs never write to it, and summaries wait only for the learned
+model and channel output roots. Each task also writes the common evaluation
+grid: finite target steps and cells whose Seasonal Naive median and MASE are
+finite. Consumers resolve that selected grid before inference, use it for
+every metric, and reject non-finite forecasts on its support. Learned-model
+jobs never write to the shared store, and summaries wait only for the learned
 jobs belonging to their launch.
 
 DGX and Selena retain independent environments and project-scoped output/log

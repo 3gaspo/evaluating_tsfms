@@ -24,8 +24,12 @@ The initial executable surface contains a five-model foundation benchmark and
 a Chronos-2 comparison between native multivariate targets, independent
 univariate targets, and other target histories supplied as past-only
 covariates. Seasonal Naive is deterministic and provides the taskwise MASE
-normalizer. Inference timing excludes loading, dataset construction, metric
-computation, and artifact saving.
+normalizer. It also fixes the evaluation grid to cells with finite target
+support, finite Seasonal Naive predictions on that support, and finite
+Seasonal Naive MASE. Every learned model uses this same grid; a non-finite
+forecast on expected support invalidates its task rather than changing the
+aggregation support. Inference timing excludes loading, dataset construction,
+metric computation, and artifact saving.
 
 \section{Evidence boundary}
 
