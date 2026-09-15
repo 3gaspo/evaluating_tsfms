@@ -1,0 +1,12 @@
+2026-09-14 23:45:27 | workflow foundation_summary started launch_id=selena_20260914T203932Z_43814 task=macro_mase_and_timing slurm_job_id=3427097 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-14 23:45:27 | stage summarize started
+2026-09-14 23:45:27 | task foundation_model_summary outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/summary/selena_20260914T203932Z_43814/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/summary/selena_20260914T203932Z_43814/foundation_model_summary.md
+
+chronos2/multivariate,univariate state=completed  scaled_MASE=0.685489  inference=427.101s  coverage=98/98 timed tasks, 111071/111177 finite MASE values
+ts_icl/univariate            state=completed  scaled_MASE=0.718394  inference=2670.521s  coverage=98/98 timed tasks, 111071/111177 finite MASE values
+chronos_bolt/univariate      state=completed  scaled_MASE=0.759559  inference=942.235s  coverage=98/98 timed tasks, 111071/111177 finite MASE values
+seasonal_naive/univariate    state=completed  scaled_MASE=1.000000  inference=653.028s  coverage=98/98 timed tasks, 111071/111177 finite MASE values
+timesfm3                     state=failed  scaled_MASE=incomplete  inference=incomplete  coverage=0/0 timed tasks, 0/0 finite MASE values
+2026-09-14 23:45:32 | task foundation_model_summary outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs completed status=success
+2026-09-14 23:45:32 | stage summarize completed status=success

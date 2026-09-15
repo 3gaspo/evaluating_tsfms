@@ -1,0 +1,2 @@
+Feature plot requires 5 successful model jobs; incomplete: timesfm3:failed:1
+2026-09-14 23:45:32 | workflow foundation_summary completed status=failed exit_code=1
