@@ -4,7 +4,7 @@
 FOUNDATION_MODELS=(
     chronos_bolt
     chronos2
-    timesfm3
+    # timesfm3
     ts_icl
     seasonal_naive
 )
@@ -12,14 +12,14 @@ FOUNDATION_MODELS=(
 FOUNDATION_LEARNED_MODELS=(
     chronos_bolt
     chronos2
-    timesfm3
+    # timesfm3
     ts_icl
 )
 
 FOUNDATION_RUNNERS=(
     run_chronos_bolt.sh
     run_chronos2.sh
-    run_timesfm3.sh
+    # run_timesfm3.sh
     run_tsicl.sh
     run_seasonal_naive.sh
 )
