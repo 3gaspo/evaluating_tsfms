@@ -1,0 +1,84 @@
+{
+  "error": {
+    "message": "launch selena_20260915T093434Z_46580 ended before task completion",
+    "type": "InterruptedLaunch"
+  },
+  "experiment": "foundation_models",
+  "experiment_config": {
+    "covariate_channels": 0,
+    "covariate_mode": "none",
+    "covariate_source": "none",
+    "covariate_time_span": "none",
+    "official_evaluator_defaults": {
+      "make_positive": true,
+      "padding_mode": "none",
+      "sort_quantiles": true,
+      "use_symmetric_averaging": true,
+      "use_znorm": false
+    }
+  },
+  "identity": {
+    "dataset": "Water_Quality_Darwin",
+    "frequency": "15T",
+    "model": "timesfm3",
+    "target_mode": "multivariate",
+    "term": "short"
+  },
+  "launch": {
+    "action": "new",
+    "attempts": [
+      {
+        "action": "new",
+        "launch_id": "selena_20260915T093434Z_46580",
+        "launched_at": "2026-09-15T09:34:48.773452+00:00",
+        "slurm_array_task_id": null,
+        "slurm_job_id": "3432382"
+      }
+    ],
+    "launch_id": "selena_20260915T093434Z_46580",
+    "launched_at": "2026-09-15T09:34:48.773452+00:00",
+    "slurm_job_id": "3432382"
+  },
+  "model_config": {
+    "context_length": 15360,
+    "evaluator": "TimesFM3Evaluator",
+    "model_size": "timesfm3",
+    "quantile_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "upstream_package": "timesfm[torch]==3.0.1",
+    "upstream_repository": "google/timesfm-3.0-pytorch"
+  },
+  "pipeline_config": {
+    "evaluation_grid": "finite_ground_truth_and_seasonal_naive_mase",
+    "prediction_length": 16,
+    "seasonality": 96,
+    "test_length": 1440,
+    "val_length": 1440,
+    "windows": 90
+  },
+  "project": "evaluating_tsfms",
+  "provenance": {
+    "dataset_config_path": null,
+    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Water_Quality_Darwin/15T/short/run_0/evaluation_grid.npz"
+  },
+  "required_artifacts": [],
+  "runtime_config": {
+    "batch_size": 4,
+    "checkpoint_path": "/fslarge/scratch/users/h61084/weights/timesfm3",
+    "device": "cuda",
+    "local_files_only": true
+  },
+  "schema_version": 1,
+  "started_at": "2026-09-15T09:34:48.773452+00:00",
+  "status": "interrupted",
+  "updated_at": "2026-09-15T09:34:51.137538+00:00"
+}

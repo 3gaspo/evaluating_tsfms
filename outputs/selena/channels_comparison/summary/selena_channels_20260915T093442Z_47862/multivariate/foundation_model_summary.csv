@@ -1,0 +1,2 @@
+launch_id,model,base_model,target_modes,state,exit_code,scaled_MASE,inference_seconds,datasets,tasks,timed_tasks,MASE_finite_values,MASE_evaluation_values,MASE_total_values
+selena_channels_20260915T093442Z_47862,chronos2,chronos2,multivariate,completed,0,0.6900454053638673,326.7747806957923,38,74,74,91319,91319,91425

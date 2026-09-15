@@ -1,0 +1,42 @@
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
+  warnings.warn(
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
+  offset = pd.tseries.frequencies.to_offset(freq)
+Traceback (most recent call last):
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/run_timesfm3.py", line 448, in <module>
+    main()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/run_timesfm3.py", line 432, in main
+    run_timesfm3_experiment(
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/run_timesfm3.py", line 269, in run_timesfm3_experiment
+    forecaster = TimesFM3Evaluator(
+                 ^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/timesfm3/timesfm3_forecaster.py", line 341, in __init__
+    self._init_model()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/timesfm3/timesfm3_forecaster.py", line 381, in _init_model
+    self.model = torch_model_lib.TimesFM3Torch.from_pretrained(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/huggingface_hub/hub_mixin.py", line 561, in from_pretrained
+    instance = cls._from_pretrained(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/huggingface_hub/hub_mixin.py", line 779, in _from_pretrained
+    return cls._load_as_safetensor(model, model_file, map_location, strict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/huggingface_hub/hub_mixin.py", line 824, in _load_as_safetensor
+    safetensors.torch.load_model(model, model_file, strict=strict, device=map_location)  # type: ignore [arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/safetensors/torch.py", line 228, in load_model
+    state_dict = load_file(filename, device=device, backend=backend)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/safetensors/torch.py", line 359, in load_file
+    with safe_open(filename, framework="pt", device=device, backend=backend) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+safetensors._safetensors_rust.SafetensorError: Error while deserializing header: incomplete metadata, file not fully covered
+srun: error: sean0016: task 0: Exited with exit code 1
+2026-09-15 11:34:50 | task model=timesfm3 runner=run_timesfm3.sh environment=uv covariate_mode=none target_mode=auto completed status=failed exit_code=1
+2026-09-15 11:34:50 | stage evaluate completed status=failed exit_code=1
+TIME interrupted-launch recovery launch_id=selena_20260915T093434Z_46580 tasks=1 root=/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/timesfm3
+  interrupted /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/timesfm3/multivariate/Water_Quality_Darwin/15T/short/run_1
+2026-09-15 11:34:51 | workflow foundation_models completed status=failed exit_code=1
