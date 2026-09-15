@@ -516,7 +516,12 @@ def main() -> None:
         config_policy=args.config_policy,
         repeat_policy=args.repeat_policy,
     )
-    metric_rows = summarize_cells(cells, seasonal_naive_cells)
+    summary_cells = [
+        cell for cell in cells if cell.get("base_model") != "seasonal_naive"
+    ]
+    if "seasonal_naive" in models:
+        summary_cells.extend(seasonal_naive_cells)
+    metric_rows = summarize_cells(summary_cells, seasonal_naive_cells)
     statuses = load_model_statuses(args.status_dir)
     statuses.update(parse_model_statuses(args.model_status))
     rows = add_model_status(metric_rows, args.models, statuses, args.launch_id)

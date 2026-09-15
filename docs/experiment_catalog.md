@@ -6,14 +6,16 @@
 
 Compares `chronos_bolt`, `chronos2`, `timesfm3`, `ts_icl`, and deterministic
 `seasonal_naive` over the official TIME test tasks. It records actual target
-mode, scaled MASE, finite-value coverage, and inference seconds. Entry point:
-`scripts/submit_foundation_models.sh`.
+mode, scaled MASE, finite-value coverage, and inference seconds. Generate the
+reusable baseline once with `scripts/submit_seasonal_naive.sh`; then launch the
+parallel learned-model jobs with `scripts/submit_foundation_models.sh`.
 
 ### Chronos-2 channel comparison
 
 Compares native multivariate targets, independent univariate targets, and
 past targets represented as past-only covariates on multivariate datasets.
-Entry point: `scripts/channels_comparison.sh`.
+Entry point: `scripts/channels_comparison.sh`. Its summaries consume the same
+reusable Seasonal Naive baseline as the foundation-model benchmark.
 
 ### Dataset diagnostics
 

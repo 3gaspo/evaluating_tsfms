@@ -15,8 +15,9 @@ rerun under its own artifact lineage.
 
 The migrated runnable studies are:
 
-- Seasonal Naive followed by Chronos-Bolt, Chronos-2, TimesFM-3, and TS-ICL,
-  with Seasonal-Naive-scaled MASE and inference timing;
+- a reusable Seasonal Naive baseline plus parallel Chronos-Bolt, Chronos-2,
+  TimesFM-3, and TS-ICL evaluations, with Seasonal-Naive-scaled MASE and
+  inference timing;
 - Chronos-2 native multivariate, independent univariate, and past-target-as-
   covariate comparison;
 - reusable dataset/window diagnostics and feature-performance associations.
@@ -43,14 +44,18 @@ PYTHONPATH=src uv run --no-sync python scripts/download_time_dataset.py \
 From a prepared DGX or Selena checkout:
 
 ```bash
+bash scripts/submit_seasonal_naive.sh dgx
 bash scripts/submit_foundation_models.sh dgx
 bash scripts/channels_comparison.sh dgx
 bash scripts/dataset_diagnostics.sh dgx
 ```
 
-Replace `dgx` by `selena` for the Selena fronts. The foundation workflow runs
-Seasonal Naive first, releases learned models after the baseline succeeds, and
-runs the summary after every model terminates. Each task is addressed by its
+Replace `dgx` by `selena` for the Selena fronts. Run the Seasonal Naive command
+once and wait for it to complete. It writes the shared baseline selected by
+`TIME_SEASONAL_ROOT`. Foundation-model and channel launchers then run without a
+Seasonal job dependency and may be submitted together. The four learned
+foundation models run concurrently; their summary runs once after every model
+terminates and reads the shared baseline. Each task is addressed by its
 complete scientific configuration and has schema-1 lifecycle metadata.
 
 `sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`

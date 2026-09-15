@@ -15,6 +15,8 @@ src/timebench/evaluation + experiments/<model>.py
         v
 schema-1 task runs in outputs/<experiment>/tasks
         |
+        +<-- reusable Seasonal Naive task store
+        |
         +--> summary tables
         `--> feature-performance analysis
 ```
@@ -23,6 +25,11 @@ schema-1 task runs in outputs/<experiment>/tasks
 recovery, interruption, and result selection. `src/timebench/feature/` owns
 dataset features and reusable association calculations. Experiment scripts
 compose these components but do not redefine their contracts.
+
+The Seasonal Naive producer owns one reusable task store outside the learned
+model and channel output roots. Consumers receive that store explicitly;
+learned-model jobs never write to it, and summaries wait only for the learned
+jobs belonging to their launch.
 
 DGX and Selena retain independent environments and project-scoped output/log
 roots. Code synchronization excludes every dataset, weight, output, log,

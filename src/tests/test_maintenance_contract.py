@@ -88,6 +88,36 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         self.assertIn("export HF_DATASETS_OFFLINE=1", runtime)
         self.assertIn("export TRANSFORMERS_OFFLINE=1", runtime)
 
+    def test_shared_seasonal_workflow_contract(self) -> None:
+        producer = (PROJECT_ROOT / "scripts/submit_seasonal_naive.sh").read_text(
+            encoding="utf-8"
+        )
+        launcher = (PROJECT_ROOT / "scripts/submit_foundation_models.sh").read_text(
+            encoding="utf-8"
+        )
+        registry = (
+            PROJECT_ROOT / "src/slurm/foundation_model_runners.sh"
+        ).read_text(encoding="utf-8")
+        summary = (
+            PROJECT_ROOT / "src/slurm/summarize_foundation_models.sh"
+        ).read_text(encoding="utf-8")
+        channels = (
+            PROJECT_ROOT / "src/slurm/run_chronos2_comparison.sh"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("dgx|selena", producer)
+        self.assertIn("OUTPUTS_ROOT=$TIME_SEASONAL_ROOT", producer)
+        self.assertIn('for model in "${FOUNDATION_LEARNED_MODELS[@]}"', launcher)
+        self.assertNotIn("seasonal_job", launcher)
+        self.assertIn('--dependency="afterany:$dependency"', launcher)
+        self.assertIn("FOUNDATION_LEARNED_MODELS=(", registry)
+        self.assertIn(
+            '--seasonal-naive-results-dir "$TIME_SEASONAL_TASKS_ROOT"', summary
+        )
+        self.assertIn(
+            '--seasonal-naive-results-dir "$TIME_SEASONAL_TASKS_ROOT"', channels
+        )
+
     def test_seasonal_naive_uses_direct_deterministic_quantiles(self) -> None:
         experiment = (PROJECT_ROOT / "experiments/seasonal_naive.py").read_text(
             encoding="utf-8"
