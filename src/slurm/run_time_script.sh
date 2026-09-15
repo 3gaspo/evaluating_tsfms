@@ -41,3 +41,4 @@ if [ -n "${SLURM_JOB_ID:-}" ]; then
 else
     "${runner_command[@]}"
 fi
+

@@ -44,3 +44,4 @@ case "$scope" in
 esac
 
 echo "$scope dataset metadata aggregates exported to $export_root"
+
