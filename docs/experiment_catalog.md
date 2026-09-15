@@ -4,8 +4,9 @@
 
 ### Foundation-model benchmark
 
-Compares `chronos_bolt`, `chronos2`, `timesfm3`, `ts_icl`, and deterministic
-`seasonal_naive` over the official TIME test tasks. It records actual target
+Compares `chronos_bolt`, `chronos2`, `ts_icl`, and deterministic
+`seasonal_naive` over the official TIME test tasks. TimesFM-3 is excluded from
+the active experiment set. The benchmark records actual target
 mode, scaled MASE, finite/grid/total coverage, and inference seconds. Seasonal
 Naive defines one reusable evaluation grid from finite ground-truth support,
 finite Seasonal predictions, and finite Seasonal MASE. Every learned model is

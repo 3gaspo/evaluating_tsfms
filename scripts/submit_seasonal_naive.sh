@@ -3,7 +3,7 @@
 set -euo pipefail
 
 usage() {
-    echo "usage: bash scripts/submit_seasonal_naive.sh dgx|selena" >&2
+    echo "usage: bash scripts/submit_seasonal_naive.sh dgx|selena [shared|project]" >&2
 }
 
 cluster="${1:-}"
@@ -11,6 +11,13 @@ case "$cluster" in
     dgx|selena) ;;
     *) usage; exit 2 ;;
 esac
+
+seasonal_scope="${2:-${TIME_SEASONAL_SCOPE:-shared}}"
+case "$seasonal_scope" in
+    shared|project) ;;
+    *) usage; exit 2 ;;
+esac
+export TIME_SEASONAL_SCOPE="$seasonal_scope"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
@@ -36,6 +43,6 @@ job_id="$(
 )"
 job_id="${job_id%%;*}"
 
-echo "shared Seasonal Naive submitted job_id=$job_id launch_id=$launch_id"
-echo "shared task root: $TIME_SEASONAL_TASKS_ROOT"
+echo "$seasonal_scope Seasonal Naive submitted job_id=$job_id launch_id=$launch_id"
+echo "Seasonal task root: $TIME_SEASONAL_TASKS_ROOT"
 echo "status: bash scripts/foundation_model_status.sh $cluster $launch_id"

@@ -119,9 +119,26 @@ elif [ -d outputs ]; then
                 -name SELECTED_RUNS.json -o \
                 -path '*/manifest_history/*.json' -o \
                 -name manifest.json -o \
+                -name model_manifest.json -o \
+                -name result_manifest.json -o \
+                -name selection.json -o \
+                -name comparison_summary.json -o \
+                -name time_summary_manifest.json -o \
+                -name time_summary.json -o \
+                -name time_tasks.csv -o \
+                -name audit_manifest.json -o \
                 -name config.json -o \
                 -name metrics_summary.json -o \
-                -name metrics.npz \) -print0
+                -name report_manifest.json -o \
+                -name comparison.csv -o \
+                -name metrics.npz -o \
+                -name task_summary.csv -o \
+                -name dataset_summary.csv -o \
+                -name window_events.csv -o \
+                -name nonfinite_positions.csv -o \
+                -name full.csv -o \
+                -name full_dataset.csv -o \
+                -name dataset_features_full.csv \) -print0
         else
             find "$project_root/outputs" -type f \( \
                 -name foundation_model_summary.csv -o \
@@ -133,8 +150,22 @@ elif [ -d outputs ]; then
                 -name SELECTED_RUNS.json -o \
                 -path '*/manifest_history/*.json' -o \
                 -name manifest.json -o \
+                -name model_manifest.json -o \
+                -name result_manifest.json -o \
+                -name selection.json -o \
+                -name comparison_summary.json -o \
+                -name time_summary_manifest.json -o \
+                -name time_summary.json -o \
+                -name time_tasks.csv -o \
+                -name audit_manifest.json -o \
                 -name config.json -o \
-                -name metrics_summary.json \) -print0
+                -name metrics_summary.json -o \
+                -name report_manifest.json -o \
+                -name comparison.csv -o \
+                -name task_summary.csv -o \
+                -name dataset_summary.csv -o \
+                -name full_dataset.csv -o \
+                -name dataset_features_full.csv \) -print0
         fi
     )
 fi

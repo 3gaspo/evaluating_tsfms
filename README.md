@@ -5,18 +5,18 @@ zero-shot time-series foundation models on the public TIME benchmark. It is an
 experiment repository derived from the source-only
 [Improved TIME](https://github.com/3gaspo/improved_TIME) layer.
 
-The initial migration preserves the former Improved repository's five-model
-foundation benchmark, Chronos-2 channel comparison, dataset diagnostics,
-feature-performance analysis, task recovery, and DGX/Selena launch machinery.
-No result is claimed for this new repository until those experiments are
-rerun under its own artifact lineage.
+The repository inherits foundation execution, Seasonal Naive, dataset
+diagnostics, feature-performance analysis, task recovery, reporting, and
+DGX/Selena machinery from Improved TIME. It owns the Chronos-2 channel
+comparison and its active schedule, which excludes TimesFM-3 and evaluates
+three learned models plus Seasonal Naive.
 
 ## Scientific scope
 
 The migrated runnable studies are:
 
 - a reusable Seasonal Naive baseline plus parallel Chronos-Bolt, Chronos-2,
-  TimesFM-3, and TS-ICL evaluations, with Seasonal-Naive-scaled MASE and
+  and TS-ICL evaluations, with Seasonal-Naive-scaled MASE and
   inference timing on one shared Seasonal-defined evaluation grid;
 - Chronos-2 native multivariate, independent univariate, and past-target-as-
   covariate comparison;
@@ -30,8 +30,8 @@ planned until their exact configurations and launchers are implemented.
 
 Prepare the project environment on each execution host with `uv`. Learned
 models run offline from checkpoints below `TIME_WEIGHTS`; the default names
-are `chronos2/`, `chronos-bolt-base/`, `timesfm3/`, and
-`tsicl/tsicl-v1.ckpt`. Download the official saved-Arrow TIME data on an
+are `chronos2/`, `chronos-bolt-base/`, and `tsicl/tsicl-v1.ckpt`. Download the
+official saved-Arrow TIME data on an
 internet-connected preparation host with:
 
 ```bash
@@ -44,20 +44,22 @@ PYTHONPATH=src uv run --no-sync python scripts/download_time_dataset.py \
 From a prepared DGX or Selena checkout:
 
 ```bash
-bash scripts/submit_seasonal_naive.sh dgx
+bash scripts/submit_seasonal_naive.sh dgx shared
 bash scripts/submit_foundation_models.sh dgx
 bash scripts/channels_comparison.sh dgx
 bash scripts/dataset_diagnostics.sh dgx
 ```
 
-Replace `dgx` by `selena` for the Selena fronts. Run the Seasonal Naive command
-once and wait for it to complete. It writes the shared baseline selected by
-`TIME_SEASONAL_ROOT`, including the grid of cells with finite ground-truth
+Replace `dgx` by `selena` for the Selena fronts. The optional second Seasonal
+argument is `shared` (the default) or `project`; consumers must use the same
+`TIME_SEASONAL_SCOPE`, unless `TIME_SEASONAL_ROOT` explicitly selects the
+artifact location. Run the Seasonal Naive command once and wait for it to
+complete. It writes the baseline and the grid of cells with finite ground-truth
 support, finite Seasonal Naive predictions on that support, and finite
 Seasonal Naive MASE. Foundation-model and channel launchers require that grid,
 then run without a Seasonal job dependency and may be submitted together. A
 learned model that produces a non-finite forecast on the grid fails its task
-instead of silently changing metric coverage. The four learned
+instead of silently changing metric coverage. The three learned
 foundation models run concurrently; their summary runs once after every model
 terminates and reads the shared baseline. Each task is addressed by its
 complete scientific configuration and has schema-1 lifecycle metadata.
@@ -83,7 +85,7 @@ project. Generated results live in `outputs/`; runtime streams live in
 experiments/               inherited model/evaluation entry points
 scripts/                   public experiment and analysis commands
 slurm/                     DGX and Selena scheduler fronts
-src/slurm/                 scheduler workflow implementations
+src/slurm/                 inherited workflows plus experiment schedule
 src/timebench/             inherited reusable benchmark implementation
 src/tests/                 shared and experiment-specific contract checks
 docs/, latex/              architecture, protocol, and evidence documents

@@ -27,6 +27,7 @@ fi
 mkdir -p "$TIME_LOGS"
 
 source "$PROJECT_ROOT/src/slurm/foundation_model_runners.sh"
+require_foundation_schedule
 launch_id="${TIME_LAUNCH_ID:-${cluster}_$(date -u '+%Y%m%dT%H%M%SZ')_$$}"
 
 model_jobs=()

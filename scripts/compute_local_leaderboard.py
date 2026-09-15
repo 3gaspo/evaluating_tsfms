@@ -4,7 +4,7 @@ Compute Overall Leaderboard from TIME evaluation results.
 
 This script:
 1. Downloads Seasonal Naive results from HuggingFace Hub (if not found locally)
-2. Selects completed run manifests from one Evaluating TSFMs experiment root
+2. Selects completed run manifests from one TIME experiment root
 3. Computes Overall leaderboard metrics (normalized by Seasonal Naive)
 4. Prints the results in a formatted table
 
@@ -221,7 +221,7 @@ def get_manifest_datasets_results(
     config_policy: str = "error",
     repeat_policy: str = "selected",
 ) -> pd.DataFrame:
-    """Load current Evaluating TSFMs results through completed run manifests."""
+    """Load current TIME results through completed run manifests."""
     rows = []
     selected = select_completed_runs(
         results_root,

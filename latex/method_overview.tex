@@ -20,10 +20,12 @@ declares another factor.
 
 \section{Current migrated comparisons}
 
-The initial executable surface contains a five-model foundation benchmark and
-a Chronos-2 comparison between native multivariate targets, independent
-univariate targets, and other target histories supplied as past-only
-covariates. Seasonal Naive is deterministic and provides the taskwise MASE
+The executable surface contains a foundation benchmark of Chronos-2,
+Chronos-Bolt, TS-ICL, and Seasonal Naive; TimesFM-3 is excluded from the active
+experiment set. It also contains a Chronos-2 comparison between native
+multivariate targets, independent univariate targets, and other target
+histories supplied as past-only covariates. Seasonal Naive is deterministic
+and provides the taskwise MASE
 normalizer. It also fixes the evaluation grid to cells with finite target
 support, finite Seasonal Naive predictions on that support, and finite
 Seasonal Naive MASE. Every learned model uses this same grid; a non-finite
@@ -33,8 +35,8 @@ metric computation, and artifact saving.
 
 \section{Evidence boundary}
 
-The repository makes no result claim until its migrated experiments are rerun
-and their project-owned manifests and aggregates are inspected. Covariate,
+Current result claims are limited to project-owned manifests and aggregates
+produced under the shared Seasonal evaluation grid. Covariate generalization,
 normalization, and context-size extensions remain planned until their exact
 grids are implemented.
 
