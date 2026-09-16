@@ -57,7 +57,8 @@ common layer also provides:
 - local-only foundation-model checkpoint loading;
 - accelerator-synchronized inference timing;
 - schema-1 task manifests, recovery, and result-selection policies;
-- compact metric summaries with finite-value coverage;
+- compact metric summaries with finite-value coverage, population variance,
+  and standard deviation across finite series-window-variate metric cells;
 - saved-Arrow feature extraction and reusable window auditing.
 - DGX/Selena runtime fronts, task status, artifact clearing and synchronization;
 - reusable Seasonal Naive and dataset-diagnostic submission commands;
@@ -74,6 +75,26 @@ bash scripts/submit_seasonal_naive.sh dgx project
 
 Use the same `TIME_SEASONAL_SCOPE` when launching consumers. An explicit
 `TIME_SEASONAL_ROOT` overrides the scope-derived location.
+
+Model jobs save each metric's `mean`, `std`, `variance`, and
+`dispersion_ddof=0` in `metrics_summary.json`. Dispersion uses the same finite
+cells as the arithmetic task mean, not repeated-run uncertainty. For scaled
+MASE, divide a task's MASE standard deviation by its matched Seasonal Naive
+task mean; divide its variance by the square of that mean. Lightweight result
+synchronization includes these JSON fields without transferring metric arrays.
+
+Existing completed tasks with the current Seasonal-defined evaluation grid can
+be refreshed once from their retained `metrics.npz` files, without inference:
+
+```bash
+PYTHONPATH=src uv run --no-sync python src/scripts/backfill_metric_dispersion.py \
+  outputs/foundation_models/tasks
+```
+
+Supply the actual task roots when outputs are configured elsewhere. The
+temporary refresh preserves means, coverage, timing, manifests, and selection;
+missing raw metrics stop it before any summary is rewritten. Summary-only jobs
+can then be rerun normally; existing aggregate mean scores are unchanged.
 
 The parent registry describes all supported foundation runners but selects no
 batch experiment. A downstream repository must provide

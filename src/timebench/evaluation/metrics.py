@@ -17,6 +17,21 @@ Supported metrics:
 import numpy as np
 
 
+def summarize_metric_values(values: np.ndarray, evaluation_values: int) -> dict:
+    """Aggregate finite metric cells; dispersion is population (ddof=0)."""
+    values = np.asarray(values)
+    finite = values[np.isfinite(values)]
+    return {
+        "mean": float(np.mean(finite)) if finite.size else None,
+        "std": float(np.std(finite, dtype=np.float64, ddof=0)) if finite.size else None,
+        "variance": float(np.var(finite, dtype=np.float64, ddof=0)) if finite.size else None,
+        "dispersion_ddof": 0,
+        "finite_values": int(finite.size),
+        "evaluation_values": int(evaluation_values),
+        "total_values": int(values.size),
+    }
+
+
 def fill_missing_history(context: np.ndarray) -> np.ndarray:
     """Apply the maintained TIME forward-fill policy along the time axis."""
 

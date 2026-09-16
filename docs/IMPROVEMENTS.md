@@ -18,6 +18,9 @@ finite-coverage repair where that behavior belongs in the common layer.
 - Added strict optional and required cross-experiment compact-result reuse.
 - Added compact `metrics_summary.json` artifacts with finite and total metric
   counts while retaining raw per-window metrics separately.
+- Added population standard deviation and variance on the same finite metric
+  cells, plus a temporary raw-metric refresh that preserves existing means and
+  metadata and requires no forecast rerun.
 - Added reusable DGX/Selena runtime fronts, project-scoped artifact clearing,
   code/result synchronization, and publication helpers. Improved TIME owns
   their source but remains a non-executing parent with no cluster state.

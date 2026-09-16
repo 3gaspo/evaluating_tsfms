@@ -17,6 +17,7 @@ import numpy as np
 
 from timebench.evaluation.metrics import (
     compute_per_window_metrics_from_quantiles,
+    summarize_metric_values,
 )
 from timebench.evaluation.grid import (
     EVALUATION_GRID_DEFINITION,
@@ -318,13 +319,9 @@ def save_window_predictions(
 
     metric_summaries = {}
     for metric_name, metric_values in metrics.items():
-        finite_values = metric_values[np.isfinite(metric_values)]
-        metric_summaries[metric_name] = {
-            "mean": float(np.mean(finite_values)) if finite_values.size else None,
-            "finite_values": int(finite_values.size),
-            "evaluation_values": int(np.count_nonzero(evaluation_mask)),
-            "total_values": int(metric_values.size),
-        }
+        metric_summaries[metric_name] = summarize_metric_values(
+            metric_values, np.count_nonzero(evaluation_mask)
+        )
     metrics_summary = {
         "dataset_config": ds_config,
         "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
