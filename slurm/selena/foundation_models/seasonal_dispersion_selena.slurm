@@ -1,14 +1,16 @@
 #!/bin/bash
 #SBATCH --job-name=seasonal_dispersion
+#SBATCH --gres=gpu:1
 #SBATCH --output=logs/%x_%j.out
 #SBATCH --error=logs/%x_%j.err
-#SBATCH --time=01:00:00
+#SBATCH --time=23:00:00
 #SBATCH --partition=an
 #SBATCH --qos=an_preemptable
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=2
-#SBATCH --mem=8000
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=80000
+#SBATCH --exclusive
 #SBATCH --wckey=P12CU:DATASCIENCE
 
 set -euo pipefail
