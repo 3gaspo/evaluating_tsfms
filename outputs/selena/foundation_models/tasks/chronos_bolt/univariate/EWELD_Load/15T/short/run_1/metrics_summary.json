@@ -12,49 +12,73 @@
       "mean": 1147.2520594134585,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 2944.4427305279664,
+      "variance": 8669742.993358986,
+      "dispersion_ddof": 0
     },
     "MAE": {
       "mean": 13.17297932114674,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 23.778990052999816,
+      "variance": 565.4403679406641,
+      "dispersion_ddof": 0
     },
     "RMSE": {
       "mean": 16.50281225322236,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 29.57886487254628,
+      "variance": 874.9092471483522,
+      "dispersion_ddof": 0
     },
     "MAPE": {
       "mean": 0.34573774705428195,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 0.698110441798649,
+      "variance": 0.48735818894830496,
+      "dispersion_ddof": 0
     },
     "sMAPE": {
       "mean": 0.29533288229804305,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 0.3628587019592768,
+      "variance": 0.13166643758757124,
+      "dispersion_ddof": 0
     },
     "MASE": {
       "mean": 0.570156750162608,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 0.5042486701499416,
+      "variance": 0.2542667213479846,
+      "dispersion_ddof": 0
     },
     "ND": {
       "mean": 0.38237970218256806,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 1.5484388162204699,
+      "variance": 2.3976627675782503,
+      "dispersion_ddof": 0
     },
     "CRPS": {
       "mean": 0.3531767455962199,
       "finite_values": 560,
       "evaluation_values": 560,
-      "total_values": 560
+      "total_values": 560,
+      "std": 1.4569252250397389,
+      "variance": 2.1226311113570935,
+      "dispersion_ddof": 0
     }
   },
   "launch_id": "selena_20260915T093434Z_46580",
