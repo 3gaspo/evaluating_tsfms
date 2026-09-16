@@ -69,25 +69,22 @@ retain this project's code and artifacts without touching another TIME
 project. Generated results live in `outputs/`; runtime streams live in
 `logs/`.
 
-Model jobs save each metric's `mean`, `std`, `variance`, and
+Model jobs, including the original Seasonal Naive job, save each metric's `mean`, `std`, `variance`, and
 `dispersion_ddof=0` in `metrics_summary.json`. Dispersion uses the same finite
 cells as the arithmetic task mean, not repeated-run uncertainty. For scaled
 MASE, divide a task's MASE standard deviation by its matched Seasonal Naive
 task mean; divide its variance by the square of that mean. Lightweight result
 synchronization includes these JSON fields without transferring metric arrays.
 
-Existing completed tasks with the current Seasonal-defined evaluation grid can
-be refreshed once from their retained `metrics.npz` files, without inference:
+To refresh existing shared Seasonal outputs without rerunning forecasts,
+submit `bash scripts/submit_seasonal_dispersion.sh` on Selena. This temporary
+CPU job updates dispersion in completed current-grid Seasonal summaries in
+the configured shared Seasonal task root, preserving means and support. It
+also writes `outputs/analysis/seasonal_dispersion/task_summary.csv`, included
+by lightweight synchronization. The variance-ratio scatter uses model MASE
+variance divided by matched Seasonal MASE variance; this differs from the
+variance of scaled MASE described above.
 
-```bash
-PYTHONPATH=src uv run --no-sync python src/scripts/backfill_metric_dispersion.py \
-  outputs/foundation_models/tasks
-```
-
-Supply the actual task roots when outputs are configured elsewhere. The
-temporary refresh preserves means, coverage, timing, manifests, and selection;
-missing raw metrics stop it before any summary is rewritten. Summary-only jobs
-can then be rerun normally; existing aggregate mean scores are unchanged.
 
 
 ## Documentation
@@ -97,6 +94,9 @@ can then be rerun normally; existing aggregate mean scores are unchanged.
   planned experiment families.
 - [Method overview](latex/method_overview.tex) states the evaluation questions.
 - [Results recap](docs/results_recap.md) defines the current evidence boundary.
+- [Scientific executive summary](latex/executive_summary.pdf) presents the
+  current findings, mathematical task, essential protocols, tables, and plots
+  ([LaTeX source](latex/executive_summary.tex)).
 - [TIME dataset format](docs/DATASET_FORMAT.md) documents the inherited
   saved-Arrow representation.
 
