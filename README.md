@@ -69,6 +69,27 @@ retain this project's code and artifacts without touching another TIME
 project. Generated results live in `outputs/`; runtime streams live in
 `logs/`.
 
+Model jobs save each metric's `mean`, `std`, `variance`, and
+`dispersion_ddof=0` in `metrics_summary.json`. Dispersion uses the same finite
+cells as the arithmetic task mean, not repeated-run uncertainty. For scaled
+MASE, divide a task's MASE standard deviation by its matched Seasonal Naive
+task mean; divide its variance by the square of that mean. Lightweight result
+synchronization includes these JSON fields without transferring metric arrays.
+
+Existing completed tasks with the current Seasonal-defined evaluation grid can
+be refreshed once from their retained `metrics.npz` files, without inference:
+
+```bash
+PYTHONPATH=src uv run --no-sync python src/scripts/backfill_metric_dispersion.py \
+  outputs/foundation_models/tasks
+```
+
+Supply the actual task roots when outputs are configured elsewhere. The
+temporary refresh preserves means, coverage, timing, manifests, and selection;
+missing raw metrics stop it before any summary is rewritten. Summary-only jobs
+can then be rerun normally; existing aggregate mean scores are unchanged.
+
+
 ## Documentation
 
 - [Architecture](docs/architecture.md) describes ownership and execution flow.
