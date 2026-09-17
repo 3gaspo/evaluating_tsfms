@@ -81,6 +81,8 @@ def run_tsicl_experiment(
 
     # Set CUDA device
     device_map = "cuda" if torch.cuda.is_available() else "cpu"
+    from timebench.pipeline.runtime_resources import log
+    log("model_device", model="ts_icl", device=device_map)
     
     # Load dataset configuration
     print("Loading configuration...")

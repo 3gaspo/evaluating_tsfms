@@ -76,14 +76,29 @@ MASE, divide a task's MASE standard deviation by its matched Seasonal Naive
 task mean; divide its variance by the square of that mean. Lightweight result
 synchronization includes these JSON fields without transferring metric arrays.
 
-To refresh existing shared Seasonal outputs without rerunning forecasts,
-submit `bash scripts/submit_seasonal_dispersion.sh` on Selena. This temporary
-CPU job updates dispersion in completed current-grid Seasonal summaries in
-the configured shared Seasonal task root, preserving means and support. It
-also writes `outputs/analysis/seasonal_dispersion/task_summary.csv`, included
-by lightweight synchronization. The variance-ratio scatter uses model MASE
-variance divided by matched Seasonal MASE variance; this differs from the
-variance of scaled MASE described above.
+The variance-ratio scatter uses model MASE variance divided by matched Seasonal
+MASE variance; this differs from the variance of scaled MASE described above.
+The completed Seasonal refresh's diagnostic `task_summary.csv` is retained as
+plot evidence and included by lightweight synchronization; its temporary tools
+have been retired.
+
+Every summary now writes a `performance/` bundle beside its foundation table:
+task-level inputs, raw/scaled MASE, reference-relative improvements, recorded
+inference-time totals, and per-domain average tables (CSV, Markdown, LaTeX).
+PNG/PDF figures show horizon-by-sampling-frequency loss and best-model maps,
+per-domain loss bars, and accuracy versus recorded inference time. Heatmap
+cells average task losses arithmetically; aggregate scaled MASE retains the
+geometric mean. Relative outputs use matching Seasonal tasks, and ties remain
+visible. Domain labels come from `src/timebench/config/dataset_domains.json`;
+unmapped datasets are explicitly Unclassified.
+
+Lightweight synchronization/publication includes the complete bundle.
+Each job logs allocated/visible devices and available GPU/host memory before
+its stages; model runners also log the selected device. Reporting requires
+Matplotlib in the execution-host environment. Code synchronization preserves
+Selena's environment and dependency manifests, so prepare that environment
+independently before launching. The retired local leaderboard and sequential
+all-model shells are no longer supported; use the launchers above.
 
 
 

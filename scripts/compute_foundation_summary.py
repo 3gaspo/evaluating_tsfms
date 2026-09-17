@@ -267,6 +267,52 @@ def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list
     return sorted(rows, key=lambda row: (row["scaled_MASE"], row["model"]))
 
 
+
+def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], destination: Path):
+    """Adapt the existing selected/reduced foundation task contract."""
+    from timebench.results.performance import write_performance_report
+
+    effective = _effective_cells([cell for cell in cells if cell.get("base_model") != "seasonal_naive"])
+    if not effective:
+        return []
+    horizons = {}
+    for cell in [*cells, *seasonal_cells]:
+        key = (cell["dataset_id"], cell["horizon"])
+        config = json.loads(Path(cell["manifest_path"]).with_name("config.json").read_text(encoding="utf-8"))
+        horizon = int(config["prediction_length"])
+        if key in horizons and horizons[key] != horizon:
+            raise ValueError(f"Different forecast horizons for {key}")
+        horizons[key] = horizon
+    grouped = defaultdict(list)
+    for cell in _effective_cells(seasonal_cells):
+        grouped[(cell["dataset_id"], cell["horizon"])].append(cell)
+    wanted = {(cell["dataset_id"], cell["horizon"]) for cell in effective}
+    baselines = {}
+    for key in wanted:
+        selected = grouped[key]
+        times = [cell["inference_seconds"] for cell in selected]
+        baselines[key] = {
+            "model": "seasonal_naive", "dataset_id": key[0], "horizon": key[1],
+            "MASE": float(np.mean([cell["MASE"] for cell in selected])),
+            "inference_seconds": float(np.mean(times)) if all(value is not None for value in times) else None,
+        }
+    tasks = []
+    for cell in [*effective, *baselines.values()]:
+        key = (cell["dataset_id"], cell["horizon"])
+        dataset, frequency = cell["dataset_id"].rsplit("/", 1)
+        tasks.append({
+            "model": cell["model"], "dataset": dataset, "frequency": frequency,
+            "term": cell["horizon"], "horizon_steps": horizons[key],
+            "MASE": cell["MASE"], "scaled_MASE": cell["MASE"] / baselines[key]["MASE"],
+            "inference_seconds": cell["inference_seconds"],
+        })
+    return write_performance_report(
+        tasks, destination, reference="seasonal_naive", scaled_aggregation="geometric",
+        inputs={"model_manifests": [cell["manifest_path"] for cell in cells],
+                "seasonal_manifests": [cell["manifest_path"] for cell in seasonal_cells]})
+
+
+
 def load_model_statuses(status_dir: Path | None) -> dict[str, dict[str, str]]:
     """Load terminal per-model workflow status for one launch when available."""
     if status_dir is None or not status_dir.is_dir():
@@ -566,6 +612,8 @@ def main() -> None:
 
     write_csv(rows, args.csv)
     write_markdown(rows, args.markdown)
+    performance_artifacts = write_performance_artifacts(
+        summary_cells, seasonal_naive_cells, args.csv.parent / "performance")
     write_report_manifest(
         cells,
         seasonal_naive_cells,
@@ -578,7 +626,7 @@ def main() -> None:
         config_filters=config_filters,
         config_policy=args.config_policy,
         repeat_policy=args.repeat_policy,
-        artifacts=[args.csv, args.markdown],
+        artifacts=[args.csv, args.markdown, *performance_artifacts],
     )
     print(f"Foundation-model summary written to {args.csv} and {args.markdown}")
     print()
@@ -600,4 +648,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

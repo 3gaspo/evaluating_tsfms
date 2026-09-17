@@ -29,6 +29,14 @@ recovery, interruption, and result selection. `src/timebench/feature/` owns
 dataset features and reusable association calculations. Experiment scripts
 compose these components but do not redefine their contracts.
 
+`src/timebench/results/performance.py` builds generic tables and report
+bundles from already selected, repeat/configuration-reduced task statistics.
+`src/timebench/visualization/performance.py` plots those aggregates without
+reloading models or pooling metric cells. The compact-summary CLI composes
+both owners and records every produced artifact in its report manifest.
+`src/timebench/pipeline/runtime_resources.py` provides the compute-node
+device/memory snapshot invoked once per allocation by the runtime shell.
+
 The inherited Seasonal Naive producer can own a reusable shared task store or
 a project-owned task store outside the learned-model and channel roots. Each
 task also writes the common evaluation

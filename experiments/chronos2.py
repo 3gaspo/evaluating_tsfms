@@ -84,6 +84,8 @@ def run_chronos2_experiment(
 
     # Set CUDA device
     device_map = "cuda" if torch.cuda.is_available() else "cpu"
+    from timebench.pipeline.runtime_resources import log
+    log("model_device", model="chronos2", device=device_map)
 
     # Load dataset configuration
     print("Loading configuration...")

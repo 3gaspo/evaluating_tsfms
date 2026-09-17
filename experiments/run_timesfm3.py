@@ -116,6 +116,8 @@ def run_timesfm3_experiment(
         supported_modes=COVARIATE_MODES,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    from timebench.pipeline.runtime_resources import log
+    log("model_device", model="timesfm3", device=device)
     config = load_dataset_config(config_path)
     if terms is None:
         terms = get_available_terms(dataset_name, config)

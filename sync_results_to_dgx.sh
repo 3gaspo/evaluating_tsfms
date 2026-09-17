@@ -50,6 +50,7 @@ OUTPUT_FILTERS=()
 if [ "$SYNC_SIZE" = lightweight ]; then
     OUTPUT_FILTERS=(
         '--include=*/'
+        '--include=**/performance/***'
         '--include=foundation_model_summary.csv'
         '--include=foundation_model_summary.md'
         '--include=foundation_model_report_manifest.json'
@@ -80,6 +81,7 @@ if [ "$SYNC_SIZE" = lightweight ]; then
 elif [ "$SYNC_SIZE" = detailed ]; then
     OUTPUT_FILTERS=(
         '--include=*/'
+        '--include=**/performance/***'
         '--include=foundation_model_summary.csv'
         '--include=foundation_model_summary.md'
         '--include=foundation_model_report_manifest.json'
@@ -161,4 +163,3 @@ else
 fi
 
 echo "SUCCESS: $SYNC_SIZE TIME outputs, requested logs, and metadata aggregates were pulled from Selena to DGX."
-

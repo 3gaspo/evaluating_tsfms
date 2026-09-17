@@ -1,0 +1,402 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,booktabs,tabularx,array,graphicx}
+\usepackage[margin=21mm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\setlength{\emergencystretch}{2em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\mase}{\operatorname{MASE}}
+\newcommand{\smase}{\operatorname{sMASE}}
+\newcommand{\mae}{\operatorname{MAE}}
+\newcommand{\featurecode}[2]{\href{https://github.com/3gaspo/evaluating_tsfms/blob/c119ed748d149e9f7892641bead393819f5983fd/src/timebench/feature/features.py\#L#1}{#2}}
+\title{\textbf{Evaluating Time-Series Foundation Models}\\Scientific Executive Summary}
+\author{}
+\date{16 September 2026; results computed 15 September 2026}
+\begin{document}
+\begin{center}
+{\Large\bfseries Evaluating Time-Series Foundation Models}\\[4pt]
+{\large Scientific Executive Summary}\\[5pt]
+{\small 16 September 2026; results computed 15 September 2026}
+\end{center}
+
+\section*{Main findings}
+\begin{itemize}
+\item \textbf{Foundation models:} Chronos-2 achieves scaled MASE 0.6855
+and wins 74 of 98 matched TIME tasks, ahead of TS-ICL and Chronos-Bolt.
+It also has the lowest measured total forecasting time (425.6 seconds).
+\item \textbf{Channel representation:} native multivariate Chronos-2 is
+0.8\% better in aggregate than independent univariate forecasting.
+Recasting other target histories as past covariates gives essentially the
+same accuracy as native input, with 5.72 times its measured forecasting time.
+\item \textbf{Dataset features:} greater temporal heterogeneity accompanies
+higher scaled MASE for all three foundation models, with Spearman rank
+correlations of 0.42--0.50 across the 50 configurations.
+\end{itemize}
+
+\section{Datasets and test design}
+The evaluated TIME subset contains \textbf{39 distinct datasets}, represented
+by \textbf{50 dataset--sampling-frequency configurations}. A dataset can
+appear at several frequencies. Each configuration has one short-horizon task;
+24 also have medium and long horizons, giving \textbf{98 forecasting tasks}
+in total ($50+24+24$).
+
+\begin{itemize}
+\item \textbf{Size.} Configurations contain 1--989 series, with 1--60 measured
+channels per series. Their mean full-series lengths range from 114 dates
+(Housing\_Inventory/M) to approximately 68,605 dates (Coastal\_T\_S/5T).
+These are numbers of observations, not equal calendar durations.
+\item \textbf{What is a series versus a channel?} One series is a time-indexed
+table: rows are dates and columns are measured channels (variates). A dataset
+may contain several such tables, rather than one large shared spatial axis.
+SG\_Weather/D, for example, contains 6 separate tables, each with 4 channels.
+16 of the 50 configurations contain both several tables and several channels
+per table. A forecast window is taken from \emph{one} table.
+\item \textbf{Splits.} The official configuration reserves a final test
+segment of 20--4,320 dates and a preceding validation segment of 8--4,320
+dates; the remaining prefix is the training segment. These lengths vary
+by configuration, rather than following one percentage split. In this frozen
+model evaluation, all observations before a forecast origin are available
+as history, including the preceding validation segment.
+\item \textbf{Forecasts.} The test segment is partitioned into complete,
+nonoverlapping windows. Horizons range from 3 to 864 dates, with 1--186
+test windows per series and task. Earlier test observations become available
+at later origins; future targets do not.
+\end{itemize}
+
+\newpage
+\section{Forecasting task and evaluation}
+Let $x$ be the input window from one series. It can be univariate or
+multivariate: it contains one or several measured channels, over the most
+recent dates available at the forecast origin. It uses up to the model's
+maximum context length---for example, \textbf{8,192 dates for Chronos-2}---
+and fewer if the available history is shorter.
+
+Let $y$ contain the next $H$ dates of those channels, where $H$ is the
+forecast horizon. A frozen pretrained forecaster $f$ produces a median
+forecast $\hat y=f(x)$ and quantiles 0.1, 0.2, $\ldots$, 0.9.
+Evaluation compares $\hat y$ with $y$. Metric scaling uses the full
+history available at the origin, not only the bounded model input $x$.
+
+\textbf{Mean absolute error (MAE).} For one channel, let $A$ be the set
+of future positions with finite observations. At position $h\in A$, $y_h$
+is the observed value and $\hat y_h$ the median prediction. Then
+\[
+ \mae(y,\hat y)=\frac{1}{|A|}\sum_{h\in A}|y_h-\hat y_h|,
+\]
+where $|A|$ is the number of evaluated positions and the absolute value
+measures the magnitude of each prediction error.
+
+\textbf{1. Historical seasonal MAE: the scale of one forecast error.}
+Let $z_1,\ldots,z_T$ be the full history of this channel at the forecast
+origin, $T$ its length, and $p$ the frequency-specific seasonal lag. Define
+$J=\{j:p<j\leq T,\ z_j\text{ and }z_{j-p}\text{ are finite}\}$. Then
+\[
+ \mae_{\mathrm{seasonal,history}}=
+ \frac{1}{|J|}\sum_{j\in J}|z_j-z_{j-p}|,
+ \qquad
+ \mase=\frac{\mae(y,\hat y)}{\mae_{\mathrm{seasonal,history}}}.
+\]
+This seasonal scale is computed on \emph{history}; it is not the baseline's
+test error. Missing dates remain at their original positions.
+
+\textbf{2. Arithmetic task means: average the window--channel errors.}
+One metric cell $c$ is one channel in one forecast window of one series.
+For task $k$, let $G_k$ be its shared set of eligible cells. For method $m$,
+write $\mase_m(c)$ for the cell score defined above. The task mean is
+\[
+ \overline{\mase}_m(k)=\frac{1}{|G_k|}\sum_{c\in G_k}\mase_m(c).
+\]
+Every cell has equal weight, regardless of its series or channel.
+$G_k$ requires a finite future observation, a positive finite historical
+scale, and finite Seasonal test error. Learned quantiles must be finite
+on this support. Seasonal Naive repeats the latest season, forward-filling
+history gaps and using the first observation for leading gaps.
+
+\textbf{3. Task scaling, then a geometric mean across tasks.}
+The matched Seasonal task mean is
+$\mase_{\mathrm{seasonal}}(k)=\overline{\mase}_{\mathrm{seasonal}}(k)$.
+For the learned method $m$, define
+\[
+ \smase_m(k)=\frac{\overline{\mase}_m(k)}{\mase_{\mathrm{seasonal}}(k)},
+ \qquad
+ \smase_m=\exp\!\left(\frac{1}{K}\sum_{k=1}^{K}\log\smase_m(k)\right),
+\]
+where $K$ is the number of matched tasks (98 or 74 in these experiments).
+The task score is a \emph{ratio of arithmetic means}, not an average of
+cell-wise model/Seasonal ratios. The reported sMASE gives every task equal
+weight; lower is better and Seasonal equals 1.
+
+\textbf{Configuration dispersion.} Apply the same geometric mean within
+each configuration's available horizons. The 25th--75th percentile interval
+across the 50 configuration scores contains their \textbf{middle 50\%};
+its width is the \textbf{interquartile range (IQR)}. It measures
+cross-configuration dispersion, not repeated-run uncertainty.
+
+\newpage
+\section{Foundation-model accuracy and forecasting time}
+\textbf{Question.} Which of the evaluated frozen models gives the lowest
+forecast error relative to Seasonal Naive, and at what measured forecasting cost?
+
+\textbf{Protocol.}
+\begin{itemize}
+\item \textbf{50 configurations, 98 tasks:} 38 multivariate and 12 univariate
+configurations; 50 short, 24 medium, and 24 long horizon tasks. Prediction
+lengths range from 3 to 864 steps.
+\item \textbf{Models:} Chronos-2, Chronos-Bolt Base, and TS-ICL v1, with
+context caps of 8,192, 2,048, and 4,096 observations respectively. Forecast
+batches contain at most 16 input items. Chronos-2 groups variates as targets;
+the other two models forecast variates independently.
+\end{itemize}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yrrrrr@{}}
+\toprule
+Model & sMASE & \shortstack{Middle 50\%\\of configs} & \shortstack{Configs better\\than Seasonal} & Task wins & Seconds\\
+\midrule
+Chronos-2 & 0.685489 & 0.612--0.774 & 48/50 & 74/98 & 425.6\\
+TS-ICL & 0.718394 & 0.673--0.808 & 47/50 & 20/98 & 2,673.0\\
+Chronos-Bolt & 0.759559 & 0.694--0.842 & 47/50 & 4/98 & 934.5\\
+Seasonal Naive & 1.000000 & 1.000--1.000 & --- & --- & 654.6\\
+\bottomrule
+\end{tabularx}
+\caption{The two counts have different units: ``Configs better than Seasonal''
+is out of \textbf{50 configurations}, after aggregating their horizons;
+``Task wins'' is out of \textbf{98 horizon tasks}, counting the lowest MASE
+among the three learned models. The middle-50\% interval gives the 25th and
+75th percentiles of configuration scores.}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.93\linewidth]{executive_summary_accuracy_time.png}
+\caption{Accuracy and total recorded forecast-loop time on the 98 tasks.
+Lower and left is preferable. Time includes loop preparation but excludes
+model loading, metric computation, and saving.}
+\end{figure}
+
+\textbf{Results.}
+\begin{itemize}
+\item Chronos-2's aggregate sMASE is \textbf{31.5\% better than Seasonal},
+4.6\% better than TS-ICL, and 9.8\% better than Chronos-Bolt (lower error).
+It leads on 74/98 tasks and
+beats Seasonal on 48/50 configuration scores.
+\item TS-ICL beats Chronos-2 on 21 tasks, and Chronos-Bolt on 8. These
+pairwise counts differ from winning against \emph{both} competitors.
+Their total forecasting times are 6.28 and 2.20 times Chronos-2's.
+\end{itemize}
+
+\textbf{Scope.} All three models complete all tasks, with 111,071 eligible
+window--variate cells across items, out of 111,177 candidates. These are
+metric cells, not future time steps. Context lengths and wrappers differ;
+Seasonal uses CPU and learned models use accelerator inference. These
+times are not hardware-independent backbone latencies.
+
+\newpage
+\subsection*{Within-task error dispersion}
+The task mean hides differences between forecast windows and channels.
+Using the same eligible cells $G_k$, define the \textbf{population variance}
+and standard deviation of task $k$'s cell errors for method $m$:
+\[
+ \operatorname{Var}_m(k)=\frac{1}{|G_k|}\sum_{c\in G_k}
+ \left[\mase_m(c)-\overline{\mase}_m(k)\right]^2,
+ \qquad
+ \operatorname{Std}_m(k)=\sqrt{\operatorname{Var}_m(k)}.
+\]
+The denominator is $|G_k|$, not $|G_k|-1$: these are descriptive statistics
+of all evaluated cells, not estimates from repeated experimental runs.
+
+For comparison with Seasonal Naive, define its variance on the same cells as
+$\operatorname{Var}_{\mathrm{seasonal}}(k)$, using the formula above. The plot uses
+\[
+ \text{scaled mean}=\frac{\overline{\mase}_m(k)}{\mase_{\mathrm{seasonal}}(k)},
+ \qquad
+ \text{relative variance}=\frac{\operatorname{Var}_m(k)}{\operatorname{Var}_{\mathrm{seasonal}}(k)}.
+\]
+The second quantity is a ratio of variances, not the variance of scaled MASE.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{executive_summary_task_dispersion.png}
+\caption{One point per selected model--task pair: \textbf{98 tasks per model,
+294 points total}. The horizontal coordinate is the scaled task mean MASE;
+the vertical coordinate is the population MASE variance divided by matched
+Seasonal variance. Both axes are logarithmic and retain every point.
+Dashed lines mark Seasonal parity at 1: left means better mean error, and
+below means lower dispersion across windows and channels. Above 1 means
+greater dispersion than Seasonal, not an invalid score.}
+\end{figure}
+
+\textbf{Observed dispersion.} Median variance ratios across the 98 tasks
+are \textbf{0.590 for Chronos-2, 0.580 for TS-ICL, and 0.629 for
+Chronos-Bolt}. Variance is lower than Seasonal on 93, 91, and 84 tasks,
+respectively; both mean error and variance improve on 92, 89, and 80 tasks.
+Chronos-2's lowest aggregate mean error therefore does not imply the lowest
+median relative variance. The model clouds overlap, and some tasks have
+greater dispersion than Seasonal. Lower variance alone does not guarantee
+better forecasts: an error can be consistently large.
+
+\newpage
+\section{Chronos-2 channel representation}
+\textbf{Question.} How does representing the same target histories jointly,
+independently, or as past covariates affect accuracy and forecasting time?
+
+For a multivariate window $x$, write $x_v$ for the history of variate $v$
+and $x_{-v}$ for the histories of all other variates. The three modes are:
+\begin{itemize}
+\item \textbf{Native multivariate:} supply $x$ as one grouped target input,
+and forecast all variates together.
+\item \textbf{Independent univariate:} supply $x_v$ alone, separately for
+each variate.
+\item \textbf{Past-target covariates:} supply $x_v$ as the target and
+$x_{-v}$ as past-only covariates, separately for each variate. This carries
+the same historical information as native input through another interface;
+no future values are supplied.
+\end{itemize}
+
+\textbf{Protocol.} All modes use frozen Chronos-2, the 8,192-step context
+cap, at-most-16-item batches, identical quantiles, test windows, and Seasonal
+support. The matched subset has \textbf{38 multivariate configurations and
+74 tasks}. Its native score is not the 98-task foundation score.
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule
+Representation & sMASE & Change vs native & Seconds & Time ratio\\
+\midrule
+Native multivariate & 0.690045 & reference & 326.8 & 1.00\\
+Independent univariate & 0.695590 & $+0.80\%$ & 341.8 & 1.05\\
+Past-target covariates & 0.690045 & equivalent & 1,870.6 & 5.72\\
+\bottomrule
+\end{tabularx}
+\caption{Matched 74-task sMASE and forecast-loop time. Positive score change
+is worse. Time ratios divide total seconds by native total seconds.}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.93\linewidth]{executive_summary_channel_ratios.png}
+\caption{Task MASE divided by matched native MASE, 74 ratios per mode.
+Below 1 favors the alternative mode. Boxes show the middle 50\% and median;
+whiskers span the 5th--95th percentiles, with remaining tasks shown as dots.
+These distributions describe differences across tasks.}
+\end{figure}
+
+\textbf{Results and interpretation.}
+\begin{itemize}
+\item Native input wins 46 tasks and independent input wins 28. The
+geometric mean independent/native ratio is 1.008; its middle-50\% task interval is
+0.997--1.014. Native input's \textbf{0.8\% aggregate advantage is small
+and varies across tasks}.
+\item Past-target covariates reproduce native MASE: the largest absolute
+relative difference is below $5.75\times10^{-7}$. They take \textbf{5.72
+times the forecasting time}, without an accuracy gain in this comparison.
+\end{itemize}
+All modes complete all 74 tasks, using 91,319 eligible metric cells out
+of 91,425 candidates.
+
+\newpage
+\section{Dataset features associated with relative forecast error}
+\textbf{Question.} Which measured dataset characteristics accompany higher
+or lower sMASE across the evaluated configurations?
+
+\textbf{Protocol.} Each model's configuration sMASE is paired with
+full-series feature summaries, giving 50 configurations per model. Features
+are computed per source variate and averaged over finite values within each
+configuration. Spectral/decomposition preprocessing standardizes and
+interpolates observations. STL (seasonal--trend decomposition by locally
+estimated smoothing) uses the strongest detected candidate period, with a
+nonseasonal smoothing fallback.
+
+\textbf{Reported feature definitions.}
+\begin{itemize}
+\item \textbf{Temporal heterogeneity:} split a series into four chronological
+blocks and average three components, each clipped to $[0,1]$:
+\begin{itemize}
+\item \emph{Location:} variance of block means divided by whole-series variance.
+\item \emph{Scale:} $1-\exp(-\sigma^2)$, where $\sigma^2$ is the variance
+of log block standard deviations relative to whole-series standard deviation,
+regularized by $10^{-12}$.
+\item \emph{Spectral:} mean base-2 Jensen--Shannon divergence between each
+block's normalized power spectrum and the mean spectrum. This divergence
+is mixture entropy minus mean individual entropy; spectra use 32 frequency
+bins and a constant-signal bin. Series shorter than 16 steps receive zero
+temporal heterogeneity.
+\end{itemize}
+\item \textbf{Spatial heterogeneity:} compare all source channels across
+all series in a configuration, using each channel's full history, rather
+than chronological blocks. ``Spatial'' here means differences between
+channels, not geographic distance. Average three components clipped to $[0,1]$:
+\begin{itemize}
+\item \emph{Location:} variance of channel means divided by the sum of that
+variance and the mean within-channel variance.
+\item \emph{Scale:} $1-\exp(-\sigma^2)$, now with $\sigma^2$ the variance of
+log channel standard deviations relative to their median standard deviation,
+regularized by $10^{-12}$.
+\item \emph{Spectral:} the same Jensen--Shannon comparison, between full-channel
+spectra and their mean spectrum. A configuration with fewer than two source
+channels has zero spatial heterogeneity.
+\end{itemize}
+\end{itemize}
+Other feature names in the table link to their implementation or estimator.
+
+\newpage
+\subsection*{Feature results and interpretation}
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule
+Feature & Chronos-2 & TS-ICL & Chronos-Bolt & Configs\\
+\midrule
+Temporal heterogeneity & $\mathbf{+0.497}$ & $\mathbf{+0.486}$ & $\mathbf{+0.418}$ & 50\\
+Spatial heterogeneity & $-0.036$ & $-0.029$ & $+0.035$ & 50\\
+\midrule
+\href{https://raw.githubusercontent.com/Nixtla/tsfeatures/v0.4.5/tsfeatures/utils.py}{Trend Hurst} & $\mathbf{+0.438}$ & $\mathbf{+0.436}$ & $\mathbf{+0.360}$ & 50\\
+Temporal scale heterogeneity & $\mathbf{+0.442}$ & $\mathbf{+0.418}$ & $+0.332$ & 50\\
+Temporal location heterogeneity & $+0.409$ & $+0.397$ & $\mathbf{+0.369}$ & 50\\
+\midrule
+\featurecode{179}{Second detected period} & $\mathbf{-0.429}$ & $\mathbf{-0.368}$ & $\mathbf{-0.332}$ & 39\\
+\featurecode{569}{Seasonal strength} & $\mathbf{-0.352}$ & $-0.254$ & $-0.132$ & 50\\
+\featurecode{536}{Seasonal cycle correlation} & $\mathbf{-0.280}$ & $-0.202$ & $-0.168$ & 50\\
+\featurecode{578}{Stationarity} & $-0.128$ & $\mathbf{-0.280}$ & $-0.242$ & 50\\
+\href{https://raw.githubusercontent.com/Nixtla/tsfeatures/v0.4.5/tsfeatures/tsfeatures.py}{Spectral entropy} & $-0.192$ & $\mathbf{-0.277}$ & $\mathbf{-0.356}$ & 50\\
+\featurecode{637}{Spikiness} & $-0.166$ & $-0.142$ & $\mathbf{-0.272}$ & 50\\
+\bottomrule
+\end{tabularx}
+\caption{Spearman rank correlations with configuration sMASE: Pearson
+correlation of ranks, assigning average ranks to ties. Bold entries are each
+model's top three positive or top three negative correlations among all
+extracted features; rows are their union plus spatial heterogeneity. Positive
+means larger features accompany worse relative error. Counts use pairwise
+finite configurations.}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.88\linewidth]{executive_summary_feature_scatter.png}
+\caption{Temporal heterogeneity versus configuration sMASE; 50 points per
+model. The dotted line marks Seasonal parity.}
+\end{figure}
+
+\textbf{Interpretation.} Greater temporal heterogeneity and trend Hurst
+accompany worse relative forecast error for all three models. Spatial
+heterogeneity has near-zero correlations ($-0.036$ to $+0.035$), unlike
+temporal heterogeneity. Negative leaders vary by model: second detected
+period, seasonal strength/correlation, stationarity, spectral entropy,
+and spikiness.
+These comparisons concern different existing datasets: changes in
+heterogeneity occur alongside other dataset differences, so the association
+does not isolate the effect of heterogeneity itself. The displayed features
+were selected from the extracted feature set. Full-series features include
+test observations, making this a description of the obtained errors rather
+than an evaluated pre-forecast model-selection rule.
+
+\textbf{Evidence scope.} The analysis uses one selected computation per
+configuration. Counts and comparisons were checked against selected task
+records and metric summaries; raw forecast and metric arrays were not
+independently inspected locally. Cross-configuration IQRs and correlations
+describe this benchmark, not variability across repeated computations.
+\end{document}

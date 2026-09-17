@@ -103,6 +103,9 @@ experiments/Kairos/
 granite-tsfm/
 local_tools/
 config/
+!/src/timebench/config/
+/src/timebench/config/*
+!/src/timebench/config/dataset_domains.json
 
 # Thesis project local artifacts
 AGENTS.md

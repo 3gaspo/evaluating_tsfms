@@ -1,13 +1,19 @@
 # Results recap
 
+The [scientific executive summary](../latex/executive_summary.pdf)
+([LaTeX source](../latex/executive_summary.tex)) gives the mathematical task,
+essential protocols, current-equivalent findings, and supporting tables and
+plots. The recap below is the concise evidence overview.
+
 ## Completed shared-grid foundation benchmark
 
 The current Evaluating TSFMs artifact lineage covers 50 TIME dataset-frequency
 configurations and 98 horizon tasks for each active foundation model. Scaled
 MASE divides each task MASE by its matching Seasonal Naive MASE and takes the
-geometric mean over tasks; lower is better. Inference seconds are summed model-
-inference time and exclude loading, data construction, metrics, and artifact
-saving. TimesFM-3 is intentionally excluded from the active experiment set.
+geometric mean over tasks; lower is better. Inference seconds sum recorded
+forecast-loop wall times, including loop preparation but excluding model
+loading, metric computation, and artifact saving. TimesFM-3 is intentionally
+excluded from the active experiment set.
 
 | Model | Scaled MASE | Dataset-frequency IQR | Configurations below baseline | Learned-model task wins | Inference seconds |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -23,10 +29,24 @@ wins 74 of the 98 paired learned-model tasks. TS-ICL and Chronos-Bolt require
 6.28 and 2.20 times Chronos-2's summed inference time, respectively.
 
 Every active learned model completed all 98 selected task manifests and is
-finite on all 111,071 values in the shared Seasonal grid. The grid excludes
-106 of the 111,177 total candidate values because their target or Seasonal
-baseline support is not finite. Identical support makes the model ranking
-directly comparable.
+finite in MASE on all 111,071 series-window-variate metric cells in the shared
+Seasonal grid. The grid excludes 106 of the 111,177 candidate metric cells
+because their target or Seasonal baseline support is not finite. These counts
+are not individual horizon timesteps. Identical support makes the model
+ranking directly comparable.
+
+## Within-task MASE dispersion
+
+The transferred summaries include population variance and standard deviation
+for all 294 selected foundation tasks (98 per model). Both use the same finite
+series-window-variate metric cells as each task's arithmetic mean, with
+`ddof=0`; prior means, coverage, and metadata were verified unchanged.
+
+The executive summary includes a mean-versus-variance scatter, with one color
+per model and logarithmic axes: model mean divided by Seasonal mean, and model
+variance divided by Seasonal variance. The spread concerns evaluated cells
+within tasks, not uncertainty across repeated runs. The reproducible plot
+entry point is `src/visualization/plot_foundation_task_dispersion.py`.
 
 ## Chronos-2 channel representation
 
@@ -51,7 +71,7 @@ the summed inference time, so this experiment provides no accuracy
 justification for the more expensive representation.
 
 All three modes completed 74 selected manifests and are finite on all 91,319
-values in their shared grid. Their aggregate reports now complete successfully
+series-window-variate metric cells in their shared grid. Their aggregate reports now complete successfully
 against the separately generated Seasonal baseline; the earlier summary-
 ordering race is resolved.
 
@@ -64,8 +84,20 @@ Spearman associations are higher temporal heterogeneity (`rho` from +0.42 to
 location heterogeneity (+0.33 to +0.44), and a negative association with the
 second detected period (-0.33 to -0.43). These associations are exploratory,
 not causal, and no multiplicity-adjusted significance analysis was performed.
+The second detected period has 39 pairwise finite configuration rows per model;
+the other displayed associations use all 50. Full-series features include
+held-out observations, so the analysis is descriptive rather than a validated
+prospective model-selection rule.
 
 ## Limitations and next evidence
+
+The Seasonal-paired scatter contains 294 points (98 tasks/model). Its axes
+are model/Seasonal task mean MASE and model/Seasonal population MASE variance.
+Median variance ratios are 0.590 (Chronos-2), 0.580 (TS-ICL), and 0.629
+(Chronos-Bolt); lower variance occurs on 93/98, 91/98, and 84/98 tasks.
+Both mean and variance improve on 92/98, 89/98, and 80/98. Variance ratios
+above 1 indicate greater dispersion than Seasonal. These are within-task
+cell statistics, not repeated-run uncertainty.
 
 - Each scientific configuration has one selected run. Cross-task and cross-
   dataset dispersion does not measure stochastic repeat or seed variability.

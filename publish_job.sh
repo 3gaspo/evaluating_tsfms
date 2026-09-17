@@ -110,6 +110,7 @@ elif [ -d outputs ]; then
     done < <(
         if [ "$publish_size" = detailed ]; then
             find "$project_root/outputs" -type f \( \
+                -path '*/performance/*' -o \
                 -name foundation_model_summary.csv -o \
                 -name foundation_model_summary.md -o \
                 -name foundation_model_report_manifest.json -o \
@@ -141,6 +142,7 @@ elif [ -d outputs ]; then
                 -name dataset_features_full.csv \) -print0
         else
             find "$project_root/outputs" -type f \( \
+                -path '*/performance/*' -o \
                 -name foundation_model_summary.csv -o \
                 -name foundation_model_summary.md -o \
                 -name foundation_model_report_manifest.json -o \
@@ -245,4 +247,3 @@ else
     echo "No new artifact changes; pushing existing local commits."
 fi
 git push origin main
-
