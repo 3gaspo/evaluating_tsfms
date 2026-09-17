@@ -32,8 +32,14 @@
   ],
   "prediction_scale_factor": 100.0,
   "metrics_summary_file": "metrics_summary.json",
-  "launch_id": "selena_channels_20260914T204212Z_11197",
-  "inference_seconds": 1.4483172483742237,
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Australia_Solar/H/medium/run_0/evaluation_grid.npz",
+    "valid_values": 105,
+    "total_values": 105
+  },
+  "launch_id": "selena_channels_20260917T102839Z_11944",
+  "inference_seconds": 1.4999788347631693,
   "model": "chronos2",
   "covariate_mode": "past_targets",
   "covariate_channels": 2,

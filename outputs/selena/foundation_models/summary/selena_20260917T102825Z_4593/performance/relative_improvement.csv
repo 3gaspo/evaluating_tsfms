@@ -1,0 +1,5 @@
+model,tasks,relative_improvement_percent,relative_scaled_improvement_percent,mean_paired_improvement_percent,paired_percentage_tasks
+chronos2,98,26.82763902337615,31.451138545808334,29.64815303796254,98
+chronos_bolt,98,18.918433586237292,24.04409641672708,21.793034506466558,98
+ts_icl,98,23.94173553786648,28.160601668566244,26.412548092079334,98
+seasonal_naive,98,0.0,0.0,0.0,98

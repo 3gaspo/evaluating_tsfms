@@ -32,8 +32,14 @@
   ],
   "prediction_scale_factor": 1.0,
   "metrics_summary_file": "metrics_summary.json",
-  "launch_id": "selena_20260914T203932Z_43814",
-  "inference_seconds": 356.4800262283534,
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/SG_Carpark/15T/short/run_0/evaluation_grid.npz",
+    "valid_values": 14868,
+    "total_values": 14868
+  },
+  "launch_id": "selena_20260917T102825Z_4593",
+  "inference_seconds": 356.36415211483836,
   "model": "ts_icl",
   "covariate_mode": "none",
   "covariate_channels": 0,

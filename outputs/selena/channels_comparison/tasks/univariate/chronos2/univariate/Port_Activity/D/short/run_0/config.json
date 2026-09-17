@@ -32,8 +32,14 @@
   ],
   "prediction_scale_factor": 10.0,
   "metrics_summary_file": "metrics_summary.json",
-  "launch_id": "selena_channels_20260914T204212Z_11197",
-  "inference_seconds": 3.526571665890515,
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Port_Activity/D/short/run_0/evaluation_grid.npz",
+    "valid_values": 2376,
+    "total_values": 2376
+  },
+  "launch_id": "selena_channels_20260917T102839Z_11944",
+  "inference_seconds": 3.5330174155533314,
   "model": "chronos2",
   "covariate_mode": "none",
   "covariate_channels": 0,

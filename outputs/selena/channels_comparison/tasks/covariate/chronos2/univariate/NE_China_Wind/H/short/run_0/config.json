@@ -32,8 +32,14 @@
   ],
   "prediction_scale_factor": 1.0,
   "metrics_summary_file": "metrics_summary.json",
-  "launch_id": "selena_channels_20260914T204212Z_11197",
-  "inference_seconds": 2.1355336336418986,
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/NE_China_Wind/H/short/run_0/evaluation_grid.npz",
+    "valid_values": 120,
+    "total_values": 120
+  },
+  "launch_id": "selena_channels_20260917T102839Z_11944",
+  "inference_seconds": 2.218210941180587,
   "model": "chronos2",
   "covariate_mode": "past_targets",
   "covariate_channels": 3,

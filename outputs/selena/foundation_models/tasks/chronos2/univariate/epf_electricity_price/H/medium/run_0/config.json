@@ -32,8 +32,14 @@
   ],
   "prediction_scale_factor": 1.0,
   "metrics_summary_file": "metrics_summary.json",
-  "launch_id": "selena_20260914T203932Z_43814",
-  "inference_seconds": 0.813646568916738,
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/epf_electricity_price/H/medium/run_0/evaluation_grid.npz",
+    "valid_values": 175,
+    "total_values": 175
+  },
+  "launch_id": "selena_20260917T102825Z_4593",
+  "inference_seconds": 0.8319895341992378,
   "model": "chronos2",
   "covariate_mode": "none",
   "covariate_channels": 0,

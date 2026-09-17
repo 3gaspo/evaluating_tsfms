@@ -1,49 +1,87 @@
 {
   "dataset_config": "Coastal_T_S/15T/long",
-  "aggregation": "mean over finite series/window/variate metric values",
+  "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Coastal_T_S/15T/long/run_0/evaluation_grid.npz",
+    "valid_values": 75,
+    "total_values": 75
+  },
   "metrics": {
     "MSE": {
       "mean": 108.26721448243762,
+      "std": 265.39627171720963,
+      "variance": 70435.18104139497,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "MAE": {
       "mean": 4.7441133620120866,
+      "std": 9.064926004490752,
+      "variance": 82.17288346689269,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "RMSE": {
       "mean": 4.877272494263875,
+      "std": 9.191269090780372,
+      "variance": 84.47942749913466,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "MAPE": {
       "mean": 0.14279900583811544,
+      "std": 0.25627302683537756,
+      "variance": 0.06567586428336614,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "sMAPE": {
       "mean": 0.12262617983696669,
+      "std": 0.20549508572000943,
+      "variance": 0.04222823025507403,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "MASE": {
       "mean": 1.3875581082571342,
+      "std": 1.0881091552769522,
+      "variance": 1.1839815337975224,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "ND": {
       "mean": 0.1163974078610285,
+      "std": 0.19151655536428983,
+      "variance": 0.03667859097860309,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     },
     "CRPS": {
       "mean": 0.0690181306190389,
+      "std": 0.10924879371134998,
+      "variance": 0.011935298927385101,
+      "dispersion_ddof": 0,
       "finite_values": 75,
+      "evaluation_values": 75,
       "total_values": 75
     }
   },
-  "launch_id": "selena_channels_20260914T204212Z_11197",
+  "launch_id": "selena_channels_20260917T102839Z_11944",
   "model": "chronos2",
-  "inference_seconds": 1.066562202759087
+  "inference_seconds": 1.107451742514968
 }

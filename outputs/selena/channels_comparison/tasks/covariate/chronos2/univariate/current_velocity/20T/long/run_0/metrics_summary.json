@@ -1,49 +1,87 @@
 {
   "dataset_config": "current_velocity/20T/long",
-  "aggregation": "mean over finite series/window/variate metric values",
+  "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/current_velocity/20T/long/run_0/evaluation_grid.npz",
+    "valid_values": 810,
+    "total_values": 810
+  },
   "metrics": {
     "MSE": {
       "mean": 9.682206403711149,
+      "std": 29.9320046578731,
+      "variance": 895.924902838937,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "MAE": {
       "mean": 1.0252740059774077,
+      "std": 2.2660120149624685,
+      "variance": 5.134810451954267,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "RMSE": {
       "mean": 1.285924848415029,
+      "std": 2.833479078436955,
+      "variance": 8.028603687939935,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "MAPE": {
       "mean": 1.5438965057535934,
+      "std": 3.6558012543060103,
+      "variance": 13.364882810985398,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "sMAPE": {
       "mean": 0.592300258399835,
+      "std": 0.6292767335042152,
+      "variance": 0.395989207329735,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "MASE": {
       "mean": 1.0349358208450468,
+      "std": 0.6976373237924297,
+      "variance": 0.48669783554826346,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "ND": {
       "mean": 0.4587032233694812,
+      "std": 0.5214737881993478,
+      "variance": 0.2719349117789782,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     },
     "CRPS": {
       "mean": 0.3610429781295568,
+      "std": 0.40215331002353216,
+      "variance": 0.16172728476288317,
+      "dispersion_ddof": 0,
       "finite_values": 810,
+      "evaluation_values": 810,
       "total_values": 810
     }
   },
-  "launch_id": "selena_channels_20260914T204212Z_11197",
+  "launch_id": "selena_channels_20260917T102839Z_11944",
   "model": "chronos2",
-  "inference_seconds": 17.071890498511493
+  "inference_seconds": 17.751671634614468
 }

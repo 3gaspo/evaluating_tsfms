@@ -1,5 +1,5 @@
 {
-  "completed_at": "2026-09-14T21:00:20.553398+00:00",
+  "completed_at": "2026-09-17T10:32:51.766895+00:00",
   "experiment": "foundation_models",
   "experiment_config": {
     "covariate_channels": 0,
@@ -17,15 +17,15 @@
     "attempts": [
       {
         "action": "new",
-        "launch_id": "selena_20260914T203932Z_43814",
-        "launched_at": "2026-09-14T21:00:10.571944+00:00",
+        "launch_id": "selena_20260917T102825Z_4593",
+        "launched_at": "2026-09-17T10:32:41.845292+00:00",
         "slurm_array_task_id": null,
-        "slurm_job_id": "3427093"
+        "slurm_job_id": "3458664"
       }
     ],
-    "launch_id": "selena_20260914T203932Z_43814",
-    "launched_at": "2026-09-14T21:00:10.571944+00:00",
-    "slurm_job_id": "3427093"
+    "launch_id": "selena_20260917T102825Z_4593",
+    "launched_at": "2026-09-17T10:32:41.845292+00:00",
+    "slurm_job_id": "3458664"
   },
   "model_config": {
     "context_length": 2048,
@@ -43,6 +43,7 @@
     ]
   },
   "pipeline_config": {
+    "evaluation_grid": "finite_ground_truth_and_seasonal_naive_mase",
     "prediction_length": 168,
     "seasonality": 24,
     "test_length": 672,
@@ -51,7 +52,8 @@
   },
   "project": "evaluating_tsfms",
   "provenance": {
-    "dataset_config_path": null
+    "dataset_config_path": null,
+    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/current_velocity/H/medium/run_0/evaluation_grid.npz"
   },
   "required_artifacts": [
     "predictions.npz",
@@ -65,7 +67,7 @@
     "device": "cuda"
   },
   "schema_version": 1,
-  "started_at": "2026-09-14T21:00:10.571944+00:00",
+  "started_at": "2026-09-17T10:32:41.845292+00:00",
   "status": "completed",
-  "updated_at": "2026-09-14T21:00:20.553398+00:00"
+  "updated_at": "2026-09-17T10:32:51.766895+00:00"
 }

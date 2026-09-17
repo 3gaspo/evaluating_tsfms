@@ -1,0 +1,1157 @@
+[2026-09-17 10:44:32 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "8", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3458668", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "80000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 8, "host": "sean0007"}
+[2026-09-17 10:44:32 UTC] resources RAM {"MemAvailable_MiB": 372609.03515625, "MemTotal_MiB": 386622.87890625}
+[2026-09-17 10:44:32 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-49a92710-bca7-5b2c-2c77-b44950989004, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-17 10:44:33 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-17 10:44:34 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-17 12:44:34 | workflow channels_comparison started launch_id=selena_channels_20260917T102839Z_11944 task=multivariate slurm_job_id=3458668 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-17 12:44:34 | stage evaluate started
+2026-09-17 12:44:34 | task chronos2 comparison=multivariate covariate_mode=none target_mode=multivariate started
+[2026-09-17 12:44:34] TIME runner: run_chronos2_comparison.sh
+[2026-09-17 12:44:34] datasets: /scratch/users/h61084/datasets/hf_dataset
+[2026-09-17 12:44:34] weights: /scratch/users/h61084/weights
+[2026-09-17 12:44:34] outputs: /scratch/users/h61084/codes/evaluating_tsfms/outputs
+[2026-09-17 12:44:34] covariate mode: none
+[2026-09-17 12:44:34] target mode: multivariate
+Running all 38 datasets from config:
+  - Water_Quality_Darwin/15T
+  - current_velocity/5T
+  - current_velocity/10T
+  - current_velocity/15T
+  - current_velocity/20T
+  - current_velocity/H
+  - Coastal_T_S/5T
+  - Coastal_T_S/15T
+  - Coastal_T_S/20T
+  - Coastal_T_S/H
+  - SG_Weather/D
+  - SG_PM25/H
+  - NE_China_Wind/H
+  - Australia_Solar/H
+  - OpenElectricity_NEM/5T
+  - EWELD_Load/15T
+  - Port_Activity/D
+  - Port_Activity/W
+  - Global_Influenza/W
+  - Crypto/D
+  - US_Term_Structure/B
+  - Oil_Price/B
+  - Job_Claims/W
+  - Uncertainty_1M/M
+  - Housing_Inventory/M
+  - JOLTS/M
+  - US_Labor/M
+  - Vehicle_Supply/M
+  - WUI_Global/Q
+  - Global_Price/Q
+  - Vehicle_Sales/M
+  - Supply_Chain_Customer/D
+  - Supply_Chain_Location/D
+  - azure2019_D/5T
+  - azure2019_I/5T
+  - azure2019_U/5T
+  - Smart_Manufacturing/H
+  - MetroPT-3/5T
+
+############################################################
+# Dataset 1/38: Water_Quality_Darwin/15T
+############################################################
+[2026-09-17 10:44:43 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Water_Quality_Darwin/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Water_Quality_Darwin/15T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:43.510863+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Water_Quality_Darwin/15T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:43.665645+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Water_Quality_Darwin/15T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:43.819240+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Water_Quality_Darwin/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 2/38: current_velocity/5T
+############################################################
+[2026-09-17 10:44:43 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:43.996648+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/5T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:44.158559+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/5T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:44.330081+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 3/38: current_velocity/10T
+############################################################
+[2026-09-17 10:44:44 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/10T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=18, test_length=2160, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/10T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:44.510488+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=144, test_length=2160, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/10T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:44.673228+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=432, test_length=2160, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/10T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:44.835426+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/10T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 4/38: current_velocity/15T
+############################################################
+[2026-09-17 10:44:44 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/15T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.005705+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/15T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.162294+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/15T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.314850+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 5/38: current_velocity/20T
+############################################################
+[2026-09-17 10:44:45 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/20T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/20T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.483113+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/20T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.630746+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/20T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.774885+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 6/38: current_velocity/H
+############################################################
+[2026-09-17 10:44:45 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:45.939235+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:46.109122+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/current_velocity/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:46.254272+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/current_velocity/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 7/38: Coastal_T_S/5T
+############################################################
+[2026-09-17 10:44:46 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:46.455786+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/5T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:46.644423+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/5T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:46.834925+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 8/38: Coastal_T_S/15T
+############################################################
+[2026-09-17 10:44:46 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/15T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.002188+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/15T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.151860+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/15T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.299872+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 9/38: Coastal_T_S/20T
+############################################################
+[2026-09-17 10:44:47 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/20T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/20T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.459772+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/20T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.604915+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/20T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.751072+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 10/38: Coastal_T_S/H
+############################################################
+[2026-09-17 10:44:47 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:47.944748+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.090897+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Coastal_T_S/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.235228+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Coastal_T_S/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 11/38: SG_Weather/D
+############################################################
+[2026-09-17 10:44:48 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: SG_Weather/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=3, test_length=366, val_length=366
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_Weather/D/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.391869+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=7, test_length=366, val_length=366
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_Weather/D/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.535454+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=14, test_length=366, val_length=366
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_Weather/D/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.677614+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_Weather/D/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 12/38: SG_PM25/H
+############################################################
+[2026-09-17 10:44:48 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: SG_PM25/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2208, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_PM25/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:48.860587+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2208, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_PM25/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.029941+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2208, val_length=2160
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/SG_PM25/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.196099+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/SG_PM25/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 13/38: NE_China_Wind/H
+############################################################
+[2026-09-17 10:44:49 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: NE_China_Wind/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=720, val_length=720
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/NE_China_Wind/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.357311+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=720, val_length=720
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/NE_China_Wind/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.503377+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=720, val_length=720
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/NE_China_Wind/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.651215+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/NE_China_Wind/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 14/38: Australia_Solar/H
+############################################################
+[2026-09-17 10:44:49 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Australia_Solar/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Australia_Solar/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.830153+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Australia_Solar/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:49.984463+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Australia_Solar/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:50.138917+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Australia_Solar/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 15/38: OpenElectricity_NEM/5T
+############################################################
+[2026-09-17 10:44:50 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: OpenElectricity_NEM/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=4032, val_length=4032
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/OpenElectricity_NEM/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:50.352255+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=4032, val_length=4032
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/OpenElectricity_NEM/5T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:50.550966+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=4032, val_length=4032
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/OpenElectricity_NEM/5T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:50.750844+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/OpenElectricity_NEM/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 16/38: EWELD_Load/15T
+############################################################
+[2026-09-17 10:44:50 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: EWELD_Load/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=1344, val_length=1344
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/EWELD_Load/15T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:50.931563+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1344, val_length=1344
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/EWELD_Load/15T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.097393+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=1344, val_length=1344
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/EWELD_Load/15T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.266026+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/EWELD_Load/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 17/38: Port_Activity/D
+############################################################
+[2026-09-17 10:44:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Port_Activity/D/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Port_Activity/D/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.434631+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Port_Activity/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 18/38: Port_Activity/W
+############################################################
+[2026-09-17 10:44:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Port_Activity/W/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Port_Activity/W/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.618490+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Port_Activity/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 19/38: Global_Influenza/W
+############################################################
+[2026-09-17 10:44:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Influenza/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Global_Influenza/W/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Global_Influenza/W/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.774334+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Global_Influenza/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 20/38: Crypto/D
+############################################################
+[2026-09-17 10:44:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Crypto/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=273, val_length=92
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Crypto/D/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Crypto/D/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:51.929966+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Crypto/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 21/38: US_Term_Structure/B
+############################################################
+[2026-09-17 10:44:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: US_Term_Structure/B
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/US_Term_Structure/B/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/US_Term_Structure/B/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.151168+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/US_Term_Structure/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 22/38: Oil_Price/B
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Oil_Price/B
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Oil_Price/B/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Oil_Price/B/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.313469+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Oil_Price/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 23/38: Job_Claims/W
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Job_Claims/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Job_Claims/W/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Job_Claims/W/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.470774+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Job_Claims/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 24/38: Uncertainty_1M/M
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Uncertainty_1M/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=6, test_length=42, val_length=18
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Uncertainty_1M/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Uncertainty_1M/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.626348+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Uncertainty_1M/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 25/38: Housing_Inventory/M
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Housing_Inventory/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=36, val_length=12
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Housing_Inventory/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Housing_Inventory/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.780452+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Housing_Inventory/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 26/38: JOLTS/M
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: JOLTS/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/JOLTS/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/JOLTS/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:52.935590+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/JOLTS/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 27/38: US_Labor/M
+############################################################
+[2026-09-17 10:44:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: US_Labor/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/US_Labor/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/US_Labor/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.088921+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/US_Labor/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 28/38: Vehicle_Supply/M
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Supply/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Vehicle_Supply/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Vehicle_Supply/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.242268+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Vehicle_Supply/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 29/38: WUI_Global/Q
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: WUI_Global/Q
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=20
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/WUI_Global/Q/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/WUI_Global/Q/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.395240+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/WUI_Global/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 30/38: Global_Price/Q
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Price/Q
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=8
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Global_Price/Q/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Global_Price/Q/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.557476+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Global_Price/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 31/38: Vehicle_Sales/M
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Sales/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Vehicle_Sales/M/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Vehicle_Sales/M/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.712754+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Vehicle_Sales/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 32/38: Supply_Chain_Customer/D
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Customer/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Supply_Chain_Customer/D/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Supply_Chain_Customer/D/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:53.875227+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Supply_Chain_Customer/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 33/38: Supply_Chain_Location/D
+############################################################
+[2026-09-17 10:44:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Location/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Supply_Chain_Location/D/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Supply_Chain_Location/D/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.041363+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Supply_Chain_Location/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 34/38: azure2019_D/5T
+############################################################
+[2026-09-17 10:44:54 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_D/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_D/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/azure2019_D/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.254179+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_D/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 35/38: azure2019_I/5T
+############################################################
+[2026-09-17 10:44:54 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_I/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_I/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/azure2019_I/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.421203+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_I/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 36/38: azure2019_U/5T
+############################################################
+[2026-09-17 10:44:54 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_U/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=288, val_length=96
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_U/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/azure2019_U/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.580853+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/azure2019_U/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 37/38: Smart_Manufacturing/H
+############################################################
+[2026-09-17 10:44:54 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Smart_Manufacturing/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=336, val_length=336
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Smart_Manufacturing/H/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.734833+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=336, val_length=336
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Smart_Manufacturing/H/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:54.877558+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=336, val_length=336
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/Smart_Manufacturing/H/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:55.018273+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/Smart_Manufacturing/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# Dataset 38/38: MetroPT-3/5T
+############################################################
+[2026-09-17 10:44:55 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: MetroPT-3/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=1728, val_length=1728
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/short/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/MetroPT-3/5T/short/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:55.182046+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=1728, val_length=1728
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/medium/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/MetroPT-3/5T/medium/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:55.356268+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=576, test_length=1728, val_length=1728
+TIME run allocation action=reuse run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/long/run_0 source=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2/multivariate/MetroPT-3/5T/long/run_0/manifest.json launch_id=selena_channels_20260917T102839Z_11944 slurm_job_id=3458668 reused_at=2026-09-17T10:44:55.506354+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate/chronos2/multivariate/MetroPT-3/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/tasks/multivariate
+============================================================
+
+############################################################
+# All 38 dataset(s) completed!
+############################################################
+2026-09-17 12:44:56 | task chronos2 comparison=multivariate covariate_mode=none target_mode=multivariate completed status=success
+2026-09-17 12:44:56 | stage evaluate completed status=success
+2026-09-17 12:44:56 | stage summarize started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/summary/selena_channels_20260917T102839Z_11944/multivariate/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/channels_comparison/summary/selena_channels_20260917T102839Z_11944/multivariate/foundation_model_summary.md
+
+chronos2/multivariate        state=completed  scaled_MASE=0.690045  inference=340.036s  coverage=74/74 timed tasks, 91319/91319/91425 finite/grid/total MASE values
+2026-09-17 12:45:03 | stage summarize completed status=success
+2026-09-17 12:45:03 | workflow channels_comparison completed status=success exit_code=0
