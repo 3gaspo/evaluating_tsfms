@@ -14,7 +14,7 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from timebench.paths import foundation_experiment_root
+from timebench.paths import foundation_experiment_root, outputs_root, foundation_experiment_name
 from timebench.pipeline import parse_config_filters, select_completed_runs
 
 DEFAULT_MODELS = (
@@ -70,6 +70,8 @@ def load_result_cells(
                 "dataset_id": f"{identity['dataset']}/{identity['frequency']}",
                 "horizon": identity["term"],
                 "MASE": mase,
+                "MASE_std": mase_summary.get("std", np.nan),
+                "MASE_variance": mase_summary.get("variance", np.nan),
                 "MASE_finite_values": int(mase_summary["finite_values"]),
                 "MASE_evaluation_values": int(mase_summary["evaluation_values"]),
                 "MASE_total_values": int(mase_summary["total_values"]),
@@ -124,6 +126,8 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "dataset_id": key[3],
                 "horizon": key[4],
                 "MASE": float(np.mean([cell["MASE"] for cell in repeats])),
+                "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in repeats])),
+                "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in repeats])),
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in repeats
                 ),
@@ -167,6 +171,8 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "dataset_id": key[3],
                 "horizon": key[4],
                 "MASE": float(np.mean([cell["MASE"] for cell in configs])),
+                "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in configs])),
+                "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in configs])),
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in configs
                 ),
@@ -294,6 +300,8 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
         baselines[key] = {
             "model": "seasonal_naive", "dataset_id": key[0], "horizon": key[1],
             "MASE": float(np.mean([cell["MASE"] for cell in selected])),
+            "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in selected])),
+            "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in selected])),
             "inference_seconds": float(np.mean(times)) if all(value is not None for value in times) else None,
         }
     tasks = []
@@ -304,6 +312,9 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
             "model": cell["model"], "dataset": dataset, "frequency": frequency,
             "term": cell["horizon"], "horizon_steps": horizons[key],
             "MASE": cell["MASE"], "scaled_MASE": cell["MASE"] / baselines[key]["MASE"],
+            "MASE_std": cell.get("MASE_std", np.nan),
+            "MASE_variance": cell.get("MASE_variance", np.nan),
+            "seasonal_MASE_variance": baselines[key].get("MASE_variance", np.nan),
             "inference_seconds": cell["inference_seconds"],
         })
     return write_performance_report(
@@ -509,13 +520,13 @@ def main() -> None:
         "--csv",
         type=Path,
         default=None,
-        help="CSV table (default: <results-dir>/foundation_model_summary.csv)",
+        help="CSV table (default: outputs/reports/<experiment>/<launch>/foundation_model_summary.csv)",
     )
     parser.add_argument(
         "--markdown",
         type=Path,
         default=None,
-        help="Markdown table (default: <results-dir>/foundation_model_summary.md)",
+        help="Markdown table (default: beside the CSV table)",
     )
     parser.add_argument(
         "--models",
@@ -571,8 +582,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    args.csv = args.csv or args.results_dir / "foundation_model_summary.csv"
-    args.markdown = args.markdown or args.results_dir / "foundation_model_summary.md"
+    report_root = outputs_root() / "reports" / foundation_experiment_name() / (args.launch_id or "manual")
+    args.csv = args.csv or report_root / "foundation_model_summary.csv"
+    args.markdown = args.markdown or args.csv.parent / "foundation_model_summary.md"
     baseline_root = args.seasonal_naive_results_dir or args.results_dir
     baseline_launch_id = args.seasonal_naive_launch_id
     if baseline_launch_id is None and baseline_root.resolve() == args.results_dir.resolve():

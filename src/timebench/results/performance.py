@@ -232,17 +232,26 @@ def write_performance_report(
         extra_grids.append((name, label, extra_cells, extra_best))
     if plots:
         from timebench.visualization.performance import (
-            _styles, plot_accuracy_time, plot_loss_grid, plot_best_model_grid, plot_domain_loss)
+            _styles, plot_accuracy_time, plot_loss_grid, plot_best_model_grid, plot_domain_loss,
+            plot_task_dispersion)
         styles = _styles(tasks, "model", None)
         # Undefined selected-method latency stays in tables; do not invent it.
         timed = summary[np.isfinite(summary["total_inference_seconds"].to_numpy(dtype=float))]
         if len(timed):
-            path = destination / "accuracy_time.png"
             timed_styles = {model: styles[model] for model in timed["model"]}
-            plot_accuracy_time(timed, path, styles=timed_styles, time_column="total_inference_seconds",
-                               time_label="Total recorded test inference time (seconds)")
-            artifacts.append(path)
+            for suffix in (".png", ".pdf"):
+                path = destination / ("accuracy_time" + suffix)
+                plot_accuracy_time(timed, path, styles=timed_styles, time_column="total_inference_seconds",
+                                   time_label="Total recorded test inference time (seconds)")
+                artifacts.append(path)
         for suffix in (".png", ".pdf"):
+            path = destination / ("task_mean_std" + suffix)
+            if plot_task_dispersion(tasks, path, styles=styles):
+                artifacts.append(path)
+            path = destination / ("task_dispersion" + suffix)
+            relative_tasks = tasks[tasks["model"] != "seasonal_naive"]
+            if plot_task_dispersion(relative_tasks, path, relative=True, styles=styles):
+                artifacts.append(path)
             path = destination / ("loss_horizon_frequency" + suffix)
             plot_loss_grid(cells, path, value="mean_loss", label=f"Mean task {loss}")
             artifacts.append(path)
@@ -277,6 +286,21 @@ def write_performance_report(
         "schema_version": 1, "reference": reference, "loss": loss,
         "scaled_MASE_aggregation": scaled_aggregation,
         "task_aggregation": "producer-selected repeat/config statistics; equal task weights; no metric-cell pooling",
+        "task_dispersion": "within-task population std/variance; selected repeat/config statistics are averaged, not pooled or treated as seed uncertainty",
+        "dispersion_available_tasks": {
+            model: int(np.isfinite(group["MASE_std"].to_numpy(dtype=float)).sum())
+            if "MASE_std" in group else 0
+            for model, group in tasks.groupby("model", sort=False)
+        },
+        "relative_variance_available_tasks": {
+            model: int((np.isfinite(group[["MASE_variance", "seasonal_MASE_variance"]]
+                                   .to_numpy(dtype=float)).all(axis=1)
+                        & (group["seasonal_MASE_variance"].to_numpy(dtype=float) > 0)).sum())
+            if {"MASE_variance", "seasonal_MASE_variance"}.issubset(group.columns) else 0
+            for model, group in tasks.groupby("model", sort=False)
+            if model != "seasonal_naive"
+        },
+        "undefined_dispersion": "missing population statistics or non-positive Seasonal variance stay unavailable; no zero substitutions or pseudocounts",
         "relative_improvement_percent": "100*(1-mean_model_loss/mean_reference_loss) on identical tasks",
         "mean_paired_improvement_percent": "mean of 100*(1-model_task_loss/reference_task_loss); zero reference undefined",
         "heatmap_axes": {"x": "forecast horizon in observations", "y": "literal task sampling frequency"},

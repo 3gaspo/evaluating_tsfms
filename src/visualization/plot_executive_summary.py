@@ -92,6 +92,8 @@ def plot_channel_ratios(ratios: pd.DataFrame, path: Path):
     axis.set_ylabel("Task MASE / native multivariate MASE")
     axis.grid(axis="y", alpha=0.25)
     figure.savefig(path, dpi=220)
+    if Path(path).suffix.lower() == ".png":
+        figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     plt.close(figure)
 
 

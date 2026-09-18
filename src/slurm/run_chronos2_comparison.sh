@@ -38,18 +38,24 @@ TIME_TASK_NAME="$comparison"
 TIME_STATUS_NAME="$comparison"
 TIME_LAUNCH_ID="${TIME_LAUNCH_ID:-${SLURM_JOB_ID:-manual_$(date -u '+%Y%m%dT%H%M%SZ')_$$}}"
 TIME_RESULT_SCOPE="$TIME_TASKS_ROOT/chronos2/$TIME_TARGET_MODE"
+if [ "${TIME_REPORT_ONLY:-0}" = 1 ]; then
+    TIME_WORKFLOW_NAME=channels_summary
+    TIME_RESULT_SCOPE=""
+fi
 export TIME_WORKFLOW_NAME TIME_TASK_NAME TIME_STATUS_NAME TIME_LAUNCH_ID TIME_RESULT_SCOPE
 source "$PROJECT_ROOT/src/slurm/workflow_common.sh"
 
 time_workflow_init
-time_stage_start evaluate
-time_task_start "chronos2 comparison=$comparison covariate_mode=$TIME_COVARIATE_MODE target_mode=$TIME_TARGET_MODE"
-TIME_RUN_SCRIPT=run_chronos2_comparison.sh source "$PROJECT_ROOT/src/slurm/run_time_script.sh"
-time_task_complete
-time_stage_complete
+if [ "${TIME_REPORT_ONLY:-0}" != 1 ]; then
+    time_stage_start evaluate
+    time_task_start "chronos2 comparison=$comparison covariate_mode=$TIME_COVARIATE_MODE target_mode=$TIME_TARGET_MODE"
+    TIME_RUN_SCRIPT=run_chronos2_comparison.sh source "$PROJECT_ROOT/src/slurm/run_time_script.sh"
+    time_task_complete
+    time_stage_complete
+fi
 
 time_stage_start summarize
-aggregate_dir="$TIME_OUTPUTS/channels_comparison/summary/$TIME_LAUNCH_ID/$comparison"
+aggregate_dir="$TIME_OUTPUTS/reports/channels_comparison/$TIME_LAUNCH_ID/$comparison"
 mkdir -p "$aggregate_dir"
 summary_command=(
     uv run --no-sync python

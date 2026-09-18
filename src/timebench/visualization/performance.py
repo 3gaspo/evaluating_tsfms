@@ -67,7 +67,9 @@ def plot_accuracy_time(
         axis.grid(alpha=0.25)
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        figure.savefig(path, dpi=220)
+        figure.savefig(path, dpi=220, bbox_inches="tight")
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     finally:
         plt.close(figure)
 
@@ -85,6 +87,61 @@ def _frequency_order(values):
             return (99, 0, str(value))
         return (units.get(match[2], 99), int(match[1] or 1), str(value))
     return sorted(values, key=key)
+
+
+def plot_task_dispersion(tasks, path, *, relative=False, styles=None):
+    """One point per selected model/task; dispersion is within-task, not seed error."""
+    import matplotlib.pyplot as plt
+
+    columns = ["MASE", "MASE_std"]
+    if relative:
+        columns = ["scaled_MASE", "MASE_variance", "seasonal_MASE_variance"]
+    if any(column not in tasks for column in columns):
+        return False
+    selected = tasks.copy()
+    if relative:
+        denominator = selected["seasonal_MASE_variance"].to_numpy(dtype=float)
+        ratios = np.full(len(selected), np.nan)
+        np.divide(selected["MASE_variance"].to_numpy(dtype=float), denominator,
+                  out=ratios, where=np.isfinite(denominator) & (denominator > 0))
+        selected["dispersion"] = ratios
+        selected["mean"] = selected["scaled_MASE"]
+    else:
+        selected["mean"] = selected["MASE"]
+        selected["dispersion"] = selected["MASE_std"]
+    finite = np.isfinite(selected[["mean", "dispersion"]].to_numpy(dtype=float)).all(axis=1)
+    selected = selected[finite]
+    if selected.empty:
+        return False
+    figure, axis = plt.subplots(figsize=(8.5, 4.5), constrained_layout=True)
+    try:
+        for model, (label, color, marker) in _styles(selected, "model", styles).items():
+            group = selected[selected["model"] == model]
+            if group.empty:
+                continue
+            axis.scatter(group["mean"], group["dispersion"], color=color, marker=marker,
+                         s=32, alpha=0.7, label=f"{label} ({len(group)} tasks)")
+        axis.set_xlabel("Mean MASE / Seasonal mean MASE" if relative else "Mean task MASE")
+        axis.set_ylabel("Variance / Seasonal variance" if relative else "Within-task MASE standard deviation")
+        if relative:
+            if (selected[["mean", "dispersion"]].to_numpy(dtype=float) > 0).all():
+                axis.set_xscale("log")
+                axis.set_yscale("log")
+            else:
+                axis.set_xscale("symlog", linthresh=0.01)
+                axis.set_yscale("symlog", linthresh=0.01)
+            axis.axvline(1, color="#555555", linestyle="--", linewidth=1)
+            axis.axhline(1, color="#555555", linestyle="--", linewidth=1)
+        axis.grid(alpha=0.25)
+        axis.legend(fontsize=9)
+        path = Path(path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        figure.savefig(path, dpi=220, bbox_inches="tight")
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+    finally:
+        plt.close(figure)
+    return True
 
 
 def _grid_labels(axis, frequencies, horizons):
@@ -138,6 +195,8 @@ def plot_loss_grid(cells, path, *, value="mean_loss", label="Mean task MASE", pa
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, dpi=220)
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     finally:
         plt.close(figure)
     return True
@@ -179,6 +238,8 @@ def plot_best_model_grid(cells, path, *, models, styles=None, label="Mean task M
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, dpi=220)
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     finally:
         plt.close(figure)
 
@@ -209,6 +270,8 @@ def plot_domain_loss(domain, path, *, value="mean_task_MASE", label="Mean task M
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, dpi=220)
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     finally:
         plt.close(figure)
 
@@ -257,5 +320,7 @@ def plot_feature_scatter(
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(path, dpi=220)
+        if Path(path).suffix.lower() == ".png":
+            figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
     finally:
         plt.close(figure)

@@ -2,6 +2,7 @@
 
 import ast
 import json
+import runpy
 import tempfile
 import unittest
 from pathlib import Path
@@ -29,7 +30,8 @@ def tasks():
             ("Smart_Manufacturing", "H", "long", 8),
         ], losses)):
             rows.append(dict(model=model, dataset=dataset, frequency=frequency, term=term,
-                horizon_steps=horizon, MASE=loss,
+                horizon_steps=horizon, MASE=loss, MASE_std=loss / 2, MASE_variance=loss ** 2 / 4,
+                seasonal_MASE_variance=[1, 2, 1, 4][index] ** 2 / 4,
                 scaled_MASE=loss / [1, 2, 1, 4][index],
                 inference_seconds=None if model == "candidate" and index == 3 else 1.0))
     return rows
@@ -79,10 +81,34 @@ class ReportingBundleTest(unittest.TestCase):
                              {path.name for path in artifacts if path.name != "performance_report_manifest.json"})
             for name in ("performance_summary.tex", "relative_improvement.md", "time_totals.csv",
                          "domain_average_loss.csv", "loss_horizon_frequency.pdf",
+                         "accuracy_time.pdf", "task_mean_std.png", "task_mean_std.pdf",
+                         "task_dispersion.png", "task_dispersion.pdf",
                          "scaled_MASE_horizon_frequency.png", "best_model_relative_loss_horizon_frequency.pdf"):
                 self.assertTrue((root / name).exists(), name)
-        self.assertIn("--include=**/performance/***", (ROOT / "sync_results_to_dgx.sh").read_text())
-        self.assertIn("-path '*/performance/*'", (ROOT / "publish_job.sh").read_text())
+            self.assertEqual(manifest["dispersion_available_tasks"], {"seasonal_naive": 4, "candidate": 4})
+            for png in root.glob("*.png"):
+                self.assertTrue(png.with_suffix(".pdf").is_file(), png.name)
+        for script in ("sync_results_to_dgx.sh", "publish_job.sh"):
+            self.assertIn("src/timebench/pipeline/artifact_selection.py", (ROOT / script).read_text())
+
+    def test_lightweight_selection(self):
+        selector = runpy.run_path(str(ROOT / "src/timebench/pipeline/artifact_selection.py"))
+        selected = selector["selected"]
+        for name in ("reports/channels_comparison/launch/native/performance/task_mean_std.png",
+                     "reports/foundation_models/launch/performance/accuracy_time.pdf",
+                     "tasks/cell/prediction.json", "tasks/cell/time_inference/record.json"):
+            self.assertTrue(selected(name, "lightweight"), name)
+        for name in ("reports/launch/raw.pt", "tasks/cell/metrics.npz", "tasks/cell/predictions.npy"):
+            self.assertFalse(selected(name, "lightweight"), name)
+        self.assertTrue(selected("tasks/cell/metrics.npz", "detailed"))
+        self.assertIn("--exclude=*.npz", selector["filters"]("lightweight"))
+        transfer = (ROOT / "sync_results_to_dgx.sh").read_text()
+        publisher = (ROOT / "publish_job.sh").read_text()
+        self.assertIn('PUBLISH_MAX_FILE_BYTES:-100000000', transfer)
+        self.assertIn('PUBLISH_MAX_FILE_BYTES:-100000000', publisher)
+        workflow = (ROOT / "src/slurm/run_chronos2_comparison.sh").read_text()
+        self.assertIn('TIME_WORKFLOW_NAME=channels_summary', workflow)
+        self.assertIn('if [ "${TIME_REPORT_ONLY:-0}" != 1 ]; then', workflow)
 
 
 if __name__ == "__main__":

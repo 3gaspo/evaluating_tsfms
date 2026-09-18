@@ -66,8 +66,16 @@ complete scientific configuration and has schema-1 lifecycle metadata.
 
 `sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`
 retain this project's code and artifacts without touching another TIME
-project. Generated results live in `outputs/`; runtime streams live in
-`logs/`.
+project. Selena writes results to
+`/scratch/users/<nni>/codes/evaluating_tsfms/outputs/` and all job streams and
+stage logs to its `logs/` sibling. DGX pulls them into `outputs/selena/` and
+`logs/selena/` in this checkout.
+
+To regenerate reports for an existing completed launch, set `TIME_LAUNCH_ID`
+to that launch's identity and submit the foundation-summary front directly.
+For channels, use `TIME_REPORT_ONLY=1 TIME_LAUNCH_ID=<existing-channel-launch>
+bash scripts/channels_comparison.sh selena`. This skips inference and saves
+separate `channels_summary` status records without replacing evaluation statuses.
 
 Model jobs, including the original Seasonal Naive job, save each metric's `mean`, `std`, `variance`, and
 `dispersion_ddof=0` in `metrics_summary.json`. Dispersion uses the same finite
@@ -82,17 +90,26 @@ The completed Seasonal refresh's diagnostic `task_summary.csv` is retained as
 plot evidence and included by lightweight synchronization; its temporary tools
 have been retired.
 
-Every summary now writes a `performance/` bundle beside its foundation table:
+Job reports live in `outputs/reports/<experiment>/<launch>/`, with an additional
+mode folder for channel reports. Every summary writes a `performance/` bundle
+beside its foundation table:
 task-level inputs, raw/scaled MASE, reference-relative improvements, recorded
 inference-time totals, and per-domain average tables (CSV, Markdown, LaTeX).
 PNG/PDF figures show horizon-by-sampling-frequency loss and best-model maps,
-per-domain loss bars, and accuracy versus recorded inference time. Heatmap
+per-domain loss bars, accuracy versus recorded inference time, and task mean
+versus population standard deviation (one point per model/task). The relative
+variance plot additionally requires positive matched Seasonal variance. Every
+PNG has a same-stem PDF from the same figure; manifests list both. Heatmap
 cells average task losses arithmetically; aggregate scaled MASE retains the
 geometric mean. Relative outputs use matching Seasonal tasks, and ties remain
 visible. Domain labels come from `src/timebench/config/dataset_domains.json`;
 unmapped datasets are explicitly Unclassified.
 
-Lightweight synchronization/publication includes the complete bundle.
+Lightweight synchronization/publication uses one shared file selector for report
+bundles, compact stage metadata and timing JSON, excluding raw recovery arrays.
+Both steps apply the same default per-file limit of 100000000 bytes, configurable
+with `PUBLISH_MAX_FILE_BYTES`. `outputs/analysis/` holds separately requested
+artifact analyses. Existing artifacts are not moved by report regeneration.
 Each job logs allocated/visible devices and available GPU/host memory before
 its stages; model runners also log the selected device. Reporting requires
 Matplotlib in the execution-host environment. Code synchronization preserves

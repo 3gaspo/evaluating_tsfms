@@ -99,7 +99,11 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
     axis.legend(loc="lower right", frameon=True, fontsize=14)
     figure_path.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(figure_path, dpi=220)
+    if Path(figure_path).suffix.lower() == ".png":
+        figure.savefig(Path(figure_path).with_suffix(".pdf"), bbox_inches="tight")
     figure.savefig(output / "foundation_task_dispersion.png", dpi=220)
+    if Path(output / "foundation_task_dispersion.png").suffix.lower() == ".png":
+        figure.savefig(Path(output / "foundation_task_dispersion.png").with_suffix(".pdf"), bbox_inches="tight")
     plt.close(figure)
     evidence = {
         "report": report_path.relative_to(project).as_posix(),
