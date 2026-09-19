@@ -66,9 +66,8 @@ complete scientific configuration and has schema-1 lifecycle metadata.
 
 `sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`
 retain this project's code and artifacts without touching another TIME
-project. Selena writes results to
-`/scratch/users/<nni>/codes/evaluating_tsfms/outputs/` and all job streams and
-stage logs to its `logs/` sibling. DGX pulls them into `outputs/selena/` and
+project. Selena writes results to this project's scratch `outputs/` directory
+and all job streams and stage logs to its `logs/` sibling. DGX pulls them into `outputs/selena/` and
 `logs/selena/` in this checkout.
 
 To regenerate reports for an existing completed launch, set `TIME_LAUNCH_ID`

@@ -13,23 +13,23 @@
 \newcommand{\featurecode}[2]{\href{https://github.com/3gaspo/evaluating_tsfms/blob/c119ed748d149e9f7892641bead393819f5983fd/src/timebench/feature/features.py\#L#1}{#2}}
 \title{\textbf{Evaluating Time-Series Foundation Models}\\Scientific Executive Summary}
 \author{}
-\date{16 September 2026; results computed 15 September 2026}
+\date{19 September 2026; results computed 17 September 2026}
 \begin{document}
 \begin{center}
 {\Large\bfseries Evaluating Time-Series Foundation Models}\\[4pt]
 {\large Scientific Executive Summary}\\[5pt]
-{\small 16 September 2026; results computed 15 September 2026}
+{\small 19 September 2026; results computed 17 September 2026}
 \end{center}
 
 \section*{Main findings}
 \begin{itemize}
 \item \textbf{Foundation models:} Chronos-2 achieves scaled MASE 0.6855
 and wins 74 of 98 matched TIME tasks, ahead of TS-ICL and Chronos-Bolt.
-It also has the lowest measured total forecasting time (425.6 seconds).
+It also has the lowest measured total forecasting time (439.1 seconds).
 \item \textbf{Channel representation:} native multivariate Chronos-2 is
 0.8\% better in aggregate than independent univariate forecasting.
 Recasting other target histories as past covariates gives essentially the
-same accuracy as native input, with 5.72 times its measured forecasting time.
+same accuracy as native input, with 5.68 times its measured forecasting time.
 \item \textbf{Dataset features:} greater temporal heterogeneity accompanies
 higher scaled MASE for all three foundation models, with Spearman rank
 correlations of 0.42--0.50 across the 50 configurations.
@@ -156,9 +156,9 @@ the other two models forecast variates independently.
 \toprule
 Model & sMASE & \shortstack{Middle 50\%\\of configs} & \shortstack{Configs better\\than Seasonal} & Task wins & Seconds\\
 \midrule
-Chronos-2 & 0.685489 & 0.612--0.774 & 48/50 & 74/98 & 425.6\\
-TS-ICL & 0.718394 & 0.673--0.808 & 47/50 & 20/98 & 2,673.0\\
-Chronos-Bolt & 0.759559 & 0.694--0.842 & 47/50 & 4/98 & 934.5\\
+Chronos-2 & 0.685489 & 0.612--0.774 & 48/50 & 74/98 & 439.1\\
+TS-ICL & 0.718394 & 0.673--0.808 & 47/50 & 20/98 & 2,672.5\\
+Chronos-Bolt & 0.759559 & 0.694--0.842 & 47/50 & 4/98 & 942.1\\
 Seasonal Naive & 1.000000 & 1.000--1.000 & --- & --- & 654.6\\
 \bottomrule
 \end{tabularx}
@@ -185,7 +185,7 @@ It leads on 74/98 tasks and
 beats Seasonal on 48/50 configuration scores.
 \item TS-ICL beats Chronos-2 on 21 tasks, and Chronos-Bolt on 8. These
 pairwise counts differ from winning against \emph{both} competitors.
-Their total forecasting times are 6.28 and 2.20 times Chronos-2's.
+Their total forecasting times are 6.09 and 2.15 times Chronos-2's.
 \end{itemize}
 
 \textbf{Scope.} All three models complete all tasks, with 111,071 eligible
@@ -194,7 +194,6 @@ metric cells, not future time steps. Context lengths and wrappers differ;
 Seasonal uses CPU and learned models use accelerator inference. These
 times are not hardware-independent backbone latencies.
 
-\newpage
 \subsection*{Within-task error dispersion}
 The task mean hides differences between forecast windows and channels.
 Using the same eligible cells $G_k$, define the \textbf{population variance}
@@ -207,6 +206,15 @@ and standard deviation of task $k$'s cell errors for method $m$:
 \]
 The denominator is $|G_k|$, not $|G_k|-1$: these are descriptive statistics
 of all evaluated cells, not estimates from repeated experimental runs.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{executive_summary_task_mean_std.png}
+\caption{Raw within-task dispersion: one point for every reported model--task
+pair, with arithmetic task mean MASE horizontally and population standard
+deviation vertically. Color identifies the model. Seasonal Naive has 98 tasks,
+as does each learned model, for 392 points total.}
+\end{figure}
 
 For comparison with Seasonal Naive, define its variance on the same cells as
 $\operatorname{Var}_{\mathrm{seasonal}}(k)$, using the formula above. The plot uses
@@ -267,9 +275,9 @@ support. The matched subset has \textbf{38 multivariate configurations and
 \toprule
 Representation & sMASE & Change vs native & Seconds & Time ratio\\
 \midrule
-Native multivariate & 0.690045 & reference & 326.8 & 1.00\\
-Independent univariate & 0.695590 & $+0.80\%$ & 341.8 & 1.05\\
-Past-target covariates & 0.690045 & equivalent & 1,870.6 & 5.72\\
+Native multivariate & 0.690045 & reference & 340.0 & 1.00\\
+Independent univariate & 0.695590 & $+0.80\%$ & 350.2 & 1.03\\
+Past-target covariates & 0.690045 & equivalent & 1,930.8 & 5.68\\
 \bottomrule
 \end{tabularx}
 \caption{Matched 74-task sMASE and forecast-loop time. Positive score change
@@ -292,13 +300,12 @@ geometric mean independent/native ratio is 1.008; its middle-50\% task interval 
 0.997--1.014. Native input's \textbf{0.8\% aggregate advantage is small
 and varies across tasks}.
 \item Past-target covariates reproduce native MASE: the largest absolute
-relative difference is below $5.75\times10^{-7}$. They take \textbf{5.72
+relative difference is below $5.75\times10^{-7}$. They take \textbf{5.68
 times the forecasting time}, without an accuracy gain in this comparison.
 \end{itemize}
 All modes complete all 74 tasks, using 91,319 eligible metric cells out
 of 91,425 candidates.
 
-\newpage
 \section{Dataset features associated with relative forecast error}
 \textbf{Question.} Which measured dataset characteristics accompany higher
 or lower sMASE across the evaluated configurations?
@@ -343,7 +350,7 @@ channels has zero spatial heterogeneity.
 \end{itemize}
 Other feature names in the table link to their implementation or estimator.
 
-\newpage
+\enlargethispage{2\baselineskip}
 \subsection*{Feature results and interpretation}
 \begin{table}[h]
 \centering\small
@@ -376,7 +383,7 @@ finite configurations.}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.88\linewidth]{executive_summary_feature_scatter.png}
+\includegraphics[width=0.65\linewidth]{executive_summary_feature_scatter.png}
 \caption{Temporal heterogeneity versus configuration sMASE; 50 points per
 model. The dotted line marks Seasonal parity.}
 \end{figure}
@@ -387,16 +394,12 @@ heterogeneity has near-zero correlations ($-0.036$ to $+0.035$), unlike
 temporal heterogeneity. Negative leaders vary by model: second detected
 period, seasonal strength/correlation, stationarity, spectral entropy,
 and spikiness.
-These comparisons concern different existing datasets: changes in
-heterogeneity occur alongside other dataset differences, so the association
-does not isolate the effect of heterogeneity itself. The displayed features
-were selected from the extracted feature set. Full-series features include
-test observations, making this a description of the obtained errors rather
-than an evaluated pre-forecast model-selection rule.
+These cross-dataset associations do not isolate causal effects. The displayed
+features were selected from the extracted feature set and use full series,
+including test observations, so they describe the obtained errors rather than
+an evaluated pre-forecast model-selection rule.
 
-\textbf{Evidence scope.} The analysis uses one selected computation per
-configuration. Counts and comparisons were checked against selected task
-records and metric summaries; raw forecast and metric arrays were not
-independently inspected locally. Cross-configuration IQRs and correlations
-describe this benchmark, not variability across repeated computations.
+\textbf{Evidence scope.} Selected task records and metric summaries were
+checked; raw arrays were not. The IQRs and correlations describe this
+benchmark, not repeated-run variability.
 \end{document}

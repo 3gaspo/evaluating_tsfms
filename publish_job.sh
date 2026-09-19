@@ -134,6 +134,7 @@ done
 
 sample_paths=()
 oversize_exclusions=()
+oversize_paths=()
 for selected_path in "${paths[@]}"; do
     while IFS= read -r -d '' file; do
         relative="${file#"$project_root"/}"
@@ -170,11 +171,24 @@ for selected_path in "${paths[@]}"; do
             fi
         } > "$sample_file"
         sample_paths+=("$sample_relative")
+        oversize_paths+=("$relative")
         oversize_exclusions+=(":(exclude,literal)$relative")
         echo "Replacing oversized artifact ($file_bytes bytes) with $sample_relative"
     done < <(find "$project_root/$selected_path" -type f -print0)
 done
-publish_paths=("${paths[@]}" "${sample_paths[@]}")
+declare -A oversize_lookup=()
+for oversize_path in "${oversize_paths[@]}"; do
+    oversize_lookup["$oversize_path"]=1
+done
+publish_paths=()
+for selected_path in "${paths[@]}"; do
+    [ -z "${oversize_lookup[$selected_path]+x}" ] || continue
+    publish_paths+=("$selected_path")
+done
+publish_paths+=("${sample_paths[@]}")
+publish_pathspec="$(mktemp)"
+trap 'rm -f -- "$publish_pathspec"' EXIT
+printf '%s\0' "${publish_paths[@]}" "${exclusions[@]}" "${oversize_exclusions[@]}" > "$publish_pathspec"
 
 if [ -n "$job_id" ]; then
     echo "Publishing job $job_id logs and $publish_size TIME artifacts:"
@@ -182,9 +196,9 @@ else
     echo "Publishing DGX and synchronized Selena logs plus $publish_size TIME artifacts:"
 fi
 printf '  %s\n' "${paths[@]}"
-git add -v -f -- "${publish_paths[@]}" "${exclusions[@]}" "${oversize_exclusions[@]}"
-if ! git diff --cached --quiet -- "${publish_paths[@]}" "${exclusions[@]}" "${oversize_exclusions[@]}"; then
-    git commit --only -m "$message" -- "${publish_paths[@]}" "${exclusions[@]}" "${oversize_exclusions[@]}"
+git add -v -f --pathspec-from-file="$publish_pathspec" --pathspec-file-nul
+if ! git diff --cached --quiet; then
+    git commit --only -m "$message" --pathspec-from-file="$publish_pathspec" --pathspec-file-nul
 else
     echo "No new artifact changes; pushing existing local commits."
 fi

@@ -31,7 +31,11 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
         canonical(path) for path in report["seasonal_naive_input_manifests"]}
     rows = []
     for relative in report["input_manifests"]:
-        path = tasks_root / relative
+        manifest_text = str(relative).replace("\\", "/")
+        marker = "/outputs/foundation_models/tasks/"
+        if marker in manifest_text:
+            manifest_text = manifest_text.split(marker, 1)[1]
+        path = tasks_root / manifest_text
         manifest = json.loads(path.read_text(encoding="utf-8"))
         summary = json.loads(path.with_name("metrics_summary.json").read_text(encoding="utf-8"))
         metric = summary["metrics"]["MASE"]
@@ -126,7 +130,7 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     project = Path(__file__).resolve().parents[2]
-    parser.add_argument("--report", type=Path, default=project / "outputs/selena/foundation_models/summary/selena_20260915T140649Z_45401/foundation_model_report_manifest.json")
+    parser.add_argument("--report", type=Path, default=project / "outputs/selena/reports/foundation_models/selena_20260917T102825Z_4593/foundation_model_report_manifest.json")
     parser.add_argument("--output", type=Path, default=project / "outputs/analysis/task_dispersion")
     parser.add_argument("--figure", type=Path, default=project / "latex/executive_summary_task_dispersion.png")
     args = parser.parse_args()

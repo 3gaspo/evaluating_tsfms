@@ -8,6 +8,7 @@ No forecasting, metric-array evaluation, or PDF compilation is performed.
 
 import argparse
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -23,8 +24,8 @@ from plot_foundation_task_dispersion import MODELS, plot_dispersion
 
 
 PROJECT = Path(__file__).resolve().parents[2]
-FOUNDATION_LAUNCH = "selena_20260915T140649Z_45401"
-CHANNEL_LAUNCH = "selena_channels_20260915T093442Z_47862"
+FOUNDATION_LAUNCH = "selena_20260917T102825Z_4593"
+CHANNEL_LAUNCH = "selena_channels_20260917T102839Z_11944"
 MODES = ("multivariate", "univariate", "covariate")
 
 
@@ -33,7 +34,11 @@ def load_channel_tasks(report: Path, tasks_root: Path, mode: str):
     provenance = json.loads(report.read_text(encoding="utf-8"))
     rows = []
     for relative in provenance["input_manifests"]:
-        manifest_path = tasks_root / relative
+        manifest_text = str(relative).replace("\\", "/")
+        marker = f"/outputs/channels_comparison/tasks/{mode}/"
+        if marker in manifest_text:
+            manifest_text = manifest_text.split(marker, 1)[1]
+        manifest_path = tasks_root / manifest_text
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         summary = json.loads(manifest_path.with_name("metrics_summary.json").read_text(encoding="utf-8"))
         metric, identity = summary["metrics"]["MASE"], manifest["identity"]
@@ -100,10 +105,10 @@ def plot_channel_ratios(ratios: pd.DataFrame, path: Path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     snapshot = PROJECT / "outputs/selena"
-    parser.add_argument("--foundation-report", type=Path, default=snapshot / f"foundation_models/summary/{FOUNDATION_LAUNCH}/foundation_model_report_manifest.json")
-    parser.add_argument("--channel-summary-root", type=Path, default=snapshot / f"channels_comparison/summary/{CHANNEL_LAUNCH}")
+    parser.add_argument("--foundation-report", type=Path, default=snapshot / f"reports/foundation_models/{FOUNDATION_LAUNCH}/foundation_model_report_manifest.json")
+    parser.add_argument("--channel-summary-root", type=Path, default=snapshot / f"reports/channels_comparison/{CHANNEL_LAUNCH}")
     parser.add_argument("--channel-tasks-root", type=Path, default=snapshot / "channels_comparison/tasks")
-    parser.add_argument("--feature-data", type=Path, default=snapshot / f"foundation_models/feature_analysis/{FOUNDATION_LAUNCH}/mase_vs_features_data.csv")
+    parser.add_argument("--feature-data", type=Path, default=snapshot / f"reports/foundation_models/{FOUNDATION_LAUNCH}/feature_analysis/mase_vs_features_data.csv")
     parser.add_argument("--output", type=Path, default=PROJECT / "outputs/analysis/executive_summary")
     parser.add_argument("--figures-dir", type=Path, default=None)
     args = parser.parse_args()
@@ -116,6 +121,10 @@ def main():
     summary_path = args.foundation_report.with_name("foundation_model_summary.csv")
     plot_accuracy_time(pd.read_csv(summary_path), figures / "executive_summary_accuracy_time.png",
                        styles=MODELS, model_column="base_model")
+    performance = args.foundation_report.parent / "performance"
+    for suffix in (".png", ".pdf"):
+        shutil.copyfile(performance / f"task_mean_std{suffix}",
+                        figures / f"executive_summary_task_mean_std{suffix}")
     frames = {
         mode: load_channel_tasks(args.channel_summary_root / mode / "foundation_model_report_manifest.json",
                                  args.channel_tasks_root / mode, mode)

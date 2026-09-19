@@ -17,16 +17,16 @@ excluded from the active experiment set.
 
 | Model | Scaled MASE | Dataset-frequency IQR | Configurations below baseline | Learned-model task wins | Inference seconds |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Chronos-2 | 0.685489 | 0.612–0.774 | 48/50 | 74/98 | 425.6 |
-| TS-ICL | 0.718394 | 0.673–0.808 | 47/50 | 20/98 | 2,673.0 |
-| Chronos-Bolt | 0.759559 | 0.694–0.842 | 47/50 | 4/98 | 934.5 |
+| Chronos-2 | 0.685489 | 0.612–0.774 | 48/50 | 74/98 | 439.1 |
+| TS-ICL | 0.718394 | 0.673–0.808 | 47/50 | 20/98 | 2,672.5 |
+| Chronos-Bolt | 0.759559 | 0.694–0.842 | 47/50 | 4/98 | 942.1 |
 | Seasonal Naive | 1.000000 | 1.000–1.000 | — | — | 654.6 |
 
 Chronos-2 is the strongest active foundation model. Its aggregate scaled MASE
 is 31.5% below Seasonal Naive, 4.6% below TS-ICL, and 9.8% below Chronos-Bolt.
 Its advantage is broad rather than driven only by the geometric aggregate: it
 wins 74 of the 98 paired learned-model tasks. TS-ICL and Chronos-Bolt require
-6.28 and 2.20 times Chronos-2's summed inference time, respectively.
+6.09 and 2.15 times Chronos-2's summed inference time, respectively.
 
 Every active learned model completed all 98 selected task manifests and is
 finite in MASE on all 111,071 series-window-variate metric cells in the shared
@@ -42,11 +42,11 @@ for all 294 selected foundation tasks (98 per model). Both use the same finite
 series-window-variate metric cells as each task's arithmetic mean, with
 `ddof=0`; prior means, coverage, and metadata were verified unchanged.
 
-The executive summary includes a mean-versus-variance scatter, with one color
-per model and logarithmic axes: model mean divided by Seasonal mean, and model
-variance divided by Seasonal variance. The spread concerns evaluated cells
-within tasks, not uncertainty across repeated runs. The reproducible plot
-entry point is `src/visualization/plot_foundation_task_dispersion.py`.
+The executive summary includes the standardized raw task mean-versus-population-
+standard-deviation scatter and a paired Seasonal-relative variance scatter,
+both with one color per model. The spread concerns evaluated cells within
+tasks, not uncertainty across repeated runs. The reproducible plot entry point
+is `src/visualization/plot_executive_summary.py`.
 
 ## Chronos-2 channel representation
 
@@ -55,9 +55,9 @@ configurations and 74 horizon tasks common to its three modes.
 
 | Representation | Scaled MASE | Accuracy versus native | Paired task-ratio IQR | Inference seconds | Time versus native |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Native multivariate | 0.690045 | reference | 1.000–1.000 | 326.8 | 1.00x |
-| Independent univariate | 0.695590 | 0.80% worse | 0.997–1.014 | 341.8 | 1.05x |
-| Past targets as covariates | 0.690045 | equivalent | 1.000–1.000 | 1,870.6 | 5.72x |
+| Native multivariate | 0.690045 | reference | 1.000–1.000 | 340.0 | 1.00x |
+| Independent univariate | 0.695590 | 0.80% worse | 0.997–1.014 | 350.2 | 1.03x |
+| Past targets as covariates | 0.690045 | equivalent | 1.000–1.000 | 1,930.8 | 5.68x |
 
 Native multivariate forecasting wins 46 of the 74 paired tasks against
 independent univariate forecasting; univariate wins 28. The aggregate native
@@ -66,7 +66,7 @@ of 0.997–1.014, so the effect is small and heterogeneous.
 
 Past-target covariates reproduce native-multivariate accuracy to numerical
 precision: their aggregate values agree to six decimals and the maximum
-taskwise relative MASE difference is below `5.75e-7`. They require 5.72 times
+taskwise relative MASE difference is below `5.75e-7`. They require 5.68 times
 the summed inference time, so this experiment provides no accuracy
 justification for the more expensive representation.
 
@@ -105,6 +105,7 @@ cell statistics, not repeated-run uncertainty.
   configurations, metric summaries, aggregate reports, and feature-analysis
   outputs, but omits task-level `predictions.npz` and `metrics.npz`. Completed
   manifests report those required payloads on Selena, but their contents were
-  not independently inspected in this checkout.
+  not independently inspected in this checkout. The current four report
+  bundles contain complete task tables and 12 paired PNG/PDF figures each.
 - Covariate generalization beyond Chronos-2, input normalization, and context-
   size studies remain planned rather than evidenced.
