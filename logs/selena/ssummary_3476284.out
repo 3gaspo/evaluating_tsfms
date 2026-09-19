@@ -1,0 +1,25 @@
+[2026-09-18 09:33:48 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "2", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3476284", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "16000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 2, "host": "sean0004"}
+[2026-09-18 09:33:48 UTC] resources RAM {"MemAvailable_MiB": 372129.99609375, "MemTotal_MiB": 386622.86328125}
+[2026-09-18 09:33:48 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-638c0130-3dcc-bd87-d90d-4789fd8ad53b, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-18 09:33:55 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-18 09:33:55 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-18 11:33:57 | workflow foundation_summary started launch_id=selena_20260917T102825Z_4593 task=macro_mase_and_timing slurm_job_id=3476284 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-18 11:33:57 | stage summarize started
+2026-09-18 11:33:57 | task foundation_model_summary outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/foundation_model_summary.md
+
+chronos2/multivariate,univariate state=completed  scaled_MASE=0.685489  inference=439.076s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl/univariate            state=completed  scaled_MASE=0.718394  inference=2672.487s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt/univariate      state=completed  scaled_MASE=0.759559  inference=942.138s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+seasonal_naive/univariate    state=completed  scaled_MASE=1.000000  inference=654.579s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+2026-09-18 11:34:12 | task foundation_model_summary outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs completed status=success
+2026-09-18 11:34:12 | stage summarize completed status=success
+2026-09-18 11:34:12 | stage feature_plot started
+2026-09-18 11:34:12 | task mase_vs_features features=/scratch/users/h61084/datasets/time_metadata/stl_features output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/feature_analysis started
+Selected features: temporal_heterogeneity, trend_hurst, temporal_scale_heterogeneity, temporal_location_heterogeneity, period2
+Plot: /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/feature_analysis/mase_vs_features.svg
+Joined data: /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/feature_analysis/mase_vs_features_data.csv
+Correlations: /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/feature_analysis/mase_vs_features_correlations.csv
+2026-09-18 11:34:51 | task mase_vs_features features=/scratch/users/h61084/datasets/time_metadata/stl_features output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260917T102825Z_4593/feature_analysis completed status=success
+2026-09-18 11:34:51 | stage feature_plot completed status=success
+2026-09-18 11:34:51 | workflow foundation_summary completed status=success exit_code=0

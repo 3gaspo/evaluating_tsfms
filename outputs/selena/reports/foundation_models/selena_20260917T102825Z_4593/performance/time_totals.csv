@@ -1,0 +1,5 @@
+model,tasks,timed_tasks,total_inference_seconds
+chronos2,98,98,439.0764037184417
+chronos_bolt,98,98,942.1381945014
+ts_icl,98,98,2672.487412323244
+seasonal_naive,98,98,654.5789251364768

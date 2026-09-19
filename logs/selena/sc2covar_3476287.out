@@ -1,0 +1,12 @@
+[2026-09-18 09:35:18 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "8", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3476287", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "80000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 8, "host": "sean0004"}
+[2026-09-18 09:35:18 UTC] resources RAM {"MemAvailable_MiB": 372120.30078125, "MemTotal_MiB": 386622.86328125}
+[2026-09-18 09:35:18 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-638c0130-3dcc-bd87-d90d-4789fd8ad53b, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-18 09:35:20 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-18 09:35:20 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-18 11:35:20 | workflow channels_summary started launch_id=selena_channels_20260917T102839Z_11944 task=covariate slurm_job_id=3476287 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-18 11:35:20 | stage summarize started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/channels_comparison/selena_channels_20260917T102839Z_11944/covariate/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/channels_comparison/selena_channels_20260917T102839Z_11944/covariate/foundation_model_summary.md
+
+chronos2/univariate          state=completed  scaled_MASE=0.690045  inference=1930.830s  coverage=74/74 timed tasks, 91319/91319/91425 finite/grid/total MASE values
+2026-09-18 11:35:28 | stage summarize completed status=success
+2026-09-18 11:35:28 | workflow channels_summary completed status=success exit_code=0
