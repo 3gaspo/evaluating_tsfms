@@ -29,6 +29,8 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] weights: $TIME_WEIGHTS"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] outputs: $TIME_OUTPUTS"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] covariate mode: ${TIME_COVARIATE_MODE:-none}"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] target mode: ${TIME_TARGET_MODE:-auto}"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] context length: ${TIME_CONTEXT_LENGTH:-model_default}"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] instance normalization: ${TIME_INSTANCE_NORMALIZATION:-none}"
 
 if [ ! -d "$TIME_DATASET" ]; then
     echo "TIME dataset directory not found: $TIME_DATASET" >&2
@@ -41,4 +43,3 @@ if [ -n "${SLURM_JOB_ID:-}" ]; then
 else
     "${runner_command[@]}"
 fi
-

@@ -59,7 +59,12 @@ def outputs_root() -> Path:
 def foundation_experiment_name(experiment: str | None = None) -> str:
     """Resolve the independently launched experiment owning foundation tasks."""
     value = experiment or os.getenv("TIME_EXPERIMENT", "foundation_models")
-    if value not in {"foundation_models", "channels_comparison"}:
+    if value not in {
+        "foundation_models",
+        "channels_comparison",
+        "context_size",
+        "instance_normalization",
+    }:
         raise ValueError(f"Unknown foundation experiment {value!r}")
     return value
 
@@ -75,11 +80,35 @@ def foundation_identity_root(
     target_mode: str,
     dataset: str,
     term: str,
+    experiment_axis: tuple[str, str] | None = None,
 ) -> Path:
     """Identity directory whose non-path configurations live in ``run_n``."""
     if target_mode not in {"univariate", "multivariate"}:
         raise ValueError(f"Unknown target mode {target_mode!r}")
-    return Path(experiment_root) / model / target_mode / dataset / term
+    root = Path(experiment_root) / model
+    if experiment_axis is not None:
+        axis, value = experiment_axis
+        if axis not in {"context_length", "normalization"}:
+            raise ValueError(f"Unknown foundation experiment axis {axis!r}")
+        if not value or value in {".", ".."} or Path(value).name != value:
+            raise ValueError(f"Invalid foundation experiment-axis value {value!r}")
+        root = root / axis / value
+    return root / target_mode / dataset / term
+
+
+def foundation_experiment_axis(
+    experiment: str,
+    *,
+    context_length: int,
+    instance_normalization: str,
+) -> tuple[str, str] | None:
+    """Return the primary path axis for a foundation-model experiment."""
+
+    if experiment == "context_size":
+        return "context_length", str(context_length)
+    if experiment == "instance_normalization":
+        return "normalization", instance_normalization
+    return None
 
 
 def logs_root() -> Path:

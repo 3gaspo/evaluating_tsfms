@@ -22,6 +22,25 @@ past targets represented as past-only covariates on multivariate datasets.
 Entry point: `scripts/channels_comparison.sh`. Its summaries consume the same
 reusable Seasonal Naive baseline as the foundation-model benchmark.
 
+### Maximum-context ablation
+
+Runs `chronos_bolt`, `chronos2`, and `ts_icl` at five maximum contexts, with
+each value half the preceding one. The grids are respectively
+`2048/1024/512/256/128`, `8192/4096/2048/1024/512`, and
+`4096/2048/1024/512/256`. Entry point: `scripts/context_size.sh`. Each setting
+has its own `context_length/<value>/` task subtree. The launch summary reports
+the ordinary comparison bundle and a horizon-size by context-size scaled-MASE
+figure with one panel per model.
+
+### Instance-normalization ablation
+
+Compares unchanged inputs with per-window, per-variate z-score normalization
+for `chronos_bolt`, `chronos2`, and `ts_icl`. The population mean and standard
+deviation are computed after maximum-context truncation; a zero standard
+deviation uses scale one. Every output quantile is transformed back before
+evaluation. Entry point: `scripts/instance_normalization.sh`. The two settings
+have separate `normalization/none/` and `normalization/zscore/` task subtrees.
+
 ### Dataset diagnostics
 
 Audits source non-finiteness and forecast windows, then extracts reusable
@@ -30,10 +49,6 @@ dataset features. Entry point: `scripts/dataset_diagnostics.sh`.
 ## Planned families
 
 - covariate ablations across every foundation model that declares support;
-- input-normalization ablations with the transformation recorded in the task
-  scientific identity;
-- context-size ablations using explicit context limits rather than silent
-  truncation.
 
-Their exact grids, supported-model subsets, and aggregation policies have not
-yet been selected. The migrated launchers do not silently implement them.
+Its exact grid, supported-model subset, and aggregation policy have not yet
+been selected. The migrated launchers do not silently implement it.

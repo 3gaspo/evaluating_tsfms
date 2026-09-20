@@ -571,6 +571,13 @@ def main() -> None:
         help="Per-model workflow status directory for the selected launch",
     )
     parser.add_argument(
+        "--extra-artifact",
+        action="append",
+        default=[],
+        type=Path,
+        help="Existing additional artifact to include in the report manifest",
+    )
+    parser.add_argument(
         "--model-status",
         action="append",
         default=[],
@@ -638,7 +645,12 @@ def main() -> None:
         config_filters=config_filters,
         config_policy=args.config_policy,
         repeat_policy=args.repeat_policy,
-        artifacts=[args.csv, args.markdown, *performance_artifacts],
+        artifacts=[
+            args.csv,
+            args.markdown,
+            *performance_artifacts,
+            *args.extra_artifact,
+        ],
     )
     print(f"Foundation-model summary written to {args.csv} and {args.markdown}")
     print()

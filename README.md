@@ -20,11 +20,13 @@ The migrated runnable studies are:
   inference timing on one shared Seasonal-defined evaluation grid;
 - Chronos-2 native multivariate, independent univariate, and past-target-as-
   covariate comparison;
+- five-value maximum-context grids for Chronos-Bolt, Chronos-2, and TS-ICL,
+  with every successive value divided by two;
+- per-window, per-variate input z-score normalization versus unchanged input,
+  with predictions transformed back to the target units before evaluation;
 - reusable dataset/window diagnostics and feature-performance associations.
 
-Planned additions will evaluate covariate use across capable foundation
-models, input normalization, and context-size effects. Those axes remain
-planned until their exact configurations and launchers are implemented.
+Covariate use across every capable foundation model remains planned.
 
 ## Setup
 
@@ -47,6 +49,8 @@ From a prepared DGX or Selena checkout:
 bash scripts/submit_seasonal_naive.sh dgx shared
 bash scripts/submit_foundation_models.sh dgx
 bash scripts/channels_comparison.sh dgx
+bash scripts/context_size.sh dgx
+bash scripts/instance_normalization.sh dgx
 bash scripts/dataset_diagnostics.sh dgx
 ```
 
@@ -63,6 +67,15 @@ instead of silently changing metric coverage. The three learned
 foundation models run concurrently; their summary runs once after every model
 terminates and reads the shared baseline. Each task is addressed by its
 complete scientific configuration and has schema-1 lifecycle metadata.
+
+The context-size launcher evaluates five maximum contexts per model:
+Chronos-Bolt uses 2048, 1024, 512, 256, and 128; Chronos-2 uses 8192, 4096,
+2048, 1024, and 512; TS-ICL uses 4096, 2048, 1024, 512, and 256. Its report
+adds a horizon-by-context scaled-MASE figure with one panel per model. The
+normalization launcher compares unchanged input with z-score normalization
+using each variate's mean and population standard deviation over the retained
+input context. Constant inputs use scale one. Every predicted quantile is
+returned to the original units before metrics are computed.
 
 `sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`
 retain this project's code and artifacts without touching another TIME
@@ -103,6 +116,14 @@ cells average task losses arithmetically; aggregate scaled MASE retains the
 geometric mean. Relative outputs use matching Seasonal tasks, and ties remain
 visible. Domain labels come from `src/timebench/config/dataset_domains.json`;
 unmapped datasets are explicitly Unclassified.
+
+Foundation task paths begin with the experiment and backbone. The two
+ablations additionally put their tested value in the path:
+`outputs/context_size/tasks/<backbone>/context_length/<value>/.../run_n` and
+`outputs/instance_normalization/tasks/<backbone>/normalization/<mode>/.../run_n`.
+This keeps concurrently submitted settings independent; `run_n` distinguishes
+repetitions and remaining non-path configuration differences within one
+setting.
 
 Lightweight synchronization/publication uses one shared file selector for report
 bundles, compact stage metadata and timing JSON, excluding raw recovery arrays.

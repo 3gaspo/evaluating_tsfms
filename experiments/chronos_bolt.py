@@ -30,12 +30,17 @@ from timebench.evaluation.grid import EVALUATION_GRID_DEFINITION
 from timebench.evaluation.timing import EvaluationTimer
 from timebench.evaluation.utils import get_available_terms
 from timebench.evaluation.covariates import COVARIATE_MODES, validate_covariate_mode
+from timebench.evaluation.normalization import (
+    INSTANCE_NORMALIZATION_MODES,
+    normalize_instance,
+)
 from timebench.evaluation.data import (
     Dataset,
     get_dataset_settings,
     load_dataset_config,
 )
 from timebench.paths import (
+    foundation_experiment_axis,
     foundation_experiment_name,
     foundation_experiment_root,
     foundation_identity_root,
@@ -65,10 +70,15 @@ def run_chronos_bolt_experiment(
     model_path: str | Path | None = None,
     covariate_mode: str = "none",
     target_mode: str = "auto",
+    instance_normalization: str = "none",
 ):
     covariate_mode = validate_covariate_mode(
         "chronos_bolt", covariate_mode, supports_covariates=SUPPORTS_COVARIATES
     )
+    if instance_normalization not in INSTANCE_NORMALIZATION_MODES:
+        raise ValueError(
+            f"instance_normalization must be one of {INSTANCE_NORMALIZATION_MODES}"
+        )
     print("Loading configuration...")
     config = load_dataset_config(config_path)
 
@@ -91,6 +101,7 @@ def run_chronos_bolt_experiment(
     print(f"Dataset: {dataset_name}")
     print(f"Model: amazon/chronos-bolt-{model_size}")
     print(f"Terms: {terms}")
+    print(f"Instance normalization: {instance_normalization}")
     print(f"{'='*60}")
 
     model_name = f"amazon/chronos-bolt-{model_size}"
@@ -163,7 +174,16 @@ def run_chronos_bolt_experiment(
             dataset_name, term, resolved_target_mode
         )
         identity_root = foundation_identity_root(
-            output_dir, "chronos_bolt", resolved_target_mode, dataset_name, term
+            output_dir,
+            "chronos_bolt",
+            resolved_target_mode,
+            dataset_name,
+            term,
+            experiment_axis=foundation_experiment_axis(
+                experiment,
+                context_length=context_length,
+                instance_normalization=instance_normalization,
+            ),
         )
         run = allocate_run(
             identity_root,
@@ -194,6 +214,7 @@ def run_chronos_bolt_experiment(
                 "checkpoint_path": str(checkpoint_path),
             },
             experiment_config={
+                "instance_normalization": instance_normalization,
                 "covariate_mode": covariate_mode,
                 "covariate_channels": 0,
             },
@@ -216,6 +237,7 @@ def run_chronos_bolt_experiment(
         # eval_data is an iterable of dictionaries. Each item has 'target' (history) and 'label' (ground truth).
         # Since to_univariate=True, the dataset is already flattened to univariate instances
         all_inputs = []
+        all_normalizers = []
 
         for inp, label in eval_data:
             # Chronos-Bolt expects 1D numpy arrays for univariate
@@ -225,7 +247,9 @@ def run_chronos_bolt_experiment(
             if context_length is not None and len(history) > context_length:
                 history = history[-context_length:]
 
+            history, normalizer = normalize_instance(history, instance_normalization)
             all_inputs.append(history)
+            all_normalizers.append(normalizer)
 
         num_total_instances = len(all_inputs)
         print(f"    Total instances to forecast: {num_total_instances}")
@@ -238,6 +262,7 @@ def run_chronos_bolt_experiment(
 
         for i in range(0, num_total_instances, batch_size):
             batch_inputs = all_inputs[i : i + batch_size]
+            batch_normalizers = all_normalizers[i : i + batch_size]
             # Convert to torch tensors for Chronos-Bolt
             batch_contexts = [torch.from_numpy(inp).float() for inp in batch_inputs]
 
@@ -248,7 +273,7 @@ def run_chronos_bolt_experiment(
             )
 
             batch_q_list = []
-            for q in quantiles:
+            for q, normalizer in zip(quantiles, batch_normalizers):
                 q_np = q.cpu().float().numpy() if isinstance(q, torch.Tensor) else q
                 if (
                     q_np.ndim == 2
@@ -256,6 +281,8 @@ def run_chronos_bolt_experiment(
                     and q_np.shape[1] == len(quantile_levels)
                 ):
                     q_np = q_np.T
+                if normalizer is not None:
+                    q_np = normalizer.inverse_quantiles(q_np)
                 # q_np shape: (num_quantiles, prediction_length)
                 batch_q_list.append(q_np[np.newaxis, ...])
             batch_q_array = np.concatenate(batch_q_list, axis=0)
@@ -279,6 +306,7 @@ def run_chronos_bolt_experiment(
             "context_length": context_length,
             "quantile_levels": quantile_levels,
             "covariate_mode": covariate_mode,
+            "instance_normalization": instance_normalization,
             "covariate_channels": 0,
             "experiment": experiment,
             "target_mode": resolved_target_mode,
@@ -329,8 +357,18 @@ def main():
         default=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
         help="Quantile levels to predict",
     )
-    parser.add_argument("--context-length", type=int, default=2048,
-                        help="Maximum context length")
+    parser.add_argument(
+        "--context-length",
+        type=int,
+        default=int(os.environ.get("TIME_CONTEXT_LENGTH", "2048")),
+        help="Maximum context length",
+    )
+    parser.add_argument(
+        "--instance-normalization",
+        choices=INSTANCE_NORMALIZATION_MODES,
+        default=os.environ.get("TIME_INSTANCE_NORMALIZATION", "none"),
+        help="Per-window normalization applied before inference",
+    )
     parser.add_argument("--config", type=str, default=None,
                         help="Path to datasets.yaml config file")
     parser.add_argument("--model-path", type=str, default=None,
@@ -374,6 +412,7 @@ def main():
             model_path=args.model_path,
             covariate_mode=args.covariate_mode,
             target_mode=args.target_mode,
+            instance_normalization=args.instance_normalization,
         )
 
     print(f"\n{'#'*60}")

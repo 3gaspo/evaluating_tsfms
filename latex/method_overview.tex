@@ -33,11 +33,20 @@ forecast on expected support invalidates its task rather than changing the
 aggregation support. Inference timing excludes loading, dataset construction,
 metric computation, and artifact saving.
 
+Two further executable comparisons use the same three learned backbones and
+evaluation grid. The maximum-context study evaluates five values per backbone,
+halving the model-specific maximum four times. Its summary aggregates
+taskwise MASE divided by the matched Seasonal Naive MASE for every model,
+context-size, and horizon-size cell. The normalization study compares the
+unchanged input with a per-window, per-variate z-score computed after context
+truncation. Constant inputs use unit scale, and every output quantile is
+transformed back to the target units before evaluation.
+
 \section{Evidence boundary}
 
 Current result claims are limited to project-owned manifests and aggregates
 produced under the shared Seasonal evaluation grid. Covariate generalization,
-normalization, and context-size extensions remain planned until their exact
-grids are implemented.
+normalization, and context-size studies make no empirical claim until their
+new launch artifacts are synchronized and analyzed.
 
 \end{document}

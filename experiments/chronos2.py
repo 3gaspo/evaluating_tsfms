@@ -28,6 +28,10 @@ from timebench.evaluation.saver import save_window_predictions
 from timebench.evaluation.grid import EVALUATION_GRID_DEFINITION
 from timebench.evaluation.timing import EvaluationTimer
 from timebench.evaluation.utils import get_available_terms
+from timebench.evaluation.normalization import (
+    INSTANCE_NORMALIZATION_MODES,
+    normalize_instance,
+)
 from timebench.evaluation.covariates import (
     COVARIATE_MODES,
     extract_covariate_window,
@@ -40,6 +44,7 @@ from timebench.evaluation.data import (
     load_dataset_config,
 )
 from timebench.paths import (
+    foundation_experiment_axis,
     foundation_experiment_name,
     foundation_experiment_root,
     foundation_identity_root,
@@ -71,6 +76,7 @@ def run_chronos2_experiment(
     model_path: str | Path | None = None,
     covariate_mode: str = "none",
     target_mode: str = "auto",
+    instance_normalization: str = "none",
 ):
     """
     Run Chronos-2 model experiments.
@@ -81,6 +87,10 @@ def run_chronos2_experiment(
         supports_covariates=SUPPORTS_COVARIATES,
         supported_modes=COVARIATE_MODES,
     )
+    if instance_normalization not in INSTANCE_NORMALIZATION_MODES:
+        raise ValueError(
+            f"instance_normalization must be one of {INSTANCE_NORMALIZATION_MODES}"
+        )
 
     # Set CUDA device
     device_map = "cuda" if torch.cuda.is_available() else "cpu"
@@ -120,6 +130,7 @@ def run_chronos2_experiment(
     print(f"Checkpoint: {checkpoint_path}")
     print(f"Terms: {terms}")
     print(f"Covariate mode: {covariate_mode}")
+    print(f"Instance normalization: {instance_normalization}")
     print(f"{'='*60}")
 
     for term in terms:
@@ -184,7 +195,16 @@ def run_chronos2_experiment(
             dataset_name, term, resolved_target_mode
         )
         identity_root = foundation_identity_root(
-            output_dir, "chronos2", resolved_target_mode, dataset_name, term
+            output_dir,
+            "chronos2",
+            resolved_target_mode,
+            dataset_name,
+            term,
+            experiment_axis=foundation_experiment_axis(
+                experiment,
+                context_length=context_length,
+                instance_normalization=instance_normalization,
+            ),
         )
         run = allocate_run(
             identity_root,
@@ -215,6 +235,7 @@ def run_chronos2_experiment(
                 "checkpoint_path": str(checkpoint_path),
             },
             experiment_config={
+                "instance_normalization": instance_normalization,
                 "covariate_mode": covariate_mode,
                 "covariate_channels": covariate_channels,
                 "covariate_source": (
@@ -282,9 +303,10 @@ def run_chronos2_experiment(
             if target.ndim == 1:
                 target = target[np.newaxis, :]
 
+            target, normalizer = normalize_instance(target, instance_normalization)
             target_tensor = torch.tensor(target)
             if covariates is None:
-                return target_tensor
+                return target_tensor, normalizer
             item = {
                 "target": target_tensor,
                 "past_covariates": {
@@ -297,7 +319,7 @@ def run_chronos2_experiment(
                     f"covariate_{channel}": torch.from_numpy(values)
                     for channel, values in enumerate(covariates.future)
                 }
-            return item
+            return item, normalizer
 
         # Batch Inference with lazy loading
         fc_quantiles_batches = []
@@ -322,10 +344,12 @@ def run_chronos2_experiment(
                 )
             else:
                 batch_covariates = [None] * len(batch_items)
-            batch_contexts = [
+            prepared_contexts = [
                 _prepare_context(input_entry, covariates)
                 for (input_entry, _), covariates in zip(batch_items, batch_covariates)
             ]
+            batch_contexts = [item[0] for item in prepared_contexts]
+            batch_normalizers = [item[1] for item in prepared_contexts]
 
             # Filter out verbose warnings from Chronos-2 during prediction to keep output clean
             class ContentFilterStderr:
@@ -353,12 +377,14 @@ def run_chronos2_experiment(
                 sys.stderr = original_stderr
 
             batch_quantiles_list = []
-            for q in batch_q:
+            for q, normalizer in zip(batch_q, batch_normalizers):
                 if isinstance(q, torch.Tensor):
                     if q.ndim == 3 and q.shape[-1] == len(quantile_levels):
                         # Shape: (num_variates, pred_len, num_quantiles) -> (num_quantiles, num_variates, pred_len)
                         q = q.permute(2, 0, 1)
                     q = q.cpu().float().numpy()
+                if normalizer is not None:
+                    q = normalizer.inverse_quantiles(q)
                 # q shape: (num_quantiles, num_variates, prediction_length)
                 # Add batch dimension: (1, num_quantiles, num_variates, prediction_length)
                 batch_quantiles_list.append(q[np.newaxis, ...])
@@ -388,6 +414,7 @@ def run_chronos2_experiment(
             "context_length": context_length,
             "quantile_levels": quantile_levels,
             "covariate_mode": covariate_mode,
+            "instance_normalization": instance_normalization,
             "covariate_channels": covariate_channels or 0,
             "experiment": experiment,
             "target_mode": resolved_target_mode,
@@ -457,8 +484,16 @@ def main():
         default=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
         help="Quantile levels to predict",
     )
-    parser.add_argument("--context-length", type=int, default=8192,
+    parser.add_argument(
+        "--context-length", type=int,
+        default=int(os.environ.get("TIME_CONTEXT_LENGTH", "8192")),
                         help="Maximum context length")
+    parser.add_argument(
+        "--instance-normalization",
+        choices=INSTANCE_NORMALIZATION_MODES,
+        default=os.environ.get("TIME_INSTANCE_NORMALIZATION", "none"),
+        help="Per-window, per-variate normalization applied before inference",
+    )
     parser.add_argument("--config", type=str, default=None,
                         help="Path to datasets.yaml config file")
     parser.add_argument("--model-path", type=str, default=None,
@@ -522,6 +557,7 @@ def main():
             model_path=args.model_path,
             covariate_mode=args.covariate_mode,
             target_mode=args.target_mode,
+            instance_normalization=args.instance_normalization,
         )
 
     print(f"\n{'#'*60}")
