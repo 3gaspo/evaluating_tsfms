@@ -35,11 +35,12 @@ figure with one panel per model.
 ### Instance-normalization ablation
 
 Compares unchanged inputs with per-window, per-variate z-score normalization
-for `chronos_bolt`, `chronos2`, and `ts_icl`. The population mean and standard
-deviation are computed after maximum-context truncation; a zero standard
-deviation uses scale one. Every output quantile is transformed back before
-evaluation. Entry point: `scripts/instance_normalization.sh`. The two settings
-have separate `normalization/none/` and `normalization/zscore/` task subtrees.
+for `chronos_bolt`, `chronos2`, and `ts_icl`. The finite-value population mean
+and standard deviation are computed after maximum-context truncation; original
+missing positions remain missing and a zero finite standard deviation uses
+scale one. Every output quantile is transformed back before evaluation. Entry
+point: `scripts/instance_normalization.sh`. The two settings have separate
+`normalization/none/` and `normalization/zscore/` task subtrees.
 
 ### Dataset diagnostics
 

@@ -18,8 +18,8 @@ class InstanceNormalizer:
     @classmethod
     def fit(cls, context: np.ndarray) -> "InstanceNormalizer":
         values = np.asarray(context)
-        location = np.mean(values, axis=-1, keepdims=True)
-        scale = np.std(values, axis=-1, keepdims=True, ddof=0)
+        location = np.nanmean(values, axis=-1, keepdims=True)
+        scale = np.nanstd(values, axis=-1, keepdims=True, ddof=0)
         scale = np.where(scale > 0, scale, 1.0)
         return cls(location=location, scale=scale)
 

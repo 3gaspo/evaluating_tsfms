@@ -35,6 +35,57 @@ because their target or Seasonal baseline support is not finite. These counts
 are not individual horizon timesteps. Identical support makes the model
 ranking directly comparable.
 
+## Context-size study
+
+The completed context-size launch evaluates five model-specific maximum input
+lengths on the same 98 tasks and 111,071-cell Seasonal grid for every setting.
+All 1,470 model-setting task manifests and the aggregate report completed.
+
+| Model | Context | Scaled MASE | Inference seconds | Accuracy versus maximum context | Time reduction |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Chronos-2 | 8,192 | 0.685489 | 425.8 | reference | — |
+| Chronos-2 | 4,096 | **0.682427** | 252.5 | 0.45% better | 40.7% |
+| Chronos-2 | 2,048 | 0.683788 | 153.5 | 0.25% better | 63.9% |
+| Chronos-Bolt | 2,048 | **0.759559** | 957.2 | reference | — |
+| Chronos-Bolt | 1,024 | 0.769732 | 585.0 | 1.34% worse | 38.9% |
+| TS-ICL | 4,096 | **0.718394** | 2,659.5 | reference | — |
+| TS-ICL | 2,048 | 0.719896 | 1,076.3 | 0.21% worse | 59.5% |
+
+Chronos-2 does not benefit monotonically from the longest context: 4,096 has
+the best aggregate loss, while 2,048 retains nearly the same accuracy at much
+lower recorded cost. The 4,096-versus-8,192 task split is 49 improvements, 28
+exact ties, and 21 degradations, with a median task change of only -0.01%, so
+the aggregate advantage is small and heterogeneous. Chronos-Bolt and TS-ICL
+are most accurate at their longest tested contexts, but halving context offers
+a substantial time saving for modest aggregate loss. Further truncation is
+progressively harmful: the shortest settings are 12.97% worse for Bolt and
+15.59% worse for TS-ICL than their maxima. Population MASE standard deviation
+and variance are present for every task/setting; they describe within-task
+cell dispersion, not repeated-run uncertainty.
+
+Recorded seconds are forecast-loop totals from one launch, not end-to-end job
+wall time. The context-horizon report is readable, but the 15-series
+accuracy/time figure has overlapping long labels and should be relabeled before
+presentation use.
+
+## Instance-normalization study remains incomplete
+
+The unchanged-input arms completed all 98 tasks for each model and reproduce
+the corresponding maximum-context MASE means, standard deviations, variances,
+and finite support exactly. Their timing totals differ by at most 2.1% between
+launches, consistent with launch-to-launch timing variation.
+
+The z-score arms are not result evidence. Each model completed six tasks and
+then failed on `current_velocity/10T/short`: Chronos-Bolt and Chronos-2 produced
+non-finite forecasts, while TS-ICL rejected an all-NaN normalized sample. The
+failed launch used ordinary mean and population standard deviation on input
+contexts containing missing values, making the fitted transform NaN and
+defeating the models' successful unchanged-input missing-value handling. The
+implementation now computes statistics over finite context values while
+preserving original missing positions. No aggregate normalization report was
+produced; the z-score arms and dependent summary must be recovered before the
+normalization hypothesis can be evaluated.
+
 ## Within-task MASE dispersion
 
 The transferred summaries include population variance and standard deviation
@@ -107,5 +158,6 @@ cell statistics, not repeated-run uncertainty.
   manifests report those required payloads on Selena, but their contents were
   not independently inspected in this checkout. The current four report
   bundles contain complete task tables and 12 paired PNG/PDF figures each.
-- Covariate generalization beyond Chronos-2, input normalization, and context-
-  size studies remain planned rather than evidenced.
+- Covariate generalization beyond Chronos-2 remains planned. The context-size
+  study is complete; the input-normalization implementation is repaired but
+  still has no valid aggregate z-score result until cluster recovery completes.

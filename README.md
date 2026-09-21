@@ -73,9 +73,10 @@ Chronos-Bolt uses 2048, 1024, 512, 256, and 128; Chronos-2 uses 8192, 4096,
 2048, 1024, and 512; TS-ICL uses 4096, 2048, 1024, 512, and 256. Its report
 adds a horizon-by-context scaled-MASE figure with one panel per model. The
 normalization launcher compares unchanged input with z-score normalization
-using each variate's mean and population standard deviation over the retained
-input context. Constant inputs use scale one. Every predicted quantile is
-returned to the original units before metrics are computed.
+using each variate's finite-value mean and population standard deviation over
+the retained input context. Original missing positions remain missing;
+constant finite inputs use scale one. Every predicted quantile is returned to
+the original units before metrics are computed.
 
 `sync_code_to_selena.sh`, `sync_results_to_dgx.sh`, and `publish_job.sh`
 retain this project's code and artifacts without touching another TIME

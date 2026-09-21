@@ -20,16 +20,17 @@ from timebench.paths import foundation_experiment_axis, foundation_identity_root
 
 class FoundationAblationContractTest(unittest.TestCase):
     def test_zscore_is_per_variate_and_exactly_invertible(self) -> None:
-        context = np.asarray([[1.0, 2.0, 3.0], [5.0, 5.0, 5.0]])
+        context = np.asarray([[1.0, np.nan, 3.0], [5.0, 5.0, np.nan]])
         normalized, owner = normalize_instance(context, "zscore")
 
-        np.testing.assert_allclose(normalized[0].mean(), 0.0, atol=1e-12)
-        np.testing.assert_allclose(normalized[0].std(ddof=0), 1.0, atol=1e-12)
-        np.testing.assert_allclose(normalized[1], 0.0, atol=1e-12)
+        np.testing.assert_array_equal(np.isnan(normalized), np.isnan(context))
+        np.testing.assert_allclose(np.nanmean(normalized[0]), 0.0, atol=1e-12)
+        np.testing.assert_allclose(np.nanstd(normalized[0], ddof=0), 1.0, atol=1e-12)
+        np.testing.assert_allclose(normalized[1, :2], 0.0, atol=1e-12)
         quantiles = np.stack([normalized, normalized + 1.0])
         restored = owner.inverse_quantiles(quantiles)
-        np.testing.assert_allclose(restored[0], context, atol=1e-12)
-        np.testing.assert_allclose(restored[1, 1], 6.0, atol=1e-12)
+        np.testing.assert_allclose(restored[0], context, atol=1e-12, equal_nan=True)
+        np.testing.assert_allclose(restored[1, 1, 0], 6.0, atol=1e-12)
 
     def test_experiment_axes_isolate_settings_before_run_n(self) -> None:
         context_axis = foundation_experiment_axis(
