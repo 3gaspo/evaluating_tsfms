@@ -1,0 +1,8 @@
+model,tasks,timed_tasks,total_inference_seconds
+chronos2__experiment_config.instance_normalization-none,98,98,434.594010906294
+chronos2__experiment_config.instance_normalization-zscore,98,98,431.70691291615367
+chronos_bolt__experiment_config.instance_normalization-none,98,98,945.5971262510866
+chronos_bolt__experiment_config.instance_normalization-zscore,98,98,1001.5771563155577
+ts_icl__experiment_config.instance_normalization-none,98,98,2681.1029870943166
+ts_icl__experiment_config.instance_normalization-zscore,98,98,2686.795675659552
+seasonal_naive,98,98,654.5789251364768

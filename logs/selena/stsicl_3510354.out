@@ -1,0 +1,1609 @@
+[2026-09-21 11:04:57 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "8", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3510354", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "80000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 8, "host": "sean0011"}
+[2026-09-21 11:04:57 UTC] resources RAM {"MemAvailable_MiB": 371206.3828125, "MemTotal_MiB": 386622.8671875}
+[2026-09-21 11:04:57 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-b6080839-b470-20b0-cf65-805869e2c982, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-21 11:04:58 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-21 11:04:59 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-21 13:04:59 | workflow instance_normalization started launch_id=selena_instance_normalization_20260921T103653Z_18902 task=ts_icl slurm_job_id=3510354 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-21 13:04:59 | stage evaluate started
+2026-09-21 13:04:59 | task model=ts_icl runner=run_tsicl.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none started
+[2026-09-21 13:04:59] TIME runner: run_tsicl.sh
+[2026-09-21 13:04:59] datasets: /scratch/users/h61084/datasets/hf_dataset
+[2026-09-21 13:04:59] weights: /scratch/users/h61084/weights
+[2026-09-21 13:04:59] outputs: /scratch/users/h61084/codes/evaluating_tsfms/outputs
+[2026-09-21 13:04:59] covariate mode: none
+[2026-09-21 13:04:59] target mode: auto
+[2026-09-21 13:04:59] context length: model_default
+[2026-09-21 13:04:59] instance normalization: none
+
+############################################################
+# Dataset 1/1: Water_Quality_Darwin/15T
+############################################################
+[2026-09-21 11:05:02 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Water_Quality_Darwin/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:02.986878+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:03.018997+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:03.050569+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Water_Quality_Darwin/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/5T
+############################################################
+[2026-09-21 11:05:06 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:06.462491+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:06.502155+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:06.542130+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/10T
+############################################################
+[2026-09-21 11:05:09 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/10T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=18, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:09.953586+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=144, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:09.999095+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=432, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:10.044376+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/10T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/15T
+############################################################
+[2026-09-21 11:05:13 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:13.448760+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:13.483471+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:13.516175+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/20T
+############################################################
+[2026-09-21 11:05:16 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/20T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:16.891737+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:16.910505+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:16.928761+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/H
+############################################################
+[2026-09-21 11:05:20 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:20.328160+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:20.347892+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:20.367009+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/current_velocity/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/15T
+############################################################
+[2026-09-21 11:05:23 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:23.721492+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:23.734259+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:23.746179+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/30T
+############################################################
+[2026-09-21 11:05:27 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/30T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:27.119860+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=48, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:27.132758+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=144, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:27.145446+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/30T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/H
+############################################################
+[2026-09-21 11:05:30 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:30.506011+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:30.518164+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:30.530238+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/CPHL/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/5T
+############################################################
+[2026-09-21 11:05:33 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:34.011501+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:34.090242+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:34.166318+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/15T
+############################################################
+[2026-09-21 11:05:37 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:37.547455+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:37.573085+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:37.598184+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/20T
+############################################################
+[2026-09-21 11:05:40 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/20T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:40.965951+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:40.984439+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:41.002557+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/H
+############################################################
+[2026-09-21 11:05:44 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:44.379599+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:44.398749+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:44.417224+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Coastal_T_S/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Weather/D
+############################################################
+[2026-09-21 11:05:47 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: SG_Weather/D
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=3, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:47.786857+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=7, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:47.802729+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=14, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:47.818874+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Weather/D/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_PM25/H
+############################################################
+[2026-09-21 11:05:51 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: SG_PM25/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:51.230532+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:51.280096+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:51.327044+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_PM25/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: NE_China_Wind/H
+############################################################
+[2026-09-21 11:05:54 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: NE_China_Wind/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:54.701498+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:54.721501+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:54.741150+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/NE_China_Wind/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Australia_Solar/H
+############################################################
+[2026-09-21 11:05:58 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Australia_Solar/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:58.126802+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:58.159283+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:05:58.190941+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Australia_Solar/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: epf_electricity_price/H
+############################################################
+[2026-09-21 11:06:01 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: epf_electricity_price/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:01.579166+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:01.596127+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:01.612758+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/epf_electricity_price/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: OpenElectricity_NEM/5T
+############################################################
+[2026-09-21 11:06:04 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: OpenElectricity_NEM/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:05.068389+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:05.167928+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:05.265376+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/OpenElectricity_NEM/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: EWELD_Load/15T
+############################################################
+[2026-09-21 11:06:08 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: EWELD_Load/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:08.694012+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:08.745644+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:08.794908+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/EWELD_Load/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Carpark/15T
+############################################################
+[2026-09-21 11:06:12 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: SG_Carpark/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:12.155748+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:12.168897+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:12.182299+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/SG_Carpark/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Finland_Traffic/15T
+############################################################
+[2026-09-21 11:06:15 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Finland_Traffic/15T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:15.539071+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:15.553999+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:15.568330+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Finland_Traffic/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/D
+############################################################
+[2026-09-21 11:06:18 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Port_Activity/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:18.933642+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Port_Activity/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/W
+############################################################
+[2026-09-21 11:06:22 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/W
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Port_Activity/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:22.307530+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Port_Activity/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/D
+############################################################
+[2026-09-21 11:06:25 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=150, val_length=30
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/ECDC_COVID/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:25.662711+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/ECDC_COVID/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/W
+############################################################
+[2026-09-21 11:06:28 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/W
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/ECDC_COVID/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:29.025246+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/ECDC_COVID/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Influenza/W
+############################################################
+[2026-09-21 11:06:32 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Influenza/W
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Global_Influenza/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:32.391105+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Global_Influenza/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Crypto/D
+############################################################
+[2026-09-21 11:06:35 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Crypto/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=273, val_length=92
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Crypto/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:35.771564+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Crypto/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Term_Structure/B
+############################################################
+[2026-09-21 11:06:39 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: US_Term_Structure/B
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/US_Term_Structure/B/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:39.223495+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/US_Term_Structure/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Oil_Price/B
+############################################################
+[2026-09-21 11:06:42 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Oil_Price/B
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Oil_Price/B/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:42.606968+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Oil_Price/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Job_Claims/W
+############################################################
+[2026-09-21 11:06:45 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Job_Claims/W
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Job_Claims/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:45.968123+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Job_Claims/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Uncertainty_1M/M
+############################################################
+[2026-09-21 11:06:49 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Uncertainty_1M/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=6, test_length=42, val_length=18
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Uncertainty_1M/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:49.365961+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Uncertainty_1M/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Housing_Inventory/M
+############################################################
+[2026-09-21 11:06:52 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Housing_Inventory/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=36, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Housing_Inventory/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:52.724635+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Housing_Inventory/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: JOLTS/M
+############################################################
+[2026-09-21 11:06:56 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: JOLTS/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/JOLTS/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:56.076463+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/JOLTS/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Labor/M
+############################################################
+[2026-09-21 11:06:59 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: US_Labor/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/US_Labor/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:06:59.433897+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/US_Labor/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Supply/M
+############################################################
+[2026-09-21 11:07:02 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Supply/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Vehicle_Supply/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:02.800035+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Vehicle_Supply/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Auto_Production_SF/M
+############################################################
+[2026-09-21 11:07:06 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Auto_Production_SF/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Auto_Production_SF/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:06.151264+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Auto_Production_SF/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Production/M
+############################################################
+[2026-09-21 11:07:09 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Production/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Commodity_Production/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:09.521974+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Commodity_Production/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Import/M
+############################################################
+[2026-09-21 11:07:12 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Import/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Commodity_Import/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:12.927457+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Commodity_Import/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: WUI_Global/Q
+############################################################
+[2026-09-21 11:07:16 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: WUI_Global/Q
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=20
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/WUI_Global/Q/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:16.287985+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/WUI_Global/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Price/Q
+############################################################
+[2026-09-21 11:07:19 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Price/Q
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=8
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Global_Price/Q/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:19.646931+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Global_Price/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Sales/M
+############################################################
+[2026-09-21 11:07:22 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Sales/M
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Vehicle_Sales/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:23.004876+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Vehicle_Sales/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Online_Retail_2_UCI/D
+############################################################
+[2026-09-21 11:07:26 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Online_Retail_2_UCI/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=180, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Online_Retail_2_UCI/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:26.382557+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Online_Retail_2_UCI/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Customer/D
+############################################################
+[2026-09-21 11:07:29 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Customer/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Supply_Chain_Customer/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:29.767078+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Supply_Chain_Customer/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Location/D
+############################################################
+[2026-09-21 11:07:33 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Location/D
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Supply_Chain_Location/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:33.142502+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Supply_Chain_Location/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_D/5T
+############################################################
+[2026-09-21 11:07:36 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_D/5T
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_D/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:36.600637+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_D/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_I/5T
+############################################################
+[2026-09-21 11:07:39 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_I/5T
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_I/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:39.992009+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_I/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_U/5T
+############################################################
+[2026-09-21 11:07:43 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_U/5T
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=288, val_length=96
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_U/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:43.350926+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/azure2019_U/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Smart_Manufacturing/H
+############################################################
+[2026-09-21 11:07:46 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: Smart_Manufacturing/H
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:46.713529+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:46.727283+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:46.740559+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/Smart_Manufacturing/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: MetroPT-3/5T
+############################################################
+[2026-09-21 11:07:50 UTC] resources model_device {"device": "cuda", "model": "ts_icl"}
+Loading configuration...
+
+============================================================
+Dataset: MetroPT-3/5T
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:50.106018+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:50.135267+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=576, test_length=1728, val_length=1728
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260921T103653Z_18902 slurm_job_id=3510354 launched_at=2026-09-21T11:07:50.163917+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/ts_icl/normalization/none/univariate/MetroPT-3/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+2026-09-21 13:07:50 | task model=ts_icl runner=run_tsicl.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none completed status=success
+2026-09-21 13:07:50 | stage evaluate completed status=success
+2026-09-21 13:07:50 | workflow instance_normalization completed status=success exit_code=0

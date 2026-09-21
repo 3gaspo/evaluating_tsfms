@@ -1,0 +1,12 @@
+| domain | chronos2  experiment config.instance normalization-none | chronos2  experiment config.instance normalization-zscore | chronos bolt  experiment config.instance normalization-none | chronos bolt  experiment config.instance normalization-zscore | seasonal naive | ts icl  experiment config.instance normalization-none | ts icl  experiment config.instance normalization-zscore |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Climate | 1.03946 | 1.03946 | 1.16727 | 1.16727 | 1.39413 | 1.08136 | 1.08136 |
+| Cloud operations | 0.660765 | 0.660765 | 0.772974 | 0.772974 | 1.11305 | 0.695198 | 0.695198 |
+| Economics | 1.08923 | 1.08923 | 1.27026 | 1.27026 | 1.46342 | 1.10795 | 1.10796 |
+| Energy | 0.611204 | 0.611204 | 0.682804 | 0.682804 | 0.976827 | 0.637823 | 0.637823 |
+| Finance | 2.10595 | 2.10595 | 2.22522 | 2.22522 | 2.462 | 2.13923 | 2.13923 |
+| Healthcare | 2.46669 | 2.46669 | 2.59189 | 2.59189 | 3.10562 | 2.70581 | 2.70581 |
+| Industry | 0.711245 | 0.711245 | 0.714802 | 0.714802 | 1.00229 | 0.712048 | 0.712048 |
+| Sales | 0.650551 | 0.650551 | 0.663781 | 0.663781 | 1.46862 | 0.677258 | 0.677258 |
+| Transport | 0.593193 | 0.593193 | 0.649332 | 0.649332 | 0.929183 | 0.62782 | 0.62782 |
+| Unclassified | 0.696075 | 0.696075 | 0.797377 | 0.797377 | 1.02407 | 0.73558 | 0.73558 |

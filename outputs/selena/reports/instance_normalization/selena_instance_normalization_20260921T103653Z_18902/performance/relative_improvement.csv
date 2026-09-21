@@ -1,0 +1,8 @@
+model,tasks,relative_improvement_percent,relative_scaled_improvement_percent,mean_paired_improvement_percent,paired_percentage_tasks
+chronos2__experiment_config.instance_normalization-none,98,26.82763902337615,31.451138545808334,29.64815303796254,98
+chronos2__experiment_config.instance_normalization-zscore,98,26.827636909858033,31.45113708937146,29.64815148310735,98
+chronos_bolt__experiment_config.instance_normalization-none,98,18.918433586237292,24.04409641672708,21.793034506466558,98
+chronos_bolt__experiment_config.instance_normalization-zscore,98,18.918492290642895,24.04415351114225,21.79310694588444,98
+ts_icl__experiment_config.instance_normalization-none,98,23.94173553786648,28.160601668566244,26.412548092079334,98
+ts_icl__experiment_config.instance_normalization-zscore,98,23.94173619914046,28.160602773647238,26.41254947015186,98
+seasonal_naive,98,0.0,0.0,0.0,98

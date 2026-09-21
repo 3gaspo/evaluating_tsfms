@@ -1,0 +1,19 @@
+[2026-09-21 11:54:16 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "2", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3510356", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "16000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 2, "host": "sean0008"}
+[2026-09-21 11:54:16 UTC] resources RAM {"MemAvailable_MiB": 372726.28125, "MemTotal_MiB": 386622.91796875}
+[2026-09-21 11:54:16 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-4aeb2cd8-4d02-e1ac-4131-1a746cbc40b0, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-21 11:54:18 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-21 11:54:18 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-21 13:54:18 | workflow instance_normalization_summary started launch_id=selena_instance_normalization_20260921T103653Z_18902 task=macro_mase_timing_and_plots slurm_job_id=3510356 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-21 13:54:18 | stage summarize started
+2026-09-21 13:54:18 | task foundation_ablation experiment=instance_normalization outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/instance_normalization/selena_instance_normalization_20260921T103653Z_18902 started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/instance_normalization/selena_instance_normalization_20260921T103653Z_18902/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/instance_normalization/selena_instance_normalization_20260921T103653Z_18902/foundation_model_summary.md
+
+chronos2__experiment_config.instance_normalization-none/multivariate,univariate state=completed  scaled_MASE=0.685489  inference=434.594s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos2__experiment_config.instance_normalization-zscore/multivariate,univariate state=completed  scaled_MASE=0.685489  inference=431.707s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__experiment_config.instance_normalization-zscore/univariate state=completed  scaled_MASE=0.718394  inference=2686.796s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__experiment_config.instance_normalization-none/univariate state=completed  scaled_MASE=0.718394  inference=2681.103s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__experiment_config.instance_normalization-zscore/univariate state=completed  scaled_MASE=0.759558  inference=1001.577s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__experiment_config.instance_normalization-none/univariate state=completed  scaled_MASE=0.759559  inference=945.597s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+2026-09-21 13:54:36 | task foundation_ablation experiment=instance_normalization outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/instance_normalization/selena_instance_normalization_20260921T103653Z_18902 completed status=success
+2026-09-21 13:54:36 | stage summarize completed status=success
+2026-09-21 13:54:36 | workflow instance_normalization_summary completed status=success exit_code=0
