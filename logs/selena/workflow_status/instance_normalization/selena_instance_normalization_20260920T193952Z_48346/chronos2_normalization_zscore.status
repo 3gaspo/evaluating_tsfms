@@ -1,0 +1,12 @@
+workflow=instance_normalization
+launch_id=selena_instance_normalization_20260920T193952Z_48346
+task=chronos2
+state=failed
+stage=evaluate
+active_task=model=chronos2 runner=run_chronos2.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=zscore
+launched_at=2026-09-20T20:15:22Z
+updated_at=2026-09-20T20:16:58Z
+exit_code=1
+slurm_job_id=3506753
+slurm_array_job_id=none
+slurm_array_task_id=none

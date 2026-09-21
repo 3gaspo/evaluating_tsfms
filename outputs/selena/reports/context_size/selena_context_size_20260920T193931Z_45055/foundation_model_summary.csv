@@ -1,0 +1,16 @@
+launch_id,model,base_model,target_modes,state,exit_code,scaled_MASE,inference_seconds,datasets,tasks,timed_tasks,MASE_finite_values,MASE_evaluation_values,MASE_total_values
+selena_context_size_20260920T193931Z_45055,chronos2__model_config.context_length-4096,chronos2,"multivariate,univariate",completed,0,0.6824273666204853,252.45780190033838,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos2__model_config.context_length-2048,chronos2,"multivariate,univariate",completed,0,0.6837876399464751,153.54496650770307,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos2__model_config.context_length-8192,chronos2,"multivariate,univariate",completed,0,0.6854886145419167,425.8302097674459,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos2__model_config.context_length-1024,chronos2,"multivariate,univariate",completed,0,0.701139110356555,92.67076268233359,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,ts_icl__model_config.context_length-4096,ts_icl,univariate,completed,0,0.7183939833143376,2659.53051944077,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,ts_icl__model_config.context_length-2048,ts_icl,univariate,completed,0,0.7198958692199611,1076.2658761702478,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos2__model_config.context_length-512,chronos2,"multivariate,univariate",completed,0,0.7275443012776388,67.95368684083223,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,ts_icl__model_config.context_length-1024,ts_icl,univariate,completed,0,0.7276728542009719,474.6701228879392,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos_bolt__model_config.context_length-2048,chronos_bolt,univariate,completed,0,0.7595590358327292,957.2394446972758,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,ts_icl__model_config.context_length-512,ts_icl,univariate,completed,0,0.7655854536089205,290.0993656720966,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos_bolt__model_config.context_length-1024,chronos_bolt,univariate,completed,0,0.7697317054770902,584.9932105503976,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos_bolt__model_config.context_length-512,chronos_bolt,univariate,completed,0,0.7914364011413325,396.2295612320304,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos_bolt__model_config.context_length-256,chronos_bolt,univariate,completed,0,0.8286274291786582,317.73222560994327,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,ts_icl__model_config.context_length-256,ts_icl,univariate,completed,0,0.8304099842150912,230.8290770696476,50,98,98,111071,111071,111177
+selena_context_size_20260920T193931Z_45055,chronos_bolt__model_config.context_length-128,chronos_bolt,univariate,completed,0,0.8580839526458343,286.4761914568953,50,98,98,111071,111071,111177

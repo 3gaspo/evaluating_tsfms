@@ -1,0 +1,87 @@
+{
+  "dataset_config": "ECDC_COVID/D/short",
+  "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/ECDC_COVID/D/short/run_0/evaluation_grid.npz",
+    "valid_values": 45,
+    "total_values": 45
+  },
+  "metrics": {
+    "MSE": {
+      "mean": 52320.86695234462,
+      "std": 105286.69753041763,
+      "variance": 11085288676.86165,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "MAE": {
+      "mean": 126.88453566092032,
+      "std": 148.12711801917717,
+      "variance": 21941.643092667247,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "RMSE": {
+      "mean": 148.55998858188158,
+      "std": 173.9275617747108,
+      "variance": 30250.79674489584,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "MAPE": {
+      "mean": 0.5401950157050603,
+      "std": 0.7743493104696431,
+      "variance": 0.5996168546248116,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "sMAPE": {
+      "mean": 0.3230199446546388,
+      "std": 0.23777598874881195,
+      "variance": 0.05653742082547515,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "MASE": {
+      "mean": 3.2440149989014015,
+      "std": 2.639538548441357,
+      "variance": 6.967163748707906,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "ND": {
+      "mean": 0.405784551723027,
+      "std": 0.5478110836822935,
+      "variance": 0.30009698340516877,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    },
+    "CRPS": {
+      "mean": 0.31568525618284804,
+      "std": 0.4169115505220885,
+      "variance": 0.17381524095873194,
+      "dispersion_ddof": 0,
+      "finite_values": 45,
+      "evaluation_values": 45,
+      "total_values": 45
+    }
+  },
+  "launch_id": "selena_context_size_20260920T193931Z_45055",
+  "model": "ts_icl",
+  "inference_seconds": 0.7475943211466074
+}

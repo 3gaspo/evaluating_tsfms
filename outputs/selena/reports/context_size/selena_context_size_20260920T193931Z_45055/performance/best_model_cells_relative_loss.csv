@@ -1,0 +1,36 @@
+frequency,horizon_steps,best_mean_loss,winners,comparable,tasks_per_model
+H,168,0.7702088878793841,"[""ts_icl__model_config.context_length-4096""]",True,8
+H,72,0.770811903816519,"[""ts_icl__model_config.context_length-4096""]",True,4
+H,24,0.7277451647801554,"[""chronos2__model_config.context_length-8192""]",True,8
+M,12,0.663337063700383,"[""chronos2__model_config.context_length-512""]",True,8
+15T,288,0.7956535955656885,"[""chronos2__model_config.context_length-4096""]",True,4
+15T,96,0.7247566033570172,"[""chronos2__model_config.context_length-4096""]",True,7
+15T,12,0.5865692438088708,"[""chronos2__model_config.context_length-4096""]",True,3
+30T,144,0.7813714075898432,"[""chronos2__model_config.context_length-2048""]",True,1
+30T,48,0.794576281818235,"[""chronos2__model_config.context_length-2048""]",True,1
+30T,12,0.7022839506160007,"[""chronos2__model_config.context_length-2048""]",True,1
+H,336,0.7659505267675935,"[""ts_icl__model_config.context_length-4096""]",True,4
+20T,216,0.7721222478188259,"[""chronos2__model_config.context_length-8192""]",True,2
+20T,72,0.7183214510439553,"[""chronos2__model_config.context_length-2048""]",True,2
+20T,9,0.39196001028706406,"[""chronos2__model_config.context_length-2048""]",True,2
+5T,864,0.772106261560399,"[""chronos2__model_config.context_length-2048""]",True,2
+5T,288,0.7177220411392957,"[""chronos2__model_config.context_length-4096""]",True,6
+5T,36,0.5256085385111473,"[""chronos2__model_config.context_length-4096""]",True,2
+D,30,0.6280826542767004,"[""chronos2__model_config.context_length-512""]",True,6
+W,13,0.8840525480038582,"[""chronos2__model_config.context_length-1024"", ""chronos2__model_config.context_length-2048"", ""chronos2__model_config.context_length-4096"", ""chronos2__model_config.context_length-512"", ""chronos2__model_config.context_length-8192""]",True,4
+15T,672,0.6456371374240787,"[""chronos2__model_config.context_length-2048""]",True,3
+15T,24,0.5930860719493519,"[""chronos2__model_config.context_length-4096""]",True,1
+15T,16,0.4741611272311748,"[""chronos2__model_config.context_length-2048""]",True,3
+Q,4,0.7555140016201294,"[""chronos2__model_config.context_length-1024"", ""chronos2__model_config.context_length-2048"", ""chronos2__model_config.context_length-4096"", ""chronos2__model_config.context_length-512"", ""chronos2__model_config.context_length-8192""]",True,2
+5T,576,0.7606316296951224,"[""chronos2__model_config.context_length-1024""]",True,1
+5T,48,0.6474963957890683,"[""chronos2__model_config.context_length-8192""]",True,2
+B,20,0.8544995988764208,"[""chronos2__model_config.context_length-1024""]",True,2
+5T,96,0.5676356985687455,"[""chronos2__model_config.context_length-8192""]",True,1
+5T,24,0.3744558321278641,"[""chronos2__model_config.context_length-8192""]",True,1
+D,14,0.757408476991288,"[""chronos2__model_config.context_length-4096"", ""chronos2__model_config.context_length-8192""]",True,1
+D,7,0.7524136034517775,"[""chronos2__model_config.context_length-4096"", ""chronos2__model_config.context_length-8192""]",True,1
+D,3,0.7968924694631168,"[""chronos2__model_config.context_length-4096"", ""chronos2__model_config.context_length-8192""]",True,1
+M,6,0.35778326875674127,"[""ts_icl__model_config.context_length-1024"", ""ts_icl__model_config.context_length-2048"", ""ts_icl__model_config.context_length-4096""]",True,1
+10T,432,0.6481012388791804,"[""chronos2__model_config.context_length-8192""]",True,1
+10T,144,0.6466730825737458,"[""chronos2__model_config.context_length-2048""]",True,1
+10T,18,0.49242175240202074,"[""chronos2__model_config.context_length-2048""]",True,1

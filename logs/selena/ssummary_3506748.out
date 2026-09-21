@@ -1,0 +1,35 @@
+[2026-09-20 20:56:39 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "2", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3506748", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "16000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 2, "host": "sean0010"}
+[2026-09-20 20:56:39 UTC] resources RAM {"MemAvailable_MiB": 373683.7421875, "MemTotal_MiB": 386622.859375}
+[2026-09-20 20:56:39 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-b685e237-38d4-4a6c-ace0-0c955a18e44a, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-20 20:56:45 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-20 20:56:45 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-20 22:56:46 | workflow context_size_summary started launch_id=selena_context_size_20260920T193931Z_45055 task=macro_mase_timing_and_plots slurm_job_id=3506748 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-20 22:56:46 | stage context_horizon_plot started
+2026-09-20 22:56:46 | task context_horizon_grid output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/performance/context_horizon_mase started
+/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/performance/context_horizon_mase.csv
+/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/performance/context_horizon_mase.png
+/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/performance/context_horizon_mase.pdf
+2026-09-20 22:56:58 | task context_horizon_grid output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/performance/context_horizon_mase completed status=success
+2026-09-20 22:56:58 | stage context_horizon_plot completed status=success
+2026-09-20 22:56:58 | stage summarize started
+2026-09-20 22:56:58 | task foundation_ablation experiment=context_size outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055 started
+Foundation-model summary written to /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/foundation_model_summary.csv and /scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055/foundation_model_summary.md
+
+chronos2__model_config.context_length-4096/multivariate,univariate state=completed  scaled_MASE=0.682427  inference=252.458s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos2__model_config.context_length-2048/multivariate,univariate state=completed  scaled_MASE=0.683788  inference=153.545s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos2__model_config.context_length-8192/multivariate,univariate state=completed  scaled_MASE=0.685489  inference=425.830s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos2__model_config.context_length-1024/multivariate,univariate state=completed  scaled_MASE=0.701139  inference=92.671s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__model_config.context_length-4096/univariate state=completed  scaled_MASE=0.718394  inference=2659.531s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__model_config.context_length-2048/univariate state=completed  scaled_MASE=0.719896  inference=1076.266s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos2__model_config.context_length-512/multivariate,univariate state=completed  scaled_MASE=0.727544  inference=67.954s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__model_config.context_length-1024/univariate state=completed  scaled_MASE=0.727673  inference=474.670s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__model_config.context_length-2048/univariate state=completed  scaled_MASE=0.759559  inference=957.239s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__model_config.context_length-512/univariate state=completed  scaled_MASE=0.765585  inference=290.099s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__model_config.context_length-1024/univariate state=completed  scaled_MASE=0.769732  inference=584.993s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__model_config.context_length-512/univariate state=completed  scaled_MASE=0.791436  inference=396.230s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__model_config.context_length-256/univariate state=completed  scaled_MASE=0.828627  inference=317.732s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+ts_icl__model_config.context_length-256/univariate state=completed  scaled_MASE=0.830410  inference=230.829s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+chronos_bolt__model_config.context_length-128/univariate state=completed  scaled_MASE=0.858084  inference=286.476s  coverage=98/98 timed tasks, 111071/111071/111177 finite/grid/total MASE values
+2026-09-20 22:57:27 | task foundation_ablation experiment=context_size outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260920T193931Z_45055 completed status=success
+2026-09-20 22:57:27 | stage summarize completed status=success
+2026-09-20 22:57:27 | workflow context_size_summary completed status=success exit_code=0

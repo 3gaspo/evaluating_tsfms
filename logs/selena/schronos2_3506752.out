@@ -1,0 +1,1796 @@
+[2026-09-20 20:57:28 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "8", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3506752", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "80000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 8, "host": "sean0010"}
+[2026-09-20 20:57:28 UTC] resources RAM {"MemAvailable_MiB": 373396.796875, "MemTotal_MiB": 386622.859375}
+[2026-09-20 20:57:28 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-b685e237-38d4-4a6c-ace0-0c955a18e44a, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-20 20:57:30 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-20 20:57:30 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-20 22:57:31 | workflow instance_normalization started launch_id=selena_instance_normalization_20260920T193952Z_48346 task=chronos2 slurm_job_id=3506752 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-20 22:57:31 | stage evaluate started
+2026-09-20 22:57:31 | task model=chronos2 runner=run_chronos2.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none started
+[2026-09-20 22:57:31] TIME runner: run_chronos2.sh
+[2026-09-20 22:57:31] datasets: /scratch/users/h61084/datasets/hf_dataset
+[2026-09-20 22:57:31] weights: /scratch/users/h61084/weights
+[2026-09-20 22:57:31] outputs: /scratch/users/h61084/codes/evaluating_tsfms/outputs
+[2026-09-20 22:57:31] covariate mode: none
+[2026-09-20 22:57:31] target mode: auto
+[2026-09-20 22:57:31] context length: model_default
+[2026-09-20 22:57:31] instance normalization: none
+
+############################################################
+# Dataset 1/1: Water_Quality_Darwin/15T
+############################################################
+[2026-09-20 20:57:45 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Water_Quality_Darwin/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:45.502249+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:45.523957+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:45.544614+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Water_Quality_Darwin/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/5T
+############################################################
+[2026-09-20 20:57:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:53.871158+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:53.899380+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:57:53.926099+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/10T
+############################################################
+[2026-09-20 20:58:02 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/10T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=18, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:02.274392+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=144, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:02.305002+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=432, test_length=2160, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:02.333546+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/10T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/15T
+############################################################
+[2026-09-20 20:58:10 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:10.679641+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:10.701109+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:10.722146+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/20T
+############################################################
+[2026-09-20 20:58:18 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/20T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:19.039174+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:19.051692+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:19.063567+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: current_velocity/H
+############################################################
+[2026-09-20 20:58:27 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: current_velocity/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:27.409859+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:27.422941+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:27.435835+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/current_velocity/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/15T
+############################################################
+[2026-09-20 20:58:35 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:35.722622+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:35.733057+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:35.743495+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/30T
+############################################################
+[2026-09-20 20:58:44 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/30T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:44.122944+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=48, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:44.133531+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=144, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:44.143908+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/30T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: CPHL/H
+############################################################
+[2026-09-20 20:58:52 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: CPHL/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:52.461647+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:52.471482+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:58:52.481130+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/CPHL/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/5T
+############################################################
+[2026-09-20 20:59:00 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=36, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:00.903495+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:00.955092+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=864, test_length=4320, val_length=4320
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:01.003904+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/15T
+############################################################
+[2026-09-20 20:59:09 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:09.327142+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:09.344091+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=1440, val_length=1440
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:09.360520+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/20T
+############################################################
+[2026-09-20 20:59:17 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/20T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=9, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:17.664003+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:17.676123+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=216, test_length=1080, val_length=1080
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:17.687722+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/20T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Coastal_T_S/H
+############################################################
+[2026-09-20 20:59:25 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Coastal_T_S/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:26.004992+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:26.018128+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:26.030331+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Coastal_T_S/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Weather/D
+############################################################
+[2026-09-20 20:59:34 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: SG_Weather/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=3, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:34.321012+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=7, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:34.331324+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=14, test_length=366, val_length=366
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:34.341423+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_Weather/D/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_PM25/H
+############################################################
+[2026-09-20 20:59:42 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: SG_PM25/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:42.696801+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:42.729344+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2208, val_length=2160
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:42.761189+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/SG_PM25/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: NE_China_Wind/H
+############################################################
+[2026-09-20 20:59:51 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: NE_China_Wind/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:51.095553+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:51.108693+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=720, val_length=720
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:51.121413+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/NE_China_Wind/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Australia_Solar/H
+############################################################
+[2026-09-20 20:59:59 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Australia_Solar/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:59.465033+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:59.486941+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T20:59:59.507061+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Australia_Solar/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: epf_electricity_price/H
+############################################################
+[2026-09-20 21:00:07 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: epf_electricity_price/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:07.846846+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=72, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:07.861829+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=168, test_length=2520, val_length=2520
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:07.876321+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/epf_electricity_price/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: OpenElectricity_NEM/5T
+############################################################
+[2026-09-20 21:00:16 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: OpenElectricity_NEM/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:16.213325+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:16.279718+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=288, test_length=4032, val_length=4032
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:16.344214+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/OpenElectricity_NEM/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: EWELD_Load/15T
+############################################################
+[2026-09-20 21:00:24 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: EWELD_Load/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:24.742370+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:24.781946+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=1344, val_length=1344
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:24.819326+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/EWELD_Load/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: SG_Carpark/15T
+############################################################
+[2026-09-20 21:00:33 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: SG_Carpark/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:33.160065+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:33.171112+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=672, val_length=672
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:33.181941+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/SG_Carpark/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Finland_Traffic/15T
+############################################################
+[2026-09-20 21:00:41 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Finland_Traffic/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:41.494628+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=96, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:41.507681+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=672, test_length=2976, val_length=2880
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:41.520420+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Finland_Traffic/15T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/D
+############################################################
+[2026-09-20 21:00:49 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Port_Activity/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:49.839731+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Port_Activity/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Port_Activity/W
+############################################################
+[2026-09-20 21:00:58 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Port_Activity/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Port_Activity/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:00:58.157308+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Port_Activity/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/D
+############################################################
+[2026-09-20 21:01:06 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=150, val_length=30
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/ECDC_COVID/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:06.470413+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/ECDC_COVID/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: ECDC_COVID/W
+############################################################
+[2026-09-20 21:01:14 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: ECDC_COVID/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/ECDC_COVID/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:14.819005+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/ECDC_COVID/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Influenza/W
+############################################################
+[2026-09-20 21:01:23 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Influenza/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Global_Influenza/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:23.136561+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Global_Influenza/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Crypto/D
+############################################################
+[2026-09-20 21:01:31 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Crypto/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=273, val_length=92
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Crypto/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:31.463339+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Crypto/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Term_Structure/B
+############################################################
+[2026-09-20 21:01:39 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: US_Term_Structure/B
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/US_Term_Structure/B/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:39.839484+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/US_Term_Structure/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Oil_Price/B
+############################################################
+[2026-09-20 21:01:48 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Oil_Price/B
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=20, test_length=717, val_length=100
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Oil_Price/B/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:48.161677+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Oil_Price/B/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Job_Claims/W
+############################################################
+[2026-09-20 21:01:56 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Job_Claims/W
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=13, test_length=52, val_length=13
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Job_Claims/W/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:01:56.481453+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Job_Claims/W/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Uncertainty_1M/M
+############################################################
+[2026-09-20 21:02:04 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Uncertainty_1M/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=6, test_length=42, val_length=18
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Uncertainty_1M/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:04.848303+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Uncertainty_1M/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Housing_Inventory/M
+############################################################
+[2026-09-20 21:02:13 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Housing_Inventory/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=36, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Housing_Inventory/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:13.160415+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Housing_Inventory/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: JOLTS/M
+############################################################
+[2026-09-20 21:02:21 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: JOLTS/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/JOLTS/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:21.386351+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/JOLTS/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: US_Labor/M
+############################################################
+[2026-09-20 21:02:29 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: US_Labor/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/US_Labor/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:29.698818+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/US_Labor/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Supply/M
+############################################################
+[2026-09-20 21:02:38 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Supply/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Vehicle_Supply/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:38.091702+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Vehicle_Supply/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Auto_Production_SF/M
+############################################################
+[2026-09-20 21:02:46 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Auto_Production_SF/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Auto_Production_SF/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:46.627199+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Auto_Production_SF/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Production/M
+############################################################
+[2026-09-20 21:02:54 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Production/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Commodity_Production/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:02:54.941849+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Commodity_Production/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Commodity_Import/M
+############################################################
+[2026-09-20 21:03:03 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Commodity_Import/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Commodity_Import/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:03.204907+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Commodity_Import/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: WUI_Global/Q
+############################################################
+[2026-09-20 21:03:11 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: WUI_Global/Q
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=20
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/WUI_Global/Q/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:11.877917+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/WUI_Global/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Global_Price/Q
+############################################################
+[2026-09-20 21:03:20 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Global_Price/Q
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=4, test_length=20, val_length=8
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Global_Price/Q/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:20.242642+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Global_Price/Q/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Vehicle_Sales/M
+############################################################
+[2026-09-20 21:03:28 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Vehicle_Sales/M
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=12, test_length=60, val_length=12
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Vehicle_Sales/M/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:28.566711+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Vehicle_Sales/M/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Online_Retail_2_UCI/D
+############################################################
+[2026-09-20 21:03:36 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Online_Retail_2_UCI/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=180, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Online_Retail_2_UCI/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:36.987622+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/univariate/Online_Retail_2_UCI/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Customer/D
+############################################################
+[2026-09-20 21:03:45 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Customer/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Supply_Chain_Customer/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:45.418107+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Supply_Chain_Customer/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Supply_Chain_Location/D
+############################################################
+[2026-09-20 21:03:53 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Supply_Chain_Location/D
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=30, test_length=365, val_length=90
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Supply_Chain_Location/D/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:03:53.806815+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Supply_Chain_Location/D/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_D/5T
+############################################################
+[2026-09-20 21:04:02 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_D/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_D/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:02.284778+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_D/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_I/5T
+############################################################
+[2026-09-20 21:04:10 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_I/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=288, test_length=864, val_length=864
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_I/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:10.797648+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_I/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: azure2019_U/5T
+############################################################
+[2026-09-20 21:04:19 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: azure2019_U/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=288, val_length=96
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_U/5T/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:19.236268+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/azure2019_U/5T/short/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: Smart_Manufacturing/H
+############################################################
+[2026-09-20 21:04:28 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: Smart_Manufacturing/H
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=24, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/short/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:28.117588+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=168, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/medium/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:28.130167+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=336, test_length=336, val_length=336
+TIME run allocation action=skip run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/long/run_0 source_launch=selena_instance_normalization_20260920T193952Z_48346 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:28.142566+00:00
+  Reused completed task: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/Smart_Manufacturing/H/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+
+############################################################
+# Dataset 1/1: MetroPT-3/5T
+############################################################
+[2026-09-20 21:04:36 UTC] resources model_device {"device": "cuda", "model": "chronos2"}
+Loading configuration...
+
+============================================================
+Dataset: MetroPT-3/5T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=48, test_length=1728, val_length=1728
+TIME run allocation action=new run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:36.499490+00:00
+  Initializing Chronos pipeline (/fslarge/scratch/users/h61084/weights/chronos2)...
+  Dataset info:
+    - Frequency: 5T
+    - Num series: 1
+    - Target dim: 6
+    - Target mode: multivariate
+    - Covariate channels: 0
+    - Series length: min=17809, max=17809, avg=17809.0
+    - Test split: 1728 steps
+    - Prediction length: 48
+    - Windows: 36
+    Total instances: 36, Series during experiment: 1, Windows: 36
+    Collecting ground truth and context...
+    Organizing data into arrays...
+    Saved predictions (quantiles) to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0/predictions.npz
+    Computing per-window metrics...
+    Saved metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0/metrics.npz
+    Saved config to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0/config.json
+    Saved aggregate metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0/metrics_summary.json
+    Metrics summary (averaged over all series/windows/variates):
+      MSE: 3.2493
+      MAE: 1.0998
+      RMSE: 1.4579
+      MAPE: 3.5560
+      sMAPE: 0.4695
+      MASE: 0.6120
+      ND: 0.3133
+      CRPS: 0.2368
+  Completed: 1 series × 36 windows
+  Output: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/short/run_0
+
+--- Term: medium ---
+  Config: prediction_length=288, test_length=1728, val_length=1728
+TIME run allocation action=new run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:39.088994+00:00
+  Initializing Chronos pipeline (/fslarge/scratch/users/h61084/weights/chronos2)...
+  Dataset info:
+    - Frequency: 5T
+    - Num series: 1
+    - Target dim: 6
+    - Target mode: multivariate
+    - Covariate channels: 0
+    - Series length: min=17809, max=17809, avg=17809.0
+    - Test split: 1728 steps
+    - Prediction length: 288
+    - Windows: 6
+    Total instances: 6, Series during experiment: 1, Windows: 6
+    Collecting ground truth and context...
+    Organizing data into arrays...
+    Saved predictions (quantiles) to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0/predictions.npz
+    Computing per-window metrics...
+    Saved metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0/metrics.npz
+    Saved config to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0/config.json
+    Saved aggregate metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0/metrics_summary.json
+    Metrics summary (averaged over all series/windows/variates):
+      MSE: 3.3712
+      MAE: 1.1480
+      RMSE: 1.5258
+      MAPE: 3.1341
+      sMAPE: 0.5100
+      MASE: 0.6510
+      ND: 0.3293
+      CRPS: 0.2467
+  Completed: 1 series × 6 windows
+  Output: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/medium/run_0
+
+--- Term: long ---
+  Config: prediction_length=576, test_length=1728, val_length=1728
+TIME run allocation action=new run=/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0 launch_id=selena_instance_normalization_20260920T193952Z_48346 slurm_job_id=3506752 launched_at=2026-09-20T21:04:39.528749+00:00
+  Initializing Chronos pipeline (/fslarge/scratch/users/h61084/weights/chronos2)...
+  Dataset info:
+    - Frequency: 5T
+    - Num series: 1
+    - Target dim: 6
+    - Target mode: multivariate
+    - Covariate channels: 0
+    - Series length: min=17809, max=17809, avg=17809.0
+    - Test split: 1728 steps
+    - Prediction length: 576
+    - Windows: 3
+    Total instances: 3, Series during experiment: 1, Windows: 3
+    Collecting ground truth and context...
+    Organizing data into arrays...
+    Saved predictions (quantiles) to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0/predictions.npz
+    Computing per-window metrics...
+    Saved metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0/metrics.npz
+    Saved config to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0/config.json
+    Saved aggregate metrics to /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0/metrics_summary.json
+    Metrics summary (averaged over all series/windows/variates):
+      MSE: 3.4375
+      MAE: 1.1598
+      RMSE: 1.5399
+      MAPE: 3.1675
+      sMAPE: 0.5179
+      MASE: 0.6686
+      ND: 0.3326
+      CRPS: 0.2493
+  Completed: 1 series × 3 windows
+  Output: /fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks/chronos2/normalization/none/multivariate/MetroPT-3/5T/long/run_0
+
+============================================================
+All experiments completed!
+Results saved to: /scratch/users/h61084/codes/evaluating_tsfms/outputs/instance_normalization/tasks
+============================================================
+
+############################################################
+# All 1 dataset(s) completed!
+############################################################
+2026-09-20 23:04:40 | task model=chronos2 runner=run_chronos2.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none completed status=success
+2026-09-20 23:04:40 | stage evaluate completed status=success
+2026-09-20 23:04:40 | workflow instance_normalization completed status=success exit_code=0

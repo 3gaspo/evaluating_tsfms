@@ -1,0 +1,12 @@
+workflow=instance_normalization
+launch_id=selena_instance_normalization_20260920T193952Z_48346
+task=chronos_bolt
+state=completed
+stage=none
+active_task=none
+launched_at=2026-09-20T20:48:53Z
+updated_at=2026-09-20T21:05:20Z
+exit_code=0
+slurm_job_id=3506750
+slurm_array_job_id=none
+slurm_array_task_id=none

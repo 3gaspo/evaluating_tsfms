@@ -1,0 +1,17 @@
+model,tasks,timed_tasks,total_inference_seconds
+chronos2__model_config.context_length-1024,98,98,92.67076268233359
+chronos2__model_config.context_length-2048,98,98,153.54496650770307
+chronos2__model_config.context_length-4096,98,98,252.45780190033838
+chronos2__model_config.context_length-512,98,98,67.95368684083223
+chronos2__model_config.context_length-8192,98,98,425.8302097674459
+chronos_bolt__model_config.context_length-1024,98,98,584.9932105503976
+chronos_bolt__model_config.context_length-128,98,98,286.4761914568953
+chronos_bolt__model_config.context_length-2048,98,98,957.2394446972758
+chronos_bolt__model_config.context_length-256,98,98,317.73222560994327
+chronos_bolt__model_config.context_length-512,98,98,396.2295612320304
+ts_icl__model_config.context_length-1024,98,98,474.6701228879392
+ts_icl__model_config.context_length-2048,98,98,1076.2658761702478
+ts_icl__model_config.context_length-256,98,98,230.8290770696476
+ts_icl__model_config.context_length-4096,98,98,2659.53051944077
+ts_icl__model_config.context_length-512,98,98,290.0993656720966
+seasonal_naive,98,98,654.5789251364768
