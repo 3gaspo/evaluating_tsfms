@@ -35,6 +35,9 @@ from timebench.pipeline import (
     resolve_shared_evaluation_grid,
     resolve_target_mode,
 )
+from timebench.pipeline.inference_cache import (
+    dependency_reference, load_raw_inference, save_raw_inference,
+)
 
 
 load_dotenv()
@@ -116,8 +119,8 @@ def run_timesfm3_experiment(
         supported_modes=COVARIATE_MODES,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    from timebench.pipeline.runtime_resources import log
-    log("model_device", model="timesfm3", device=device)
+    from timebench.pipeline.runtime_resources import log_selected_device
+    log_selected_device(device, stage="forecast", model="timesfm3")
     config = load_dataset_config(config_path)
     if terms is None:
         terms = get_available_terms(dataset_name, config)
@@ -201,31 +204,43 @@ def run_timesfm3_experiment(
             dataset_name,
             term,
         )
-        run = allocate_run(
-            identity_root,
-            experiment=experiment,
-            identity={
+        identity = {
                 "model": MODEL_ALIAS,
                 "target_mode": resolved_target_mode,
                 "dataset": dataset_name.rpartition("/")[0] or dataset_name,
                 "frequency": dataset.freq,
                 "term": term,
-            },
-            model_config={
+            }
+        scientific_model = {
                 "model_size": model_size,
                 "context_length": context_length,
                 "quantile_levels": quantile_levels,
                 "upstream_repository": MODEL_REPOSITORY,
                 "upstream_package": "timesfm[torch]==3.0.1",
                 "evaluator": "TimesFM3Evaluator",
-            },
+            }
+        scientific_experiment = {
+            "covariate_mode": covariate_mode, "covariate_channels": covariate_channels,
+            "covariate_source": ("other_target_variates" if covariate_mode == "past_targets"
+                else "dataset_fields" if covariate_mode == "future_included" else "none"),
+            "covariate_time_span": ("L" if covariate_mode == "past_targets"
+                else "L+H" if covariate_mode == "future_included" else "none"),
+            "official_evaluator_defaults": {"use_symmetric_averaging": True,
+                "make_positive": True, "sort_quantiles": True,
+                "use_znorm": False, "padding_mode": "none"},
+        }
+        inference_root = foundation_identity_root(
+            Path(output_dir).parent / "inference", MODEL_ALIAS,
+            resolved_target_mode, dataset_name, term)
+        inference_run = allocate_run(
+            inference_root, experiment=f"{experiment}_raw_inference",
+            identity=identity, model_config=scientific_model,
             pipeline_config={
                 "prediction_length": prediction_length,
                 "test_length": test_length,
-                "val_length": val_length,
                 "windows": dataset.windows,
-                "seasonality": season_length,
-                "evaluation_grid": EVALUATION_GRID_DEFINITION,
+                "target_mode": resolved_target_mode,
+                "covariate_mode": covariate_mode,
             },
             runtime_config={
                 "batch_size": batch_size,
@@ -233,38 +248,46 @@ def run_timesfm3_experiment(
                 "checkpoint_path": str(checkpoint_path),
                 "local_files_only": True,
             },
-            experiment_config={
-                "covariate_mode": covariate_mode,
-                "covariate_channels": covariate_channels,
-                "covariate_source": (
-                    "other_target_variates"
-                    if covariate_mode == "past_targets"
-                    else "dataset_fields"
-                    if covariate_mode == "future_included"
-                    else "none"
-                ),
-                "covariate_time_span": (
-                    "L"
-                    if covariate_mode == "past_targets"
-                    else "L+H"
-                    if covariate_mode == "future_included"
-                    else "none"
-                ),
-                "official_evaluator_defaults": {
-                    "use_symmetric_averaging": True,
-                    "make_positive": True,
-                    "sort_quantiles": True,
-                    "use_znorm": False,
-                    "padding_mode": "none",
-                },
-            },
-            provenance={
-                "dataset_config_path": None if config_path is None else str(config_path),
-                "evaluation_grid": str(evaluation_grid_path),
-            },
+            experiment_config=scientific_experiment,
+            provenance={"dataset_config_path": None if config_path is None else str(config_path)},
         )
-        if not run.should_run:
-            print(f"Reused completed task: {run.run_dir}")
+
+        model_hyperparams = {"model": MODEL_ALIAS, **scientific_model,
+            **scientific_experiment, "experiment": experiment,
+            "target_mode": resolved_target_mode}
+
+        def complete_evaluation(forecasts, levels, seconds):
+            run = allocate_run(identity_root, experiment=experiment,
+                identity=identity, model_config=scientific_model,
+                pipeline_config={"prediction_length": prediction_length,
+                    "test_length": test_length, "windows": dataset.windows,
+                    "seasonality": season_length,
+                    "raw_inference": dependency_reference(inference_run.run_dir),
+                    "evaluation_grid": {"definition": EVALUATION_GRID_DEFINITION,
+                        "producer": dependency_reference(evaluation_grid_path.parent)}},
+                runtime_config={"batch_size": batch_size, "device": device,
+                    "checkpoint_path": str(checkpoint_path), "local_files_only": True},
+                experiment_config=scientific_experiment,
+                provenance={"dataset_config_path": None if config_path is None else str(config_path),
+                    "evaluation_grid": str(evaluation_grid_path),
+                    "raw_inference_manifest": str(inference_run.run_dir / "manifest.json")})
+            if not run.should_run:
+                return None, run
+            with run:
+                metadata = save_window_predictions(dataset=dataset, fc_quantiles=forecasts,
+                    ds_config=f"{dataset_name}/{term}", output_base_dir=output_dir,
+                    seasonality=season_length, model_hyperparams=model_hyperparams,
+                    quantile_levels=levels, inference_seconds=seconds,
+                    task_output_dir=str(run.run_dir), evaluation_grid_path=str(evaluation_grid_path))
+                run.complete(["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"])
+            return metadata, run
+
+        if inference_run.action == "finalize":
+            inference_run.complete()
+        if not inference_run.should_run:
+            fc_quantiles, quantile_levels, inference_seconds = load_raw_inference(inference_run.run_dir)
+            _, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
+            print(f"Reused raw inference: {inference_run.run_dir}")
             continue
 
         print(f"Initializing official TimesFM-3 evaluator ({checkpoint_path})...")
@@ -346,33 +369,10 @@ def run_timesfm3_experiment(
 
         fc_quantiles = np.concatenate(quantile_batches, axis=0)
         inference_seconds = timer.stop()
-        model_hyperparams = {
-            "model": MODEL_ALIAS,
-            "context_length": context_length,
-            "quantile_levels": quantile_levels,
-            "covariate_mode": covariate_mode,
-            "covariate_channels": covariate_channels or 0,
-            "experiment": experiment,
-            "target_mode": resolved_target_mode,
-            "upstream_repository": MODEL_REPOSITORY,
-        }
-
-        with run:
-            metadata = save_window_predictions(
-                dataset=dataset,
-                fc_quantiles=fc_quantiles,
-                ds_config=f"{dataset_name}/{term}",
-                output_base_dir=output_dir,
-                seasonality=season_length,
-                model_hyperparams=model_hyperparams,
-                quantile_levels=quantile_levels,
-                inference_seconds=inference_seconds,
-                task_output_dir=str(run.run_dir),
-                evaluation_grid_path=str(evaluation_grid_path),
-            )
-            run.complete(
-                ["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"]
-            )
+        with inference_run:
+            inference_run.complete(save_raw_inference(
+                inference_run.run_dir, fc_quantiles, quantile_levels, inference_seconds))
+        metadata, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
         print(
             f"Completed: {metadata['num_series']} series x "
             f"{metadata['num_windows']} windows -> {run.run_dir}"

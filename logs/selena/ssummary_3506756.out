@@ -1,6 +1,0 @@
-[2026-09-20 21:39:32 UTC] resources allocation {"ADAPTIME_DEVICE": "unset", "CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "2", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3506756", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "16000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "cpu_count": 2, "host": "sean0012"}
-[2026-09-20 21:39:32 UTC] resources RAM {"MemAvailable_MiB": 373524.87890625, "MemTotal_MiB": 386622.91015625}
-[2026-09-20 21:39:32 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-85b11840-b0cf-bd32-4bb2-ff57b7feeca8, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
-[2026-09-20 21:39:38 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
-[2026-09-20 21:39:38 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
-2026-09-20 23:39:38 | workflow instance_normalization_summary started launch_id=selena_instance_normalization_20260920T193952Z_48346 task=macro_mase_timing_and_plots slurm_job_id=3506756 slurm_array_job_id=none slurm_array_task_id=none

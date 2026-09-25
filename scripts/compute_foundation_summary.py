@@ -493,6 +493,8 @@ def write_report_manifest(
 
 
 def main() -> None:
+    from timebench.pipeline.runtime_resources import log_selected_device
+    log_selected_device("cpu", stage="report", component="foundation_summary")
     parser = argparse.ArgumentParser(
         description="Summarize foundation-model MASE and test inference time."
     )

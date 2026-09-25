@@ -68,23 +68,31 @@ wall time. The context-horizon report is readable, but the 15-series
 accuracy/time figure has overlapping long labels and should be relabeled before
 presentation use.
 
-## Instance-normalization study remains incomplete
+## Instance-normalization study
 
 The unchanged-input arms completed all 98 tasks for each model and reproduce
 the corresponding maximum-context MASE means, standard deviations, variances,
 and finite support exactly. Their timing totals differ by at most 2.1% between
 launches, consistent with launch-to-launch timing variation.
 
-The z-score arms are not result evidence. Each model completed six tasks and
-then failed on `current_velocity/10T/short`: Chronos-Bolt and Chronos-2 produced
-non-finite forecasts, while TS-ICL rejected an all-NaN normalized sample. The
-failed launch used ordinary mean and population standard deviation on input
-contexts containing missing values, making the fitted transform NaN and
-defeating the models' successful unchanged-input missing-value handling. The
-implementation now computes statistics over finite context values while
-preserving original missing positions. No aggregate normalization report was
-produced; the z-score arms and dependent summary must be recovered before the
-normalization hypothesis can be evaluated.
+The recovered launch completed 98 shared-grid tasks in each of six model/mode
+settings and its dependent summary. It reused 294 completed unchanged-input
+tasks and 18 completed z-score tasks from the failed launch, then completed the
+remaining 276 z-score tasks with finite-value mean and population standard
+deviation. Every setting is finite on the same 111,071 Seasonal-grid cells.
+
+| Model | Unchanged scaled MASE | Z-score scaled MASE | Unchanged inference seconds | Z-score inference seconds |
+| --- | ---: | ---: | ---: | ---: |
+| Chronos-2 | 0.685488615 | 0.685488629 | 434.6 | 431.7 |
+| TS-ICL | 0.718393983 | 0.718393972 | 2,681.1 | 2,686.8 |
+| Chronos-Bolt | 0.759559036 | 0.759558465 | 945.6 | 1,001.6 |
+
+Z-score normalization offers no material aggregate accuracy benefit here. The
+maximum relative difference on any paired task is 0.0061%, and every model's
+aggregate scaled MASE agrees with unchanged input to at least five decimals.
+Recorded inference seconds are forecast-loop totals from one launch and do not
+establish a speed effect. The report has six model/mode rows, all 588 selected
+model manifests, and 12 paired PNG/PDF figures.
 
 ## Within-task MASE dispersion
 
@@ -93,9 +101,9 @@ for all 294 selected foundation tasks (98 per model). Both use the same finite
 series-window-variate metric cells as each task's arithmetic mean, with
 `ddof=0`; prior means, coverage, and metadata were verified unchanged.
 
-The executive summary includes the standardized raw task mean-versus-population-
-standard-deviation scatter and a paired Seasonal-relative variance scatter,
-both with one color per model. The spread concerns evaluated cells within
+The executive summary retains the paired Seasonal-relative variance scatter
+with one color per model; the raw task mean-versus-population-standard-deviation
+scatter remains in the generated job report. The spread concerns evaluated cells within
 tasks, not uncertainty across repeated runs. The reproducible plot entry point
 is `src/visualization/plot_executive_summary.py`.
 
@@ -159,5 +167,5 @@ cell statistics, not repeated-run uncertainty.
   not independently inspected in this checkout. The current four report
   bundles contain complete task tables and 12 paired PNG/PDF figures each.
 - Covariate generalization beyond Chronos-2 remains planned. The context-size
-  study is complete; the input-normalization implementation is repaired but
-  still has no valid aggregate z-score result until cluster recovery completes.
+  and input-normalization studies are complete. The current evidence does not
+  show a material accuracy benefit from instance z-score normalization.

@@ -55,6 +55,11 @@ from timebench.pipeline import (
     resolve_shared_evaluation_grid,
     resolve_target_mode,
 )
+from timebench.pipeline.inference_cache import (
+    dependency_reference,
+    load_raw_inference,
+    save_raw_inference,
+)
 
 # Load environment variables
 load_dotenv()
@@ -94,8 +99,8 @@ def run_chronos2_experiment(
 
     # Set CUDA device
     device_map = "cuda" if torch.cuda.is_available() else "cpu"
-    from timebench.pipeline.runtime_resources import log
-    log("model_device", model="chronos2", device=device_map)
+    from timebench.pipeline.runtime_resources import log_selected_device
+    log_selected_device(device_map, stage="forecast", model="chronos2")
 
     # Load dataset configuration
     print("Loading configuration...")
@@ -206,58 +211,110 @@ def run_chronos2_experiment(
                 instance_normalization=instance_normalization,
             ),
         )
-        run = allocate_run(
-            identity_root,
-            experiment=experiment,
-            identity={
-                "model": "chronos2",
-                "target_mode": resolved_target_mode,
-                "dataset": dataset_name.rpartition("/")[0] or dataset_name,
-                "frequency": dataset.freq,
-                "term": term,
-            },
-            model_config={
-                "model_size": model_size,
-                "context_length": context_length,
-                "quantile_levels": quantile_levels,
-            },
+        identity = {
+            "model": "chronos2",
+            "target_mode": resolved_target_mode,
+            "dataset": dataset_name.rpartition("/")[0] or dataset_name,
+            "frequency": dataset.freq,
+            "term": term,
+        }
+        scientific_model = {
+            "model_size": model_size,
+            "context_length": context_length,
+            "quantile_levels": quantile_levels,
+        }
+        scientific_experiment = {
+            "instance_normalization": instance_normalization,
+            "covariate_mode": covariate_mode,
+            "covariate_channels": covariate_channels,
+            "covariate_source": (
+                "other_target_variates" if covariate_mode == "past_targets"
+                else "dataset_fields" if covariate_mode == "future_included" else "none"
+            ),
+            "covariate_time_span": (
+                "L" if covariate_mode == "past_targets"
+                else "L+H" if covariate_mode == "future_included" else "none"
+            ),
+        }
+        inference_root = foundation_identity_root(
+            Path(output_dir).parent / "inference", "chronos2", resolved_target_mode,
+            dataset_name, term,
+            experiment_axis=foundation_experiment_axis(
+                experiment, context_length=context_length,
+                instance_normalization=instance_normalization,
+            ),
+        )
+        inference_run = allocate_run(
+            inference_root,
+            experiment=f"{experiment}_raw_inference",
+            identity=identity,
+            model_config=scientific_model,
             pipeline_config={
                 "prediction_length": prediction_length,
                 "test_length": test_length,
-                "val_length": val_length,
                 "windows": dataset.windows,
-                "seasonality": season_length,
-                "evaluation_grid": EVALUATION_GRID_DEFINITION,
+                "target_mode": resolved_target_mode,
+                "covariate_mode": covariate_mode,
             },
             runtime_config={
                 "batch_size": batch_size,
                 "device": device_map,
                 "checkpoint_path": str(checkpoint_path),
             },
-            experiment_config={
-                "instance_normalization": instance_normalization,
-                "covariate_mode": covariate_mode,
-                "covariate_channels": covariate_channels,
-                "covariate_source": (
-                    "other_target_variates"
-                    if covariate_mode == "past_targets"
-                    else "dataset_fields"
-                    if covariate_mode == "future_included"
-                    else "none"
-                ),
-                "covariate_time_span": (
-                    "L"
-                    if covariate_mode == "past_targets"
-                    else "L+H" if covariate_mode == "future_included" else "none"
-                ),
+            experiment_config=scientific_experiment,
+            provenance={"dataset_config_path": None if config_path is None else str(config_path)},
+        )
+
+        model_hyperparams = {"model": "chronos2", **scientific_model, **scientific_experiment,
+            "experiment": experiment, "target_mode": resolved_target_mode}
+
+        def complete_evaluation(forecasts, levels, seconds):
+            run = allocate_run(
+            identity_root, experiment=experiment,
+            identity=identity,
+            model_config=scientific_model,
+            pipeline_config={
+                "prediction_length": prediction_length,
+                "test_length": test_length,
+                "windows": dataset.windows,
+                "seasonality": season_length,
+                "raw_inference": dependency_reference(inference_run.run_dir),
+                "evaluation_grid": {"definition": EVALUATION_GRID_DEFINITION,
+                    "producer": dependency_reference(evaluation_grid_path.parent)},
             },
+            runtime_config={
+                "batch_size": batch_size,
+                "device": device_map,
+                "checkpoint_path": str(checkpoint_path),
+            },
+            experiment_config=scientific_experiment,
             provenance={
                 "dataset_config_path": None if config_path is None else str(config_path),
                 "evaluation_grid": str(evaluation_grid_path),
+                "raw_inference_manifest": str(inference_run.run_dir / "manifest.json"),
             },
-        )
-        if not run.should_run:
-            print(f"  Reused completed task: {run.run_dir}")
+            )
+            if not run.should_run:
+                return None, run
+            with run:
+                metadata = save_window_predictions(
+                    dataset=dataset, fc_quantiles=forecasts, ds_config=f"{dataset_name}/{term}",
+                    output_base_dir=output_dir, seasonality=season_length,
+                    model_hyperparams=model_hyperparams, quantile_levels=levels,
+                    inference_seconds=seconds, task_output_dir=str(run.run_dir),
+                    evaluation_grid_path=str(evaluation_grid_path),
+                )
+                run.complete(["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"])
+            return metadata, run
+
+        if inference_run.action == "finalize":
+            inference_run.complete()
+        if not inference_run.should_run:
+            fc_quantiles, quantile_levels, inference_seconds = load_raw_inference(inference_run.run_dir)
+            metadata, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
+            print(f"  Reused raw inference: {inference_run.run_dir}")
+            if metadata is not None:
+                print(f"  Completed: {metadata['num_series']} series × {metadata['num_windows']} windows")
             continue
 
         # Initialize Chronos only after the dataset capability check.
@@ -405,49 +462,14 @@ def run_chronos2_experiment(
         fc_quantiles = np.concatenate(fc_quantiles_batches, axis=0)
         inference_seconds = timer.stop()
 
-        # ---------------------------------------------------------
-        # 3. Saving Results
-        # ---------------------------------------------------------
-        ds_config = f"{dataset_name}/{term}"
-        model_hyperparams = {
-            "model": "chronos2",
-            "context_length": context_length,
-            "quantile_levels": quantile_levels,
-            "covariate_mode": covariate_mode,
-            "instance_normalization": instance_normalization,
-            "covariate_channels": covariate_channels or 0,
-            "experiment": experiment,
-            "target_mode": resolved_target_mode,
-            "covariate_source": (
-                "other_target_variates"
-                if covariate_mode == "past_targets"
-                else "dataset_fields" if covariate_mode == "future_included" else "none"
-            ),
-            "covariate_time_span": (
-                "L"
-                if covariate_mode == "past_targets"
-                else "L+H" if covariate_mode == "future_included" else "none"
-            ),
-        }
+        with inference_run:
+            inference_run.complete(save_raw_inference(
+                inference_run.run_dir, fc_quantiles, quantile_levels, inference_seconds
+            ))
+        metadata, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
 
-        with run:
-            metadata = save_window_predictions(
-                dataset=dataset,
-                fc_quantiles=fc_quantiles,
-                ds_config=ds_config,
-                output_base_dir=output_dir,
-                seasonality=season_length,
-                model_hyperparams=model_hyperparams,
-                quantile_levels=quantile_levels,
-                inference_seconds=inference_seconds,
-                task_output_dir=str(run.run_dir),
-                evaluation_grid_path=str(evaluation_grid_path),
-            )
-            run.complete(
-                ["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"]
-            )
-
-        print(f"  Completed: {metadata['num_series']} series × {metadata['num_windows']} windows")
+        if metadata is not None:
+            print(f"  Completed: {metadata['num_series']} series × {metadata['num_windows']} windows")
         print(f"  Output: {run.run_dir}")
 
     print(f"\n{'='*60}")

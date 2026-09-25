@@ -64,6 +64,9 @@ from timebench.paths import (
     foundation_identity_root,
 )
 from timebench.pipeline import allocate_run, resolve_target_mode
+from timebench.pipeline.inference_cache import (
+    dependency_reference, load_raw_inference, save_raw_inference,
+)
 
 # Load environment variables
 load_dotenv()
@@ -89,6 +92,8 @@ def run_seasonal_naive_experiment(
         config_path: Path to datasets.yaml config file
         use_val: If True, evaluate on validation data (for hyperparameter selection, no saving)
     """
+    from timebench.pipeline.runtime_resources import log_selected_device
+    log_selected_device("cpu", stage="forecast", model="seasonal_naive")
     covariate_mode = validate_covariate_mode(
         "seasonal_naive", covariate_mode, supports_covariates=SUPPORTS_COVARIATES
     )
@@ -154,38 +159,60 @@ def run_seasonal_naive_experiment(
         identity_root = foundation_identity_root(
             output_dir, "seasonal_naive", resolved_target_mode, dataset_name, term
         )
-        run = allocate_run(
-            identity_root,
-            experiment=experiment,
-            identity={
-                "model": "seasonal_naive",
-                "target_mode": resolved_target_mode,
-                "dataset": dataset_name.rpartition("/")[0] or dataset_name,
-                "frequency": dataset.freq,
-                "term": term,
-            },
-            model_config={
-                "quantile_levels": quantile_levels,
-            },
-            pipeline_config={
-                "prediction_length": prediction_length,
-                "test_length": test_length,
-                "val_length": val_length,
-                "windows": dataset.windows,
-                "seasonality": season_length,
-                "evaluation_grid": EVALUATION_GRID_DEFINITION,
-            },
+        identity = {"model": "seasonal_naive", "target_mode": resolved_target_mode,
+            "dataset": dataset_name.rpartition("/")[0] or dataset_name,
+            "frequency": dataset.freq, "term": term}
+        scientific_model = {"quantile_levels": quantile_levels,
+            "season_length": season_length}
+        scientific_experiment = {"covariate_mode": covariate_mode,
+            "covariate_channels": 0}
+        inference_root = foundation_identity_root(
+            Path(output_dir).parent / "inference", "seasonal_naive",
+            resolved_target_mode, dataset_name, term)
+        inference_run = allocate_run(
+            inference_root, experiment=f"{experiment}_raw_inference",
+            identity=identity, model_config=scientific_model,
+            pipeline_config={"prediction_length": prediction_length,
+                "test_length": test_length, "windows": dataset.windows,
+                "seasonality": season_length},
             runtime_config={"device": "cpu"},
-            experiment_config={
-                "covariate_mode": covariate_mode,
-                "covariate_channels": 0,
-            },
-            provenance={
-                "dataset_config_path": None if config_path is None else str(config_path),
-            },
-        )
-        if not run.should_run:
-            print(f"  Reused completed task: {run.run_dir}")
+            experiment_config=scientific_experiment,
+            provenance={"dataset_config_path": None if config_path is None else str(config_path)})
+
+        model_hyperparams = {"model": "seasonal_naive", **scientific_model,
+            **scientific_experiment, "experiment": experiment,
+            "target_mode": resolved_target_mode}
+
+        def complete_evaluation(forecasts, levels, seconds):
+            run = allocate_run(identity_root, experiment=experiment,
+                identity=identity, model_config=scientific_model,
+                pipeline_config={"prediction_length": prediction_length,
+                    "test_length": test_length, "windows": dataset.windows,
+                    "seasonality": season_length,
+                    "raw_inference": dependency_reference(inference_run.run_dir),
+                    "evaluation_grid": EVALUATION_GRID_DEFINITION},
+                runtime_config={"device": "cpu"},
+                experiment_config=scientific_experiment,
+                provenance={"dataset_config_path": None if config_path is None else str(config_path),
+                    "raw_inference_manifest": str(inference_run.run_dir / "manifest.json")})
+            if not run.should_run:
+                return None, run
+            with run:
+                metadata = save_window_predictions(dataset=dataset, fc_quantiles=forecasts,
+                    ds_config=f"{dataset_name}/{term}", output_base_dir=output_dir,
+                    seasonality=season_length, model_hyperparams=model_hyperparams,
+                    quantile_levels=levels, inference_seconds=seconds,
+                    task_output_dir=str(run.run_dir), create_evaluation_grid=True)
+                run.complete(["predictions.npz", "metrics.npz", "config.json",
+                    "metrics_summary.json", EVALUATION_GRID_FILE])
+            return metadata, run
+
+        if inference_run.action == "finalize":
+            inference_run.complete()
+        if not inference_run.should_run:
+            fc_quantiles, quantile_levels, inference_seconds = load_raw_inference(inference_run.run_dir)
+            _, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
+            print(f"  Reused raw inference: {inference_run.run_dir}")
             continue
         # Initialize Seasonal Naive predictor
         predictor = SeasonalNaivePredictor(
@@ -220,40 +247,10 @@ def run_seasonal_naive_experiment(
             fc_quantiles = fc_quantiles.squeeze(axis=2)
         inference_seconds = timer.stop()
 
-        # Compute metrics
-        ds_config = f"{dataset_name}/{term}"
-
-        # Prepare model hyperparameters for metadata
-        model_hyperparams = {
-            "model": "seasonal_naive",
-            "season_length": season_length,
-            "covariate_mode": covariate_mode,
-            "covariate_channels": 0,
-            "experiment": experiment,
-            "target_mode": resolved_target_mode,
-        }
-
-        with run:
-            metadata = save_window_predictions(
-                dataset=dataset,
-                fc_quantiles=fc_quantiles,
-                ds_config=ds_config,
-                output_base_dir=output_dir,
-                seasonality=season_length,
-                model_hyperparams=model_hyperparams,
-                inference_seconds=inference_seconds,
-                task_output_dir=str(run.run_dir),
-                create_evaluation_grid=True,
-            )
-            run.complete(
-                [
-                    "predictions.npz",
-                    "metrics.npz",
-                    "config.json",
-                    "metrics_summary.json",
-                    EVALUATION_GRID_FILE,
-                ]
-            )
+        with inference_run:
+            inference_run.complete(save_raw_inference(
+                inference_run.run_dir, fc_quantiles, quantile_levels, inference_seconds))
+        metadata, run = complete_evaluation(fc_quantiles, quantile_levels, inference_seconds)
         print(f"  Completed: {metadata['num_series']} series x {metadata['num_windows']} windows")
         print(f"  Output: {run.run_dir}")
 

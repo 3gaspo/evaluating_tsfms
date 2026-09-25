@@ -1,6 +1,9 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,microtype,amsmath,booktabs,tabularx,array,graphicx}
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepackage[margin=21mm]{geometry}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
 \setlength{\parindent}{0pt}
@@ -13,12 +16,12 @@
 \newcommand{\featurecode}[2]{\href{https://github.com/3gaspo/evaluating_tsfms/blob/c119ed748d149e9f7892641bead393819f5983fd/src/timebench/feature/features.py\#L#1}{#2}}
 \title{\textbf{Evaluating Time-Series Foundation Models}\\Scientific Executive Summary}
 \author{}
-\date{19 September 2026; results computed 17 September 2026}
+\date{21 September 2026; results computed 17--21 September 2026}
 \begin{document}
 \begin{center}
 {\Large\bfseries Evaluating Time-Series Foundation Models}\\[4pt]
 {\large Scientific Executive Summary}\\[5pt]
-{\small 19 September 2026; results computed 17 September 2026}
+{\small 21 September 2026; results computed 17--21 September 2026}
 \end{center}
 
 \section*{Main findings}
@@ -33,6 +36,13 @@ same accuracy as native input, with 5.68 times its measured forecasting time.
 \item \textbf{Dataset features:} greater temporal heterogeneity accompanies
 higher scaled MASE for all three foundation models, with Spearman rank
 correlations of 0.42--0.50 across the 50 configurations.
+\item \textbf{Context length:} Chronos-2 at 4,096 input steps has sMASE
+0.6824, 0.45\% lower than at 8,192, with 40.7\% less recorded forecasting
+time. Halving the maximum context costs 1.34\% sMASE for Chronos-Bolt and
+0.21\% for TS-ICL, while reducing time by 38.9\% and 59.5\%, respectively.
+\item \textbf{Instance normalization:} finite-value, per-window z-scoring
+followed by inversion changes no model's aggregate sMASE materially;
+all three agree with unchanged input to at least five decimal places.
 \end{itemize}
 
 \section{Datasets and test design}
@@ -197,24 +207,13 @@ times are not hardware-independent backbone latencies.
 \subsection*{Within-task error dispersion}
 The task mean hides differences between forecast windows and channels.
 Using the same eligible cells $G_k$, define the \textbf{population variance}
-and standard deviation of task $k$'s cell errors for method $m$:
+of task $k$'s cell errors for method $m$:
 \[
  \operatorname{Var}_m(k)=\frac{1}{|G_k|}\sum_{c\in G_k}
- \left[\mase_m(c)-\overline{\mase}_m(k)\right]^2,
- \qquad
- \operatorname{Std}_m(k)=\sqrt{\operatorname{Var}_m(k)}.
+ \left[\mase_m(c)-\overline{\mase}_m(k)\right]^2.
 \]
 The denominator is $|G_k|$, not $|G_k|-1$: these are descriptive statistics
 of all evaluated cells, not estimates from repeated experimental runs.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=\linewidth]{executive_summary_task_mean_std.png}
-\caption{Raw within-task dispersion: one point for every reported model--task
-pair, with arithmetic task mean MASE horizontally and population standard
-deviation vertically. Color identifies the model. Seasonal Naive has 98 tasks,
-as does each learned model, for 392 points total.}
-\end{figure}
 
 For comparison with Seasonal Naive, define its variance on the same cells as
 $\operatorname{Var}_{\mathrm{seasonal}}(k)$, using the formula above. The plot uses
@@ -350,9 +349,9 @@ channels has zero spatial heterogeneity.
 \end{itemize}
 Other feature names in the table link to their implementation or estimator.
 
-\enlargethispage{2\baselineskip}
+\clearpage
 \subsection*{Feature results and interpretation}
-\begin{table}[h]
+\begin{table}[H]
 \centering\small
 \begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
 \toprule
@@ -381,11 +380,12 @@ means larger features accompany worse relative error. Counts use pairwise
 finite configurations.}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.65\linewidth]{executive_summary_feature_scatter.png}
-\caption{Temporal heterogeneity versus configuration sMASE; 50 points per
-model. The dotted line marks Seasonal parity.}
+\caption{Temporal heterogeneity versus configuration sMASE, replotted from
+the completed feature-analysis data: 50 points per model in one panel. The
+dotted line marks Seasonal parity.}
 \end{figure}
 
 \textbf{Interpretation.} Greater temporal heterogeneity and trend Hurst
@@ -402,4 +402,116 @@ an evaluated pre-forecast model-selection rule.
 \textbf{Evidence scope.} Selected task records and metric summaries were
 checked; raw arrays were not. The IQRs and correlations describe this
 benchmark, not repeated-run variability.
+
+\clearpage
+\section{Maximum input context length}
+\textbf{Question.} How much history should each frozen forecaster receive?
+Longer inputs may improve accuracy but increase inference work. The tested
+factor is the maximum retained input length, not the forecast horizon.
+
+\textbf{Protocol.} For each of Chronos-2, Chronos-Bolt, and TS-ICL, the
+model-specific maximum is successively halved four times. Each of the 15
+model--context settings completes the same 98 TIME tasks on the same 111,071
+eligible window--channel cells. The input at each forecast origin is the
+most recent available history up to the selected cap; shorter histories
+remain shorter. Model weights, output quantiles, official test windows,
+Seasonal support, and sMASE aggregation are unchanged. There is one selected
+run per setting, not repeated-seed uncertainty.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.94\linewidth,height=7cm,
+  xmode=log,log basis x=2,
+  xmin=110,xmax=9500,ymin=0.66,ymax=0.88,
+  xtick={128,256,512,1024,2048,4096,8192},
+  xticklabels={128,256,512,1{,}024,2{,}048,4{,}096,8{,}192},
+  xlabel={Maximum input context (observations)},
+  ylabel={Scaled MASE (lower is better)},
+  grid=major,grid style={gray!20},
+  legend pos=north east,
+  legend style={font=\small,draw=gray!40,fill=white},
+  tick label style={font=\small},
+  label style={font=\small},
+]
+\addplot+[blue!75!black,thick,mark=*,mark size=2.2pt] coordinates {
+  (512,0.7275443013) (1024,0.7011391104) (2048,0.6837876399)
+  (4096,0.6824273666) (8192,0.6854886145)};
+\addlegendentry{Chronos-2}
+\addplot+[orange!85!black,thick,mark=square*,mark size=2.2pt] coordinates {
+  (128,0.8580839526) (256,0.8286274292) (512,0.7914364011)
+  (1024,0.7697317055) (2048,0.7595590358)};
+\addlegendentry{Chronos-Bolt}
+\addplot+[green!45!black,thick,mark=triangle*,mark size=2.5pt] coordinates {
+  (256,0.8304099842) (512,0.7655854536) (1024,0.7276728542)
+  (2048,0.7198958692) (4096,0.7183939833)};
+\addlegendentry{TS-ICL}
+\end{axis}
+\end{tikzpicture}
+\caption{Aggregate sMASE versus maximum input context for each frozen model.
+Each point is the geometric mean of 98 Seasonal-scaled task MASE ratios on
+the shared evaluation grid; lines connect only the five tested settings per
+model and do not establish behavior between them. Context is on a base-2
+logarithmic axis; lower sMASE is better.}
+\end{figure}
+
+\textbf{Results.} Chronos-2 at 4,096 steps improves aggregate sMASE by
+0.45\% and reduces recorded time by 40.7\% relative to 8,192. At 2,048
+steps, its sMASE is still 0.25\% lower, with 63.9\% less time. The paired
+4,096-versus-8,192 comparison improves 49 tasks, ties exactly on 28, and
+worsens 21; its median task change is only $-0.01\%$. Thus the aggregate
+advantage is modest and not uniform. Chronos-Bolt and TS-ICL attain their
+lowest sMASE at the longest tested context. Halving that context worsens
+their aggregate scores by 1.34\% and 0.21\%, respectively, while reducing
+recorded time by 38.9\% and 59.5\%. Their shortest settings worsen sMASE
+by 12.97\% and 15.59\% relative to their maxima.
+
+\textbf{Limit.} Each timing is a single-launch forecast-loop total, not a
+controlled repeated latency estimate or an end-to-end job duration. The
+comparison supports a model-specific accuracy--cost tradeoff on these tasks,
+not a universal optimal context length.
+
+\clearpage
+\section{Per-instance input z-score normalization}
+\textbf{Question.} Does centering and scaling each retained input window
+improve frozen-model accuracy when forecasts are returned to the target's
+original units?
+
+\textbf{Protocol.} Compare unchanged input with z-scored input for each of
+the three models at its maximum context (8,192, 2,048, and 4,096 steps,
+respectively). For each window and variate, compute the finite-value mean
+and population standard deviation along time after context truncation;
+constant finite inputs use unit scale. Missing positions remain missing.
+Every predicted quantile is inverse-transformed before scoring. Each of the
+six model--mode settings completes the same 98 tasks and 111,071 eligible
+cells. The unchanged-input arms exactly reproduce the matching task metric
+summaries from the maximum-context evaluation.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{sMASE $\downarrow$} & \multicolumn{2}{c}{Forecast-loop seconds $\downarrow$}\\
+Model & Unchanged & Z-score & Unchanged & Z-score\\
+\midrule
+Chronos-2 & 0.685488615 & 0.685488629 & 434.6 & 431.7\\
+TS-ICL & 0.718393983 & 0.718393972 & 2,681.1 & 2,686.8\\
+Chronos-Bolt & 0.759559036 & 0.759558465 & 945.6 & 1,001.6\\
+\bottomrule
+\end{tabular}
+\caption{Matched 98-task geometric sMASE per model and mode. Seconds are
+single-launch forecast-loop totals, not a controlled speed comparison.}
+\end{table}
+
+\textbf{Result and interpretation.} Z-scoring provides no material aggregate
+accuracy gain for these frozen models on this benchmark. Every model's two
+scores agree to at least five decimal places, and the largest relative
+difference on any paired task is 0.0061\%. This near-invariance concerns the
+tested input/output transformation; it does not imply all normalization
+methods are interchangeable. An entirely missing retained window has no
+finite mean or scale and remains non-finite rather than receiving an invented
+signal; the completed selected tasks provide no evidence of such a window
+reaching a model. Timing differences from one launch do not establish a
+normalization speed effect.
 \end{document}

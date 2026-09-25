@@ -126,14 +126,23 @@ This keeps concurrently submitted settings independent; `run_n` distinguishes
 repetitions and remaining non-path configuration differences within one
 setting.
 
+Raw test inference is cached separately under
+`outputs/<experiment>/inference/<backbone>/.../run_n/`. Its identity contains
+only the test windows and model settings that can change the forecasts; it does
+not contain `val_length`, report settings, metrics, or the Seasonal evaluation
+grid. Task reductions under `tasks/` depend on that raw cache and the selected
+grid, so metrics and reports can be rebuilt without repeating model inference.
+The project does not perform validation-based model selection.
+
 Lightweight synchronization/publication uses one shared file selector for report
 bundles, compact stage metadata and timing JSON, excluding raw recovery arrays.
 Both steps apply the same default per-file limit of 100000000 bytes, configurable
 with `PUBLISH_MAX_FILE_BYTES`. `outputs/analysis/` holds separately requested
 artifact analyses. Existing artifacts are not moved by report regeneration.
-Each job logs allocated/visible devices and available GPU/host memory before
-its stages; model runners also log the selected device. Reporting requires
-Matplotlib in the execution-host environment. Code synchronization preserves
+Each job logs allocated/visible devices, available GPU/host memory, and explicit
+cgroup available/unavailable state before its stages; learned and CPU-only
+stages also log the device they selected. Reporting uses headless Matplotlib;
+dense accuracy/time comparisons use an external legend. Code synchronization preserves
 Selena's environment and dependency manifests, so prepare that environment
 independently before launching. The retired local leaderboard and sequential
 all-model shells are no longer supported; use the launchers above.

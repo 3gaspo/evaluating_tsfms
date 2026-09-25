@@ -88,6 +88,21 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         self.assertIn("export HF_DATASETS_OFFLINE=1", runtime)
         self.assertIn("export TRANSFORMERS_OFFLINE=1", runtime)
 
+    def test_raw_inference_is_separate_from_reductions(self) -> None:
+        runners = ("chronos2.py", "chronos_bolt.py", "ts_icl.py",
+            "run_timesfm3.py", "seasonal_naive.py")
+        for name in runners:
+            source = (PROJECT_ROOT / "experiments" / name).read_text(encoding="utf-8")
+            self.assertIn('Path(output_dir).parent / "inference"', source, name)
+            self.assertIn("save_raw_inference", source, name)
+            self.assertIn("load_raw_inference", source, name)
+            self.assertIn('"raw_inference": dependency_reference', source, name)
+            self.assertNotIn('"val_length": val_length', source, name)
+        cache = (PROJECT_ROOT / "src/timebench/pipeline/inference_cache.py").read_text(
+            encoding="utf-8")
+        self.assertIn('"raw_predictions.npz"', cache)
+        self.assertIn('"inference.json"', cache)
+
     def test_shared_seasonal_workflow_contract(self) -> None:
         producer = (PROJECT_ROOT / "scripts/submit_seasonal_naive.sh").read_text(
             encoding="utf-8"
