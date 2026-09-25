@@ -229,11 +229,17 @@ def run_timesfm3_experiment(
                 "make_positive": True, "sort_quantiles": True,
                 "use_znorm": False, "padding_mode": "none"},
         }
+        canonical_vanilla = (
+            context_length == MAX_CONTEXT_LENGTH and covariate_mode == "none"
+        )
         inference_root = foundation_identity_root(
-            Path(output_dir).parent / "inference", MODEL_ALIAS,
-            resolved_target_mode, dataset_name, term)
+            (foundation_experiment_root("foundation_models").parent / "inference"
+             if canonical_vanilla else Path(output_dir).parent / "inference"),
+            MODEL_ALIAS, resolved_target_mode, dataset_name, term)
         inference_run = allocate_run(
-            inference_root, experiment=f"{experiment}_raw_inference",
+            inference_root,
+            experiment=("foundation_models_raw_inference" if canonical_vanilla
+                        else f"{experiment}_raw_inference"),
             identity=identity, model_config=scientific_model,
             pipeline_config={
                 "prediction_length": prediction_length,
@@ -262,6 +268,7 @@ def run_timesfm3_experiment(
                 pipeline_config={"prediction_length": prediction_length,
                     "test_length": test_length, "windows": dataset.windows,
                     "seasonality": season_length,
+                    "nan_policy": "omit_nan_predictions_report_counts_reject_infinity",
                     "raw_inference": dependency_reference(inference_run.run_dir),
                     "evaluation_grid": {"definition": EVALUATION_GRID_DEFINITION,
                         "producer": dependency_reference(evaluation_grid_path.parent)}},

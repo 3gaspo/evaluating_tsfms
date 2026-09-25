@@ -9,11 +9,13 @@ import numpy as np
 def plot_context_horizon_grid(rows: list[dict], output: str | Path) -> list[Path]:
     """Plot horizon on x, context size on y, and scaled MASE as color."""
 
+    rows = [row for row in rows if row["scaled_MASE"] is not None
+            and np.isfinite(row["scaled_MASE"])]
     models = sorted({row["model"] for row in rows})
     if not models:
-        raise ValueError("No context-size rows to plot")
+        return []
     values = np.asarray([row["scaled_MASE"] for row in rows], dtype=float)
-    vmin, vmax = float(np.min(values)), float(np.max(values))
+    vmin, vmax = float(np.nanmin(values)), float(np.nanmax(values))
     if vmin == vmax:
         vmax = vmin + 1e-12
 

@@ -62,8 +62,9 @@ complete. It writes the baseline and the grid of cells with finite ground-truth
 support, finite Seasonal Naive predictions on that support, and finite
 Seasonal Naive MASE. Foundation-model and channel launchers require that grid,
 then run without a Seasonal job dependency and may be submitted together. A
-learned model that produces a non-finite forecast on the grid fails its task
-instead of silently changing metric coverage. The three learned
+learned model may produce NaN forecasts: metrics average its finite predictions
+and every task and report records the NaN count and rate. Infinite forecasts
+remain invalid. The three learned
 foundation models run concurrently; their summary runs once after every model
 terminates and reads the shared baseline. Each task is addressed by its
 complete scientific configuration and has schema-1 lifecycle metadata.
@@ -126,8 +127,12 @@ This keeps concurrently submitted settings independent; `run_n` distinguishes
 repetitions and remaining non-path configuration differences within one
 setting.
 
-Raw test inference is cached separately under
-`outputs/<experiment>/inference/<backbone>/.../run_n/`. Its identity contains
+Raw test inference is cached separately. Maximum-context, no-normalization,
+no-covariate forecasts use the canonical
+`outputs/foundation_models/inference/<backbone>/.../run_n/` tree, so compatible
+foundation, channel, context-size, and normalization tasks share one vanilla
+forecast. Other settings use
+`outputs/<experiment>/inference/<backbone>/.../run_n/`. Cache identity contains
 only the test windows and model settings that can change the forecasts; it does
 not contain `val_length`, report settings, metrics, or the Seasonal evaluation
 grid. Task reductions under `tasks/` depend on that raw cache and the selected

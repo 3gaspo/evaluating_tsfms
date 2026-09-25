@@ -189,6 +189,7 @@ def run_seasonal_naive_experiment(
                 pipeline_config={"prediction_length": prediction_length,
                     "test_length": test_length, "windows": dataset.windows,
                     "seasonality": season_length,
+                    "nan_policy": "omit_nan_predictions_report_counts_reject_infinity",
                     "raw_inference": dependency_reference(inference_run.run_dir),
                     "evaluation_grid": EVALUATION_GRID_DEFINITION},
                 runtime_config={"device": "cpu"},

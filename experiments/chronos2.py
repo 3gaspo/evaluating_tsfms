@@ -236,17 +236,24 @@ def run_chronos2_experiment(
                 else "L+H" if covariate_mode == "future_included" else "none"
             ),
         }
+        canonical_vanilla = (
+            context_length == 8192
+            and instance_normalization == "none"
+            and covariate_mode == "none"
+        )
         inference_root = foundation_identity_root(
-            Path(output_dir).parent / "inference", "chronos2", resolved_target_mode,
-            dataset_name, term,
-            experiment_axis=foundation_experiment_axis(
+            (foundation_experiment_root("foundation_models").parent / "inference"
+             if canonical_vanilla else Path(output_dir).parent / "inference"),
+            "chronos2", resolved_target_mode, dataset_name, term,
+            experiment_axis=(None if canonical_vanilla else foundation_experiment_axis(
                 experiment, context_length=context_length,
                 instance_normalization=instance_normalization,
-            ),
+            )),
         )
         inference_run = allocate_run(
             inference_root,
-            experiment=f"{experiment}_raw_inference",
+            experiment=("foundation_models_raw_inference" if canonical_vanilla
+                        else f"{experiment}_raw_inference"),
             identity=identity,
             model_config=scientific_model,
             pipeline_config={
@@ -278,6 +285,7 @@ def run_chronos2_experiment(
                 "test_length": test_length,
                 "windows": dataset.windows,
                 "seasonality": season_length,
+                "nan_policy": "omit_nan_predictions_report_counts_reject_infinity",
                 "raw_inference": dependency_reference(inference_run.run_dir),
                 "evaluation_grid": {"definition": EVALUATION_GRID_DEFINITION,
                     "producer": dependency_reference(evaluation_grid_path.parent)},

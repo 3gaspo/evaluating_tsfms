@@ -53,10 +53,9 @@ def load_result_cells(
         config = json.loads(config_path.read_text(encoding="utf-8"))
         summary = json.loads(summary_path.read_text(encoding="utf-8"))
         mase_summary = summary.get("metrics", {}).get("MASE", {})
+        prediction_outputs = summary["prediction_outputs"]
         mase = mase_summary.get("mean")
-        if mase is None:
-            continue
-        mase = float(mase)
+        mase = np.nan if mase is None else float(mase)
         inference_seconds = config.get("inference_seconds")
         if inference_seconds is not None:
             inference_seconds = float(inference_seconds)
@@ -75,6 +74,8 @@ def load_result_cells(
                 "MASE_finite_values": int(mase_summary["finite_values"]),
                 "MASE_evaluation_values": int(mase_summary["evaluation_values"]),
                 "MASE_total_values": int(mase_summary["total_values"]),
+                "prediction_nan_values": int(prediction_outputs["evaluation_nan_values"]),
+                "prediction_values": int(prediction_outputs["evaluation_values"]),
                 "evaluation_grid": dict(summary["evaluation_grid"]),
                 "inference_seconds": inference_seconds,
                 "manifest_path": str(run_dir / "manifest.json"),
@@ -125,9 +126,9 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "target_mode": key[2],
                 "dataset_id": key[3],
                 "horizon": key[4],
-                "MASE": float(np.mean([cell["MASE"] for cell in repeats])),
-                "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in repeats])),
-                "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in repeats])),
+                "MASE": float(np.nanmean([cell["MASE"] for cell in repeats])),
+                "MASE_std": float(np.nanmean([cell.get("MASE_std", np.nan) for cell in repeats])),
+                "MASE_variance": float(np.nanmean([cell.get("MASE_variance", np.nan) for cell in repeats])),
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in repeats
                 ),
@@ -137,9 +138,15 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in repeats
                 ),
+                "prediction_nan_values": sum(
+                    cell["prediction_nan_values"] for cell in repeats
+                ),
+                "prediction_values": sum(
+                    cell["prediction_values"] for cell in repeats
+                ),
                 "evaluation_grid": repeats[0]["evaluation_grid"],
                 "inference_seconds": (
-                    float(np.mean(timed)) if len(timed) == len(repeats) else None
+                    float(np.nanmean(timed)) if len(timed) == len(repeats) else None
                 ),
             }
         )
@@ -170,9 +177,9 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "target_mode": key[2],
                 "dataset_id": key[3],
                 "horizon": key[4],
-                "MASE": float(np.mean([cell["MASE"] for cell in configs])),
-                "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in configs])),
-                "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in configs])),
+                "MASE": float(np.nanmean([cell["MASE"] for cell in configs])),
+                "MASE_std": float(np.nanmean([cell.get("MASE_std", np.nan) for cell in configs])),
+                "MASE_variance": float(np.nanmean([cell.get("MASE_variance", np.nan) for cell in configs])),
                 "MASE_finite_values": sum(
                     cell["MASE_finite_values"] for cell in configs
                 ),
@@ -182,9 +189,15 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in configs
                 ),
+                "prediction_nan_values": sum(
+                    cell["prediction_nan_values"] for cell in configs
+                ),
+                "prediction_values": sum(
+                    cell["prediction_values"] for cell in configs
+                ),
                 "evaluation_grid": configs[0]["evaluation_grid"],
                 "inference_seconds": (
-                    float(np.mean(timed)) if len(timed) == len(configs) else None
+                    float(np.nanmean(timed)) if len(timed) == len(configs) else None
                 ),
             }
         )
@@ -192,13 +205,16 @@ def _effective_cells(cells: list[dict]) -> list[dict]:
     return effective_cells
 
 
-def _geometric_mean(values: list[float]) -> float:
+def _geometric_mean(values: list[float]) -> float | None:
     array = np.asarray(values, dtype=np.float64)
-    if not len(array) or not np.isfinite(array).all() or np.any(array < 0):
-        raise ValueError("scaled MASE requires finite non-negative task values")
+    if np.isinf(array).any() or np.any(array[np.isfinite(array)] < 0):
+        raise ValueError("scaled MASE requires non-negative task values or NaN")
+    array = array[np.isfinite(array)]
+    if not len(array):
+        return None
     if np.any(array == 0):
         return 0.0
-    return float(np.exp(np.mean(np.log(array))))
+    return float(np.exp(np.nanmean(np.log(array))))
 
 
 def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list[dict]:
@@ -210,7 +226,7 @@ def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list
     for cell in baseline_cells:
         baseline_by_task[(cell["dataset_id"], cell["horizon"])].append(cell["MASE"])
     baseline = {
-        key: float(np.mean(values)) for key, values in baseline_by_task.items()
+        key: float(np.nanmean(values)) for key, values in baseline_by_task.items()
     }
     baseline_grids = {
         (cell["dataset_id"], cell["horizon"]): cell["evaluation_grid"]
@@ -267,10 +283,20 @@ def summarize_cells(cells: list[dict], seasonal_naive_cells: list[dict]) -> list
                 "MASE_total_values": sum(
                     cell["MASE_total_values"] for cell in model_cells
                 ),
+                "prediction_nan_values": sum(
+                    cell["prediction_nan_values"] for cell in model_cells
+                ),
+                "prediction_values": sum(
+                    cell["prediction_values"] for cell in model_cells
+                ),
             }
         )
 
-    return sorted(rows, key=lambda row: (row["scaled_MASE"], row["model"]))
+    return sorted(rows, key=lambda row: (
+        row["scaled_MASE"] is None,
+        row["scaled_MASE"] if row["scaled_MASE"] is not None else np.inf,
+        row["model"],
+    ))
 
 
 
@@ -299,10 +325,12 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
         times = [cell["inference_seconds"] for cell in selected]
         baselines[key] = {
             "model": "seasonal_naive", "dataset_id": key[0], "horizon": key[1],
-            "MASE": float(np.mean([cell["MASE"] for cell in selected])),
-            "MASE_std": float(np.mean([cell.get("MASE_std", np.nan) for cell in selected])),
-            "MASE_variance": float(np.mean([cell.get("MASE_variance", np.nan) for cell in selected])),
-            "inference_seconds": float(np.mean(times)) if all(value is not None for value in times) else None,
+            "MASE": float(np.nanmean([cell["MASE"] for cell in selected])),
+            "MASE_std": float(np.nanmean([cell.get("MASE_std", np.nan) for cell in selected])),
+            "MASE_variance": float(np.nanmean([cell.get("MASE_variance", np.nan) for cell in selected])),
+            "inference_seconds": float(np.nanmean(times)) if all(value is not None for value in times) else None,
+            "prediction_nan_values": sum(cell["prediction_nan_values"] for cell in selected),
+            "prediction_values": sum(cell["prediction_values"] for cell in selected),
         }
     tasks = []
     for cell in [*effective, *baselines.values()]:
@@ -316,6 +344,8 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
             "MASE_variance": cell.get("MASE_variance", np.nan),
             "seasonal_MASE_variance": baselines[key].get("MASE_variance", np.nan),
             "inference_seconds": cell["inference_seconds"],
+            "prediction_nan_values": cell["prediction_nan_values"],
+            "prediction_values": cell["prediction_values"],
         })
     return write_performance_report(
         tasks, destination, reference="seasonal_naive", scaled_aggregation="geometric",
@@ -380,6 +410,8 @@ def add_model_status(
                     "MASE_finite_values": 0,
                     "MASE_evaluation_values": 0,
                     "MASE_total_values": 0,
+                    "prediction_nan_values": 0,
+                    "prediction_values": 0,
                 }
             )
     for row in rows:
@@ -416,6 +448,8 @@ def write_csv(rows: list[dict], path: Path) -> None:
         "MASE_finite_values",
         "MASE_evaluation_values",
         "MASE_total_values",
+        "prediction_nan_values",
+        "prediction_values",
     ]
     with path.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=fieldnames)
@@ -433,8 +467,8 @@ def write_markdown(rows: list[dict], path: Path) -> None:
         "Inference seconds are summed over the same test forecasting tasks; "
         "a blank total means at least one task lacks timing metadata.",
         "",
-        "| Model | Target mode | State | Exit | Scaled MASE (GM) | Inference seconds | Datasets | Tasks | Timed tasks | MASE finite/grid/total |",
-        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|",
+        "| Model | Target mode | State | Exit | Scaled MASE (GM) | Inference seconds | Datasets | Tasks | Timed tasks | MASE finite/grid/total | Prediction NaNs/values |",
+        "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for row in rows:
         seconds = row["inference_seconds"]
@@ -444,7 +478,8 @@ def write_markdown(rows: list[dict], path: Path) -> None:
             f"{'' if mase is None else f'{mase:.6f}'} | "
             f"{'' if seconds is None else f'{seconds:.3f}'} | "
             f"{row['datasets']} | {row['tasks']} | {row['timed_tasks']} | "
-            f"{row['MASE_finite_values']}/{row['MASE_evaluation_values']}/{row['MASE_total_values']} |"
+            f"{row['MASE_finite_values']}/{row['MASE_evaluation_values']}/{row['MASE_total_values']} | "
+            f"{row['prediction_nan_values']}/{row['prediction_values']} |"
         )
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

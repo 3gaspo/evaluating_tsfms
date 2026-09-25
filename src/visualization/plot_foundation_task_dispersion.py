@@ -42,13 +42,13 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
         assert manifest["status"] == "completed"
         assert summary["evaluation_grid"]["definition"] == "finite_ground_truth_and_seasonal_naive_mase"
         assert metric["dispersion_ddof"] == 0
-        assert metric["finite_values"] == metric["evaluation_values"]
+        assert 0 < metric["finite_values"] <= metric["evaluation_values"]
         assert np.isclose(metric["std"] ** 2, metric["variance"], rtol=1e-12, atol=1e-12)
         identity = manifest["identity"]
         baseline = seasonal[(identity["dataset"], identity["frequency"], identity["term"])]
         seasonal_mean, seasonal_variance = float(baseline["mean"]), float(baseline["variance"])
         assert int(baseline["dispersion_ddof"]) == 0
-        assert int(baseline["finite_values"]) == metric["finite_values"]
+        assert 0 < int(baseline["finite_values"]) <= int(baseline["evaluation_values"])
         assert canonical(baseline["evaluation_grid"]) == canonical(summary["evaluation_grid"]["source"])
         assert np.isfinite(seasonal_mean) and seasonal_mean > 0
         assert np.isfinite(seasonal_variance) and seasonal_variance > 0
@@ -79,16 +79,23 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
         assert len(values) == 98
         means = np.array([row["scaled_mean_MASE"] for row in values])
         variances = np.array([row["relative_variance_MASE"] for row in values])
-        assert np.all(np.isfinite(means) & (means > 0))
-        assert np.all(np.isfinite(variances) & (variances > 0))
-        axis.scatter(means, variances, color=color, marker=marker, s=34, alpha=0.72,
-                     linewidths=0.4, edgecolors="white", label=f"{label} (98 tasks)")
+        finite = np.isfinite(means) & (means > 0) & np.isfinite(variances) & (variances > 0)
+        plotted_means, plotted_variances = means[finite], variances[finite]
+        axis.scatter(plotted_means, plotted_variances, color=color, marker=marker, s=34, alpha=0.72,
+                     linewidths=0.4, edgecolors="white",
+                     label=f"{label} ({len(plotted_means)}/98 finite tasks)")
+        finite_means = means[np.isfinite(means) & (means > 0)]
         stats[model] = {
-            "tasks": len(values), "median_relative_variance_MASE": float(np.median(variances)),
-            "variance_range": [float(variances.min()), float(variances.max())],
-            "lower_variance_than_seasonal": int(np.count_nonzero(variances < 1)),
-            "better_mean_and_lower_variance": int(np.count_nonzero((means < 1) & (variances < 1))),
-            "geometric_mean_scaled_MASE": float(np.exp(np.mean(np.log(means)))),
+            "tasks": len(values), "finite_dispersion_tasks": int(finite.sum()),
+            "median_relative_variance_MASE": (float(np.nanmedian(plotted_variances))
+                                                if len(plotted_variances) else None),
+            "variance_range": ([float(np.nanmin(plotted_variances)), float(np.nanmax(plotted_variances))]
+                               if len(plotted_variances) else None),
+            "lower_variance_than_seasonal": int(np.count_nonzero(plotted_variances < 1)),
+            "better_mean_and_lower_variance": int(np.count_nonzero(
+                (plotted_means < 1) & (plotted_variances < 1))),
+            "geometric_mean_scaled_MASE": (float(np.exp(np.nanmean(np.log(finite_means))))
+                                             if len(finite_means) else None),
         }
     axis.set_xscale("log")
     axis.set_yscale("log")

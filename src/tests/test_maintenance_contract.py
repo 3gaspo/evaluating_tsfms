@@ -103,6 +103,20 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         self.assertIn('"raw_predictions.npz"', cache)
         self.assertIn('"inference.json"', cache)
 
+    def test_vanilla_inference_is_canonical_and_nan_policy_is_explicit(self) -> None:
+        runners = ("chronos2.py", "chronos_bolt.py", "ts_icl.py", "run_timesfm3.py")
+        for name in runners:
+            source = (PROJECT_ROOT / "experiments" / name).read_text(encoding="utf-8")
+            self.assertIn('foundation_experiment_root("foundation_models").parent / "inference"',
+                          source, name)
+            self.assertIn('"foundation_models_raw_inference"', source, name)
+            self.assertIn('"nan_policy": "omit_nan_predictions_report_counts_reject_infinity"',
+                          source, name)
+        seasonal = (PROJECT_ROOT / "experiments/seasonal_naive.py").read_text(
+            encoding="utf-8")
+        self.assertIn('"nan_policy": "omit_nan_predictions_report_counts_reject_infinity"',
+                      seasonal)
+
     def test_shared_seasonal_workflow_contract(self) -> None:
         producer = (PROJECT_ROOT / "scripts/submit_seasonal_naive.sh").read_text(
             encoding="utf-8"

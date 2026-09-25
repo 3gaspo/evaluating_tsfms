@@ -36,7 +36,9 @@ def context_horizon_rows(cells: list[dict], seasonal_cells: list[dict]) -> list[
     rows = []
     for (model, context_size, horizon_size), values in sorted(grouped.items()):
         array = np.asarray(values, dtype=float)
-        scaled_mase = 0.0 if np.any(array == 0) else float(np.exp(np.mean(np.log(array))))
+        finite = array[np.isfinite(array)]
+        scaled_mase = (None if not len(finite) else 0.0 if np.any(finite == 0)
+                       else float(np.exp(np.nanmean(np.log(finite)))))
         rows.append(
             {
                 "model": model,
@@ -44,6 +46,7 @@ def context_horizon_rows(cells: list[dict], seasonal_cells: list[dict]) -> list[
                 "horizon_size": horizon_size,
                 "scaled_MASE": scaled_mase,
                 "tasks": len(values),
+                "finite_tasks": len(finite),
             }
         )
     return rows
@@ -54,7 +57,7 @@ def write_rows(rows: list[dict], path: Path) -> None:
     with path.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(
             stream,
-            fieldnames=("model", "context_size", "horizon_size", "scaled_MASE", "tasks"),
+            fieldnames=("model", "context_size", "horizon_size", "scaled_MASE", "tasks", "finite_tasks"),
         )
         writer.writeheader()
         writer.writerows(rows)

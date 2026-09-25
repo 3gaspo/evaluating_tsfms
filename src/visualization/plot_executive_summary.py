@@ -44,7 +44,7 @@ def load_channel_tasks(report: Path, tasks_root: Path, mode: str):
         metric, identity = summary["metrics"]["MASE"], manifest["identity"]
         if (manifest["status"] != "completed"
                 or summary["evaluation_grid"]["definition"] != "finite_ground_truth_and_seasonal_naive_mase"
-                or metric["finite_values"] != metric["evaluation_values"]):
+                or not 0 < metric["finite_values"] <= metric["evaluation_values"]):
             raise ValueError(f"Task does not satisfy the current evaluation contract: {manifest_path}")
         rows.append({
             "mode": mode, "dataset": identity["dataset"],
