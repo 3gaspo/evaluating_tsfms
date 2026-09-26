@@ -19,6 +19,8 @@ else
 fi
 mkdir -p "$TIME_LOGS"
 source "$PROJECT_ROOT/src/slurm/foundation_ablation_schedule.sh"
+upstream_dependency=()
+[ -z "${SBATCH_DEPENDENCY:-}" ] || upstream_dependency=(--dependency="$SBATCH_DEPENDENCY")
 
 launch_id="${TIME_LAUNCH_ID:-${cluster}_instance_normalization_$(date -u '+%Y%m%dT%H%M%SZ')_$$}"
 jobs=()
@@ -30,7 +32,7 @@ for model in "${FOUNDATION_ABLATION_MODELS[@]}"; do
             front="$PROJECT_ROOT/slurm/dgx/foundation_models/${model}.slurm"
         fi
         status_name="${model}_normalization_${normalization}"
-        job_id="$(sbatch --parsable \
+        job_id="$(sbatch --parsable "${upstream_dependency[@]}" \
             --export="ALL,TIME_EXPERIMENT=instance_normalization,TIME_LAUNCH_ID=$launch_id,TIME_INSTANCE_NORMALIZATION=$normalization,TIME_STATUS_NAME=$status_name" \
             "$front")"
         job_id="${job_id%%;*}"

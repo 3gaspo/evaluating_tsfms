@@ -84,6 +84,10 @@ retain this project's code and artifacts without touching another TIME
 project. Selena writes results to this project's scratch `outputs/` directory
 and all job streams and stage logs to its `logs/` sibling. DGX pulls them into `outputs/selena/` and
 `logs/selena/` in this checkout.
+These are defaults: explicit `OUTPUTS_ROOT` and `LOGS_ROOT` values take
+precedence. The shared Seasonal producer uses the common Seasonal root for its
+artifacts and its `logs/` child for streams and workflow status; all consumers
+read the completed task grid through `TIME_SEASONAL_TASKS_ROOT`.
 
 To regenerate reports for an existing completed launch, set `TIME_LAUNCH_ID`
 to that launch's identity and submit the foundation-summary front directly.

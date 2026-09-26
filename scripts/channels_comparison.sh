@@ -25,6 +25,8 @@ else
     source "$PROJECT_ROOT/src/slurm/runtime_paths.sh"
 fi
 mkdir -p "$TIME_LOGS"
+upstream_dependency=()
+[ -z "${SBATCH_DEPENDENCY:-}" ] || upstream_dependency=(--dependency="$SBATCH_DEPENDENCY")
 
 launch_id="${TIME_LAUNCH_ID:-${cluster}_channels_$(date -u '+%Y%m%dT%H%M%SZ')_$$}"
 comparisons=(multivariate univariate covariate)
@@ -36,7 +38,7 @@ for comparison in "${comparisons[@]}"; do
         front="$PROJECT_ROOT/slurm/dgx/chronos2_comparison/${comparison}.slurm"
     fi
     job_id="$(
-        sbatch --parsable \
+        sbatch --parsable "${upstream_dependency[@]}" \
             --export="ALL,TIME_LAUNCH_ID=$launch_id" \
             "$front"
     )"

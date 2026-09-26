@@ -148,6 +148,16 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
 
         self.assertIn("dgx|selena", producer)
         self.assertIn("OUTPUTS_ROOT=$TIME_SEASONAL_ROOT", producer)
+        self.assertIn("LOGS_ROOT=$TIME_SEASONAL_LOGS_ROOT", producer)
+        runtime = (PROJECT_ROOT / "src/slurm/runtime_paths.sh").read_text(
+            encoding="utf-8"
+        )
+        selena_runtime = (PROJECT_ROOT / "src/slurm/selena_runtime.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('OUTPUTS_ROOT="${OUTPUTS_ROOT:-${TIME_OUTPUTS:-$default_outputs_root}}"', runtime)
+        self.assertIn('OUTPUTS_ROOT="${OUTPUTS_ROOT:-$TIME_SCRATCH_ROOT/outputs}"', selena_runtime)
+        self.assertIn("TIME_SEASONAL_LOGS_ROOT", runtime)
         self.assertIn('for model in "${FOUNDATION_LEARNED_MODELS[@]}"', launcher)
         self.assertNotIn("seasonal_job", launcher)
         self.assertIn('--dependency="afterany:$dependency"', launcher)
