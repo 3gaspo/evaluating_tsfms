@@ -1,0 +1,27 @@
+{
+  "aggregation": "geometric_mean_over_tasks",
+  "artifacts": [
+    "/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260925T213201Z_35363/foundation_model_summary.csv",
+    "/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/foundation_models/selena_20260925T213201Z_35363/foundation_model_summary.md"
+  ],
+  "input_manifests": [],
+  "metric": "task_MASE_divided_by_matching_Seasonal_Naive_MASE",
+  "report": "foundation_model_summary",
+  "results_dir": "/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks",
+  "schema_version": 1,
+  "seasonal_naive_input_manifests": [],
+  "seasonal_naive_results_dir": "/scratch/users/h61084/codes/seasonal/foundation_models/tasks",
+  "selection": {
+    "config_filters": {},
+    "config_policy": "error",
+    "launch_id": "selena_20260925T213201Z_35363",
+    "models": [
+      "chronos_bolt",
+      "chronos2",
+      "ts_icl",
+      "seasonal_naive"
+    ],
+    "repeat_policy": "selected",
+    "target_modes": []
+  }
+}

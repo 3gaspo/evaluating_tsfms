@@ -1,0 +1,97 @@
+{
+  "dataset_config": "Water_Quality_Darwin/15T/medium",
+  "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/seasonal_naive/univariate/Water_Quality_Darwin/15T/medium/run_0/evaluation_grid.npz",
+    "valid_values": 630,
+    "total_values": 630
+  },
+  "prediction_outputs": {
+    "total_values": 544320,
+    "nan_values": 0,
+    "nan_rate": 0.0,
+    "cells_with_nan": 0,
+    "total_cells": 630,
+    "evaluation_values": 544158,
+    "evaluation_nan_values": 0,
+    "evaluation_nan_rate": 0.0
+  },
+  "metrics": {
+    "MSE": {
+      "mean": 5.130555730866615,
+      "std": 28.101159639055428,
+      "variance": 789.6751730596778,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "MAE": {
+      "mean": 0.748544127678127,
+      "std": 1.659311743665347,
+      "variance": 2.753315462665735,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "RMSE": {
+      "mean": 0.9423902956607179,
+      "std": 2.059722374862962,
+      "variance": 4.242456261511119,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "MAPE": {
+      "mean": 0.09820560422840151,
+      "std": 0.17639205508848285,
+      "variance": 0.031114157098338372,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "sMAPE": {
+      "mean": 0.0900998661655717,
+      "std": 0.1475502448255633,
+      "variance": 0.02177107474808367,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "MASE": {
+      "mean": 1.0892248555624096,
+      "std": 0.9307003899397323,
+      "variance": 0.8662032158339698,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "ND": {
+      "mean": 0.09218419767172843,
+      "std": 0.15767534999651092,
+      "variance": 0.024861515996522216,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    },
+    "CRPS": {
+      "mean": 0.09867808002358411,
+      "std": 0.1993366902774977,
+      "variance": 0.039735116090787045,
+      "dispersion_ddof": 0,
+      "finite_values": 630,
+      "evaluation_values": 630,
+      "total_values": 630
+    }
+  },
+  "launch_id": "selena_seasonal_20260925T213119Z_23943",
+  "model": "seasonal_naive",
+  "inference_seconds": 3.473233863711357
+}

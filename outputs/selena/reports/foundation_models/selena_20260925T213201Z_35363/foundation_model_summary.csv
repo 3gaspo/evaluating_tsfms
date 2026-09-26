@@ -1,0 +1,5 @@
+launch_id,model,base_model,target_modes,state,exit_code,scaled_MASE,inference_seconds,datasets,tasks,timed_tasks,MASE_finite_values,MASE_evaluation_values,MASE_total_values,prediction_nan_values,prediction_values
+selena_20260925T213201Z_35363,chronos2,chronos2,,failed,1,,,0,0,0,0,0,0,0,0
+selena_20260925T213201Z_35363,chronos_bolt,chronos_bolt,,failed,1,,,0,0,0,0,0,0,0,0
+selena_20260925T213201Z_35363,seasonal_naive,seasonal_naive,,completed,0,,,0,0,0,0,0,0,0,0
+selena_20260925T213201Z_35363,ts_icl,ts_icl,,failed,1,,,0,0,0,0,0,0,0,0

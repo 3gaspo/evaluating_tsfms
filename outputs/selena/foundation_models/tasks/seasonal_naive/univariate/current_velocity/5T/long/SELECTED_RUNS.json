@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "selections": [
+    {
+      "mode": "auto",
+      "run": "run_0",
+      "scientific_config": {
+        "experiment_config": {
+          "covariate_channels": 0,
+          "covariate_mode": "none"
+        },
+        "model_config": {
+          "quantile_levels": [
+            0.1,
+            0.2,
+            0.3,
+            0.4,
+            0.5,
+            0.6,
+            0.7,
+            0.8,
+            0.9
+          ],
+          "season_length": 288
+        },
+        "pipeline_config": {
+          "evaluation_grid": "finite_ground_truth_and_seasonal_naive_mase",
+          "nan_policy": "omit_nan_predictions_report_counts_reject_infinity",
+          "prediction_length": 864,
+          "raw_inference": {
+            "completed_at": "2026-09-25T21:33:58.861979+00:00",
+            "identity": {
+              "dataset": "current_velocity",
+              "frequency": "5T",
+              "model": "seasonal_naive",
+              "target_mode": "univariate",
+              "term": "long"
+            },
+            "run": "run_0"
+          },
+          "seasonality": 288,
+          "test_length": 4320,
+          "windows": 5
+        }
+      }
+    }
+  ]
+}

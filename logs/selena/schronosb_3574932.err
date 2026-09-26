@@ -1,0 +1,21 @@
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
+  warnings.warn(
+Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:   0%|          | 1/269 [00:01<04:50,  1.08s/it]Loading weights:   4%|▎         | 10/269 [00:01<00:23, 11.11it/s]Loading weights:  16%|█▋        | 44/269 [00:01<00:03, 57.25it/s]Loading weights:  27%|██▋       | 72/269 [00:01<00:02, 94.44it/s]Loading weights:  35%|███▌      | 95/269 [00:01<00:01, 120.36it/s]Loading weights:  44%|████▍     | 118/269 [00:01<00:01, 142.90it/s]Loading weights:  58%|█████▊    | 155/269 [00:01<00:00, 192.39it/s]Loading weights:  68%|██████▊   | 182/269 [00:01<00:00, 191.91it/s]Loading weights:  77%|███████▋  | 206/269 [00:02<00:00, 180.98it/s]Loading weights:  86%|████████▌ | 230/269 [00:02<00:00, 192.69it/s]Loading weights:  96%|█████████▋| 259/269 [00:02<00:00, 216.94it/s]Loading weights: 100%|██████████| 269/269 [00:02<00:00, 119.23it/s]
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
+  offset = pd.tseries.frequencies.to_offset(freq)
+Traceback (most recent call last):
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos_bolt.py", line 447, in <module>
+    main()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos_bolt.py", line 427, in main
+    run_chronos_bolt_experiment(
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos_bolt.py", line 176, in run_chronos_bolt_experiment
+    evaluation_grid_path = resolve_shared_evaluation_grid(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/../src/timebench/pipeline/evaluation_grid.py", line 42, in resolve_shared_evaluation_grid
+    raise ManifestError(
+timebench.pipeline.runs.ManifestError: Expected one selected Seasonal Naive run below /fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Water_Quality_Darwin/15T/short, found 0
+srun: error: sean0016: task 0: Exited with exit code 1
+2026-09-25 23:33:34 | task model=chronos_bolt runner=run_chronos_bolt.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none completed status=failed exit_code=1
+2026-09-25 23:33:34 | stage evaluate completed status=failed exit_code=1
+TIME interrupted-launch recovery launch_id=selena_20260925T213201Z_35363 tasks=0 root=/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos_bolt
+2026-09-25 23:33:35 | workflow foundation_models completed status=failed exit_code=1

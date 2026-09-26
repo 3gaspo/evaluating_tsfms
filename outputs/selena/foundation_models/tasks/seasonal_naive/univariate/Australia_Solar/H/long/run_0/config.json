@@ -1,0 +1,59 @@
+{
+  "dataset_config": "Australia_Solar/H/long",
+  "num_series": 1,
+  "num_windows": 15,
+  "num_variates": 3,
+  "num_model_inputs": 45,
+  "prediction_length": 168,
+  "num_quantiles": 9,
+  "quantile_levels": [
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "freq": "H",
+  "seasonality": 24,
+  "context_length": 34896,
+  "metric_names": [
+    "MSE",
+    "MAE",
+    "RMSE",
+    "MAPE",
+    "sMAPE",
+    "MASE",
+    "ND",
+    "CRPS"
+  ],
+  "prediction_scale_factor": 100.0,
+  "prediction_outputs": {
+    "total_values": 68040,
+    "nan_values": 0,
+    "nan_rate": 0.0,
+    "cells_with_nan": 0,
+    "total_cells": 45,
+    "evaluation_values": 56439,
+    "evaluation_nan_values": 0,
+    "evaluation_nan_rate": 0.0
+  },
+  "metrics_summary_file": "metrics_summary.json",
+  "evaluation_grid": {
+    "definition": "finite_ground_truth_and_seasonal_naive_mase",
+    "source": "/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/seasonal_naive/univariate/Australia_Solar/H/long/run_0/evaluation_grid.npz",
+    "valid_values": 45,
+    "total_values": 45
+  },
+  "launch_id": "selena_seasonal_20260925T213119Z_23943",
+  "inference_seconds": 0.36444639787077904,
+  "model": "seasonal_naive",
+  "season_length": 24,
+  "covariate_mode": "none",
+  "covariate_channels": 0,
+  "experiment": "foundation_models",
+  "target_mode": "univariate"
+}

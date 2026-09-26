@@ -1,0 +1,2 @@
+Feature plot requires all learned-model jobs to succeed; incomplete: chronos_bolt:failed:1 chronos2:failed:1 ts_icl:failed:1
+2026-09-25 23:34:03 | workflow foundation_summary completed status=failed exit_code=1
