@@ -1,0 +1,12 @@
+workflow=context_size
+launch_id=selena_context_size_20260927T131553Z_36791
+task=ts_icl
+state=completed
+stage=none
+active_task=none
+launched_at=2026-09-27T13:49:48Z
+updated_at=2026-09-27T14:12:36Z
+exit_code=0
+slurm_job_id=3584820
+slurm_array_job_id=none
+slurm_array_task_id=none

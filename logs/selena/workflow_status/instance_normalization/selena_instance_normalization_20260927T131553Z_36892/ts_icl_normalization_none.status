@@ -1,0 +1,12 @@
+workflow=instance_normalization
+launch_id=selena_instance_normalization_20260927T131553Z_36892
+task=ts_icl
+state=completed
+stage=none
+active_task=none
+launched_at=2026-09-27T14:10:50Z
+updated_at=2026-09-27T14:14:27Z
+exit_code=0
+slurm_job_id=3584829
+slurm_array_job_id=none
+slurm_array_task_id=none

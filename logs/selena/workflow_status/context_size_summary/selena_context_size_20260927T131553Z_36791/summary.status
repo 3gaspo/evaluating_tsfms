@@ -1,0 +1,12 @@
+workflow=context_size_summary
+launch_id=selena_context_size_20260927T131553Z_36791
+task=macro_mase_timing_and_plots
+state=failed
+stage=context_horizon_plot
+active_task=context_horizon_grid output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260927T131553Z_36791/performance/context_horizon_mase
+launched_at=2026-09-27T15:30:44Z
+updated_at=2026-09-27T15:30:55Z
+exit_code=1
+slurm_job_id=3584824
+slurm_array_job_id=none
+slurm_array_task_id=none

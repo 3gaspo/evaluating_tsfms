@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/plot_context_size.py", line 99, in <module>
+    main()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/plot_context_size.py", line 82, in main
+    seasonal = load_result_cells(
+               ^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/compute_foundation_summary.py", line 41, in load_result_cells
+    selected = select_completed_runs(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/pipeline/runs.py", line 1017, in select_completed_runs
+    raise ManifestError(
+timebench.pipeline.runs.ManifestError: Selected tasks mix model or experiment configurations for seasonal_naive; use --run-config to select one configuration
+srun: error: sean0004: task 0: Exited with exit code 1
+2026-09-27 17:30:55 | task context_horizon_grid output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260927T131553Z_36791/performance/context_horizon_mase completed status=failed exit_code=1
+2026-09-27 17:30:55 | stage context_horizon_plot completed status=failed exit_code=1
+2026-09-27 17:30:55 | workflow context_size_summary completed status=failed exit_code=1

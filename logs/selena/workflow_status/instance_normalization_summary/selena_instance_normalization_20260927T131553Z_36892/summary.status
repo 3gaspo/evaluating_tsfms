@@ -1,0 +1,12 @@
+workflow=instance_normalization_summary
+launch_id=selena_instance_normalization_20260927T131553Z_36892
+task=macro_mase_timing_and_plots
+state=completed
+stage=none
+active_task=none
+launched_at=2026-09-27T15:31:47Z
+updated_at=2026-09-27T15:47:43Z
+exit_code=0
+slurm_job_id=3584831
+slurm_array_job_id=none
+slurm_array_task_id=none

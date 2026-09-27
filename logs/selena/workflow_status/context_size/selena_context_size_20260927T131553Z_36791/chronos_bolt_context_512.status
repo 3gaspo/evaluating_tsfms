@@ -1,0 +1,12 @@
+workflow=context_size
+launch_id=selena_context_size_20260927T131553Z_36791
+task=chronos_bolt
+state=completed
+stage=none
+active_task=none
+launched_at=2026-09-27T15:19:19Z
+updated_at=2026-09-27T15:30:40Z
+exit_code=0
+slurm_job_id=3584811
+slurm_array_job_id=none
+slurm_array_task_id=none

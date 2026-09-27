@@ -1,0 +1,70 @@
+{
+  "completed_at": "2026-09-27T14:41:22.587880+00:00",
+  "experiment": "instance_normalization_raw_inference",
+  "experiment_config": {
+    "covariate_channels": 0,
+    "covariate_mode": "none",
+    "instance_normalization": "zscore"
+  },
+  "identity": {
+    "dataset": "SG_PM25",
+    "frequency": "H",
+    "model": "ts_icl",
+    "target_mode": "univariate",
+    "term": "long"
+  },
+  "launch": {
+    "action": "new",
+    "attempts": [
+      {
+        "action": "new",
+        "launch_id": "selena_instance_normalization_20260927T131553Z_36892",
+        "launched_at": "2026-09-27T14:41:20.537888+00:00",
+        "slurm_array_task_id": null,
+        "slurm_job_id": "3584830"
+      }
+    ],
+    "launch_id": "selena_instance_normalization_20260927T131553Z_36892",
+    "launched_at": "2026-09-27T14:41:20.537888+00:00",
+    "slurm_job_id": "3584830"
+  },
+  "model_config": {
+    "context_length": 4096,
+    "model_size": "tsicl-v1",
+    "quantile_levels": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ]
+  },
+  "pipeline_config": {
+    "covariate_mode": "none",
+    "prediction_length": 168,
+    "target_mode": "univariate",
+    "test_length": 2208,
+    "windows": 13
+  },
+  "project": "evaluating_tsfms",
+  "provenance": {
+    "dataset_config_path": null
+  },
+  "required_artifacts": [
+    "raw_predictions.npz",
+    "inference.json"
+  ],
+  "runtime_config": {
+    "batch_size": 16,
+    "checkpoint_path": "/fslarge/scratch/users/h61084/weights/tsicl/tsicl-v1.ckpt",
+    "device": "cuda"
+  },
+  "schema_version": 1,
+  "started_at": "2026-09-27T14:41:20.537888+00:00",
+  "status": "completed",
+  "updated_at": "2026-09-27T14:41:22.587880+00:00"
+}
