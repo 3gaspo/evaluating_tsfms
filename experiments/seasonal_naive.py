@@ -204,8 +204,9 @@ def run_seasonal_naive_experiment(
                     seasonality=season_length, model_hyperparams=model_hyperparams,
                     quantile_levels=levels, inference_seconds=seconds,
                     task_output_dir=str(run.run_dir), create_evaluation_grid=True)
-                run.complete(["predictions.npz", "metrics.npz", "config.json",
-                    "metrics_summary.json", EVALUATION_GRID_FILE])
+                run.complete(["predictions.npz", "metrics.npz",
+                    "metrics_summary.json", EVALUATION_GRID_FILE],
+                    artifact_metadata={"evaluation": metadata})
             return metadata, run
 
         if inference_run.action == "finalize":

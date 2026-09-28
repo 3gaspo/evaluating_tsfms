@@ -17,7 +17,7 @@ else
     export TIME_STORAGE_ROOT
     source "$PROJECT_ROOT/src/slurm/runtime_paths.sh"
 fi
-mkdir -p "$TIME_LOGS"
+mkdir -p "$TIME_LOGS/context_size/slurm"
 source "$PROJECT_ROOT/src/slurm/foundation_ablation_schedule.sh"
 upstream_dependency=()
 [ -z "${SBATCH_DEPENDENCY:-}" ] || upstream_dependency=(--dependency="$SBATCH_DEPENDENCY")
@@ -33,6 +33,8 @@ for model in "${FOUNDATION_ABLATION_MODELS[@]}"; do
         fi
         status_name="${model}_context_${context_length}"
         job_id="$(sbatch --parsable "${upstream_dependency[@]}" \
+            --output="$TIME_LOGS/context_size/slurm/%x_%j.out" \
+            --error="$TIME_LOGS/context_size/slurm/%x_%j.err" \
             --export="ALL,TIME_EXPERIMENT=context_size,TIME_LAUNCH_ID=$launch_id,TIME_CONTEXT_LENGTH=$context_length,TIME_INSTANCE_NORMALIZATION=none,TIME_STATUS_NAME=$status_name" \
             "$front")"
         job_id="${job_id%%;*}"
@@ -48,6 +50,8 @@ else
     summary_front="$PROJECT_ROOT/slurm/dgx/foundation_summary.slurm"
 fi
 summary_job="$(sbatch --parsable --dependency="afterany:$dependency" \
+    --output="$TIME_LOGS/context_size/slurm/%x_%j.out" \
+    --error="$TIME_LOGS/context_size/slurm/%x_%j.err" \
     --export="ALL,TIME_EXPERIMENT=context_size,TIME_LAUNCH_ID=$launch_id,TIME_SUMMARY_SCRIPT=summarize_foundation_ablation.sh" \
     "$summary_front")"
 summary_job="${summary_job%%;*}"

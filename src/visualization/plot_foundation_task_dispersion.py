@@ -137,8 +137,8 @@ def plot_dispersion(project: Path, report_path: Path, output: Path, figure_path:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     project = Path(__file__).resolve().parents[2]
-    parser.add_argument("--report", type=Path, default=project / "outputs/selena/reports/foundation_models/selena_20260917T102825Z_4593/foundation_model_report_manifest.json")
-    parser.add_argument("--output", type=Path, default=project / "outputs/analysis/task_dispersion")
+    parser.add_argument("--report", type=Path, default=project / "outputs/selena/foundation_models/reports/foundation_model_report_manifest.json")
+    parser.add_argument("--output", type=Path, default=project / "outputs/dgx/analysis/task_dispersion")
     parser.add_argument("--figure", type=Path, default=project / "latex/executive_summary_task_dispersion.png")
     args = parser.parse_args()
     evidence = plot_dispersion(project, args.report, args.output, args.figure)

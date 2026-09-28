@@ -32,8 +32,8 @@ def load_result_cells(
     launch_id: str | None = None,
     target_modes: set[str] | None = None,
     config_filters: dict | None = None,
-    config_policy: str = "error",
-    repeat_policy: str = "selected",
+    config_policy: str = "latest",
+    repeat_policy: str = "latest",
     task_specific_model_fields: set[str] | None = None,
 ) -> list[dict]:
     """Load selected completed manifests for dataset/frequency/horizon cells."""
@@ -51,8 +51,9 @@ def load_result_cells(
     for run_dir, manifest in selected:
         identity = manifest["identity"]
         summary_path = run_dir / "metrics_summary.json"
-        config_path = summary_path.with_name("config.json")
-        config = json.loads(config_path.read_text(encoding="utf-8"))
+        config = manifest.get("artifact_metadata", {}).get("evaluation")
+        if not isinstance(config, dict):
+            raise ValueError(f"Run manifest lacks evaluation artifact metadata: {run_dir}")
         summary = json.loads(summary_path.read_text(encoding="utf-8"))
         mase_summary = summary.get("metrics", {}).get("MASE", {})
         prediction_outputs = summary["prediction_outputs"]
@@ -80,6 +81,7 @@ def load_result_cells(
                 "prediction_values": int(prediction_outputs["evaluation_values"]),
                 "evaluation_grid": dict(summary["evaluation_grid"]),
                 "inference_seconds": inference_seconds,
+                "prediction_length": int(config["prediction_length"]),
                 "manifest_path": str(run_dir / "manifest.json"),
                 "scientific_config": selection.get(
                     "scientific_config",
@@ -312,8 +314,7 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
     horizons = {}
     for cell in [*cells, *seasonal_cells]:
         key = (cell["dataset_id"], cell["horizon"])
-        config = json.loads(Path(cell["manifest_path"]).with_name("config.json").read_text(encoding="utf-8"))
-        horizon = int(config["prediction_length"])
+        horizon = int(cell["prediction_length"])
         if key in horizons and horizons[key] != horizon:
             raise ValueError(f"Different forecast horizons for {key}")
         horizons[key] = horizon
@@ -356,19 +357,23 @@ def write_performance_artifacts(cells: list[dict], seasonal_cells: list[dict], d
 
 
 
-def load_model_statuses(status_dir: Path | None) -> dict[str, dict[str, str]]:
+def load_model_statuses(
+    status_dir: Path | None, launch_id: str | None
+) -> dict[str, dict[str, str]]:
     """Load terminal per-model workflow status for one launch when available."""
     if status_dir is None or not status_dir.is_dir():
         return {}
 
     statuses = {}
-    for status_path in sorted(status_dir.glob("*.status")):
+    launch_name = re.sub(r"[^A-Za-z0-9_.-]+", "_", launch_id) if launch_id else None
+    pattern = f"{launch_name}__*.status" if launch_name else "*.status"
+    for status_path in sorted(status_dir.glob(pattern)):
         values = {}
         for line in status_path.read_text(encoding="utf-8").splitlines():
             key, separator, value = line.partition("=")
             if separator:
                 values[key] = value
-        statuses[status_path.stem] = values
+        statuses[status_path.stem.partition("__")[2] or status_path.stem] = values
     return statuses
 
 
@@ -559,7 +564,7 @@ def main() -> None:
         "--csv",
         type=Path,
         default=None,
-        help="CSV table (default: outputs/reports/<experiment>/<launch>/foundation_model_summary.csv)",
+        help="CSV table (default: outputs/<experiment>/reports/foundation_model_summary.csv)",
     )
     parser.add_argument(
         "--markdown",
@@ -594,13 +599,13 @@ def main() -> None:
     parser.add_argument(
         "--config-policy",
         choices=("error", "distinct", "latest", "average"),
-        default="error",
+        default="latest",
         help="How to handle different matching scientific configs",
     )
     parser.add_argument(
         "--repeat-policy",
         choices=("selected", "latest", "distinct", "average"),
-        default="selected",
+        default="latest",
         help="How to select or aggregate exact repeated configurations",
     )
     parser.add_argument(
@@ -628,7 +633,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    report_root = outputs_root() / "reports" / foundation_experiment_name() / (args.launch_id or "manual")
+    report_root = outputs_root() / foundation_experiment_name() / "reports"
     args.csv = args.csv or report_root / "foundation_model_summary.csv"
     args.markdown = args.markdown or args.csv.parent / "foundation_model_summary.md"
     baseline_root = args.seasonal_naive_results_dir or args.results_dir
@@ -661,7 +666,7 @@ def main() -> None:
     if "seasonal_naive" in models:
         summary_cells.extend(seasonal_naive_cells)
     metric_rows = summarize_cells(summary_cells, seasonal_naive_cells)
-    statuses = load_model_statuses(args.status_dir)
+    statuses = load_model_statuses(args.status_dir, args.launch_id)
     statuses.update(parse_model_statuses(args.model_status))
     rows = add_model_status(metric_rows, args.models, statuses, args.launch_id)
     if not rows:

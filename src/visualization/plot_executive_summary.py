@@ -24,8 +24,6 @@ from plot_foundation_task_dispersion import MODELS, plot_dispersion
 
 
 PROJECT = Path(__file__).resolve().parents[2]
-FOUNDATION_LAUNCH = "selena_20260917T102825Z_4593"
-CHANNEL_LAUNCH = "selena_channels_20260917T102839Z_11944"
 MODES = ("multivariate", "univariate", "covariate")
 
 
@@ -105,11 +103,11 @@ def plot_channel_ratios(ratios: pd.DataFrame, path: Path):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     snapshot = PROJECT / "outputs/selena"
-    parser.add_argument("--foundation-report", type=Path, default=snapshot / f"reports/foundation_models/{FOUNDATION_LAUNCH}/foundation_model_report_manifest.json")
-    parser.add_argument("--channel-summary-root", type=Path, default=snapshot / f"reports/channels_comparison/{CHANNEL_LAUNCH}")
+    parser.add_argument("--foundation-report", type=Path, default=snapshot / "foundation_models/reports/foundation_model_report_manifest.json")
+    parser.add_argument("--channel-summary-root", type=Path, default=snapshot / "channels_comparison/reports")
     parser.add_argument("--channel-tasks-root", type=Path, default=snapshot / "channels_comparison/tasks")
-    parser.add_argument("--feature-data", type=Path, default=snapshot / f"reports/foundation_models/{FOUNDATION_LAUNCH}/feature_analysis/mase_vs_features_data.csv")
-    parser.add_argument("--output", type=Path, default=PROJECT / "outputs/analysis/executive_summary")
+    parser.add_argument("--feature-data", type=Path, default=snapshot / "foundation_models/reports/feature_analysis/mase_vs_features_data.csv")
+    parser.add_argument("--output", type=Path, default=PROJECT / "outputs/dgx/analysis/executive_summary")
     parser.add_argument("--figures-dir", type=Path, default=None)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)

@@ -77,14 +77,14 @@ def main() -> None:
         set(args.models),
         launch_id=args.launch_id,
         config_policy="distinct",
-        repeat_policy="selected",
+        repeat_policy="latest",
     )
     seasonal = load_result_cells(
         args.seasonal_root,
         {"seasonal_naive"},
         target_modes={"univariate"},
-        config_policy="error",
-        repeat_policy="selected",
+        config_policy="latest",
+        repeat_policy="latest",
     )
     rows = context_horizon_rows(cells, seasonal)
     csv_path = args.output.with_suffix(".csv")

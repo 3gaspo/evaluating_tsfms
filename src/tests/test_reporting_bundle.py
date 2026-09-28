@@ -94,11 +94,11 @@ class ReportingBundleTest(unittest.TestCase):
     def test_lightweight_selection(self):
         selector = runpy.run_path(str(ROOT / "src/timebench/pipeline/artifact_selection.py"))
         selected = selector["selected"]
-        for name in ("reports/channels_comparison/launch/native/performance/task_mean_std.png",
-                     "reports/foundation_models/launch/performance/accuracy_time.pdf",
+        for name in ("channels_comparison/reports/native/performance/task_mean_std.png",
+                     "foundation_models/reports/performance/accuracy_time.pdf",
                      "tasks/cell/prediction.json", "tasks/cell/time_inference/record.json"):
             self.assertTrue(selected(name, "lightweight"), name)
-        for name in ("reports/launch/raw.pt", "tasks/cell/metrics.npz", "tasks/cell/predictions.npy"):
+        for name in ("foundation_models/reports/raw.pt", "tasks/cell/metrics.npz", "tasks/cell/predictions.npy"):
             self.assertFalse(selected(name, "lightweight"), name)
         self.assertTrue(selected("tasks/cell/metrics.npz", "detailed"))
         self.assertIn("--exclude=*.npz", selector["filters"]("lightweight"))

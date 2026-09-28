@@ -46,10 +46,3 @@ point: `scripts/instance_normalization.sh`. The two settings have separate
 
 Audits source non-finiteness and forecast windows, then extracts reusable
 dataset features. Entry point: `scripts/dataset_diagnostics.sh`.
-
-## Planned families
-
-- covariate ablations across every foundation model that declares support;
-
-Its exact grid, supported-model subset, and aggregation policy have not yet
-been selected. The migrated launchers do not silently implement it.

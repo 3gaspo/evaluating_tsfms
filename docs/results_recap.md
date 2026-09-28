@@ -166,6 +166,5 @@ cell statistics, not repeated-run uncertainty.
   manifests report those required payloads on Selena, but their contents were
   not independently inspected in this checkout. The current four report
   bundles contain complete task tables and 12 paired PNG/PDF figures each.
-- Covariate generalization beyond Chronos-2 remains planned. The context-size
-  and input-normalization studies are complete. The current evidence does not
+- The context-size and input-normalization studies are complete. The current evidence does not
   show a material accuracy benefit from instance z-score normalization.

@@ -312,7 +312,7 @@ def run_chronos2_experiment(
                     inference_seconds=seconds, task_output_dir=str(run.run_dir),
                     evaluation_grid_path=str(evaluation_grid_path),
                 )
-                run.complete(["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"])
+                run.complete(["predictions.npz", "metrics.npz", "metrics_summary.json"], artifact_metadata={"evaluation": metadata})
             return metadata, run
 
         if inference_run.action == "finalize":

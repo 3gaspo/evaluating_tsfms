@@ -26,8 +26,6 @@ The migrated runnable studies are:
   with predictions transformed back to the target units before evaluation;
 - reusable dataset/window diagnostics and feature-performance associations.
 
-Covariate use across every capable foundation model remains planned.
-
 ## Setup
 
 Prepare the project environment on each execution host with `uv`. Learned
@@ -108,9 +106,10 @@ The completed Seasonal refresh's diagnostic `task_summary.csv` is retained as
 plot evidence and included by lightweight synchronization; its temporary tools
 have been retired.
 
-Job reports live in `outputs/reports/<experiment>/<launch>/`, with an additional
-mode folder for channel reports. Every summary writes a `performance/` bundle
-beside its foundation table:
+Job reports live in `outputs/<surface>/<experiment>/reports/`, with an
+additional mode folder for channel reports when needed. Launch IDs and
+timestamps remain in manifests and experiment logs; they never form directory
+names. Every summary writes a `performance/` bundle beside its foundation table:
 task-level inputs, raw/scaled MASE, reference-relative improvements, recorded
 inference-time totals, and per-domain average tables (CSV, Markdown, LaTeX).
 PNG/PDF figures show horizon-by-sampling-frequency loss and best-model maps,
@@ -129,7 +128,12 @@ ablations additionally put their tested value in the path:
 `outputs/instance_normalization/tasks/<backbone>/normalization/<mode>/.../run_n`.
 This keeps concurrently submitted settings independent; `run_n` distinguishes
 repetitions and remaining non-path configuration differences within one
-setting.
+setting. Each `run_n/manifest.json` is the authoritative scientific
+configuration and lifecycle record. It contains every result-changing setting
+omitted from the path; runtime-only settings that cannot affect the scientific
+result are not part of run identity. Run directories do not contain a redundant
+`config.json`. Exact completed runs are skipped by default; explicit `replace`
+and `new` policies provide the other collision behaviors.
 
 Raw test inference is cached separately. Maximum-context, no-normalization,
 no-covariate forecasts use the canonical
@@ -146,8 +150,11 @@ The project does not perform validation-based model selection.
 Lightweight synchronization/publication uses one shared file selector for report
 bundles, compact stage metadata and timing JSON, excluding raw recovery arrays.
 Both steps apply the same default per-file limit of 100000000 bytes, configurable
-with `PUBLISH_MAX_FILE_BYTES`. `outputs/analysis/` holds separately requested
-artifact analyses. Existing artifacts are not moved by report regeneration.
+with `PUBLISH_MAX_FILE_BYTES`. `outputs/<surface>/analysis/` holds separately
+requested artifact analyses. Existing artifacts are not moved by report
+regeneration. Runtime records live below
+`logs/<surface>/<experiment>/{slurm,hydra,stage_logs,workflow_status}/` as
+applicable.
 Each job logs allocated/visible devices, available GPU/host memory, and explicit
 cgroup available/unavailable state before its stages; learned and CPU-only
 stages also log the device they selected. Reporting uses headless Matplotlib;
@@ -161,8 +168,8 @@ all-model shells are no longer supported; use the launchers above.
 ## Documentation
 
 - [Architecture](docs/architecture.md) describes ownership and execution flow.
-- [Experiment catalog](docs/experiment_catalog.md) distinguishes runnable and
-  planned experiment families.
+- [Experiment catalog](docs/experiment_catalog.md) describes the runnable
+  experiment families.
 - [Method overview](latex/method_overview.tex) states the evaluation questions.
 - [Results recap](docs/results_recap.md) defines the current evidence boundary.
 - [Scientific executive summary](latex/executive_summary.pdf) presents the

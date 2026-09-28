@@ -29,7 +29,11 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from timebench.evaluation.saver import save_window_predictions
 from timebench.evaluation.grid import EVALUATION_GRID_DEFINITION
 from timebench.evaluation.timing import EvaluationTimer
-from timebench.evaluation.utils import get_available_terms, normalize_tsicl_quantiles
+from timebench.evaluation.utils import (
+    get_available_terms,
+    normalize_tsicl_quantiles,
+    patch_tsicl_covariate_rollout,
+)
 from timebench.evaluation.normalization import (
     INSTANCE_NORMALIZATION_MODES,
     normalize_instance,
@@ -262,7 +266,7 @@ def run_tsicl_experiment(
                     seasonality=season_length, model_hyperparams=model_hyperparams,
                     quantile_levels=levels, inference_seconds=seconds,
                     task_output_dir=str(run.run_dir), evaluation_grid_path=str(evaluation_grid_path))
-                run.complete(["predictions.npz", "metrics.npz", "config.json", "metrics_summary.json"])
+                run.complete(["predictions.npz", "metrics.npz", "metrics_summary.json"], artifact_metadata={"evaluation": metadata})
             return metadata, run
 
         if inference_run.action == "finalize":
@@ -278,6 +282,7 @@ def run_tsicl_experiment(
             model_path=str(checkpoint_path),
             allow_auto_download=False,
         )
+        patch_tsicl_covariate_rollout(model)
 
         # Determine split
         data_length = test_length

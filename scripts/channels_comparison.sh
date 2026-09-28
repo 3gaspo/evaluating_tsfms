@@ -24,7 +24,7 @@ else
     export TIME_STORAGE_ROOT
     source "$PROJECT_ROOT/src/slurm/runtime_paths.sh"
 fi
-mkdir -p "$TIME_LOGS"
+mkdir -p "$TIME_LOGS/channels_comparison/slurm"
 upstream_dependency=()
 [ -z "${SBATCH_DEPENDENCY:-}" ] || upstream_dependency=(--dependency="$SBATCH_DEPENDENCY")
 

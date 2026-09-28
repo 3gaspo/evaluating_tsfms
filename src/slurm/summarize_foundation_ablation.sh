@@ -20,21 +20,21 @@ export TIME_WORKFLOW_NAME TIME_TASK_NAME TIME_STATUS_NAME TIME_LAUNCH_ID
 source "$PROJECT_ROOT/src/slurm/workflow_common.sh"
 
 time_workflow_init
-status_root="$TIME_LOGS/workflow_status/$experiment/$TIME_LAUNCH_ID"
+status_root="$TIME_LOGS/$experiment/workflow_status/$experiment"
 incomplete=()
 for model in "${FOUNDATION_ABLATION_MODELS[@]}"; do
     if [ "$experiment" = context_size ]; then
         for context_length in $(foundation_context_lengths "$model"); do
             expected="${model}_context_${context_length}"
-            state="$(sed -n 's/^state=//p' "$status_root/$expected.status" 2>/dev/null || true)"
-            exit_code="$(sed -n 's/^exit_code=//p' "$status_root/$expected.status" 2>/dev/null || true)"
+            state="$(sed -n 's/^state=//p' "$status_root/${TIME_LAUNCH_ID}__${expected}.status" 2>/dev/null || true)"
+            exit_code="$(sed -n 's/^exit_code=//p' "$status_root/${TIME_LAUNCH_ID}__${expected}.status" 2>/dev/null || true)"
             [ "$state" = completed ] && [ "$exit_code" = 0 ] || incomplete+=("$expected")
         done
     else
         for normalization in "${FOUNDATION_NORMALIZATION_MODES[@]}"; do
             expected="${model}_normalization_${normalization}"
-            state="$(sed -n 's/^state=//p' "$status_root/$expected.status" 2>/dev/null || true)"
-            exit_code="$(sed -n 's/^exit_code=//p' "$status_root/$expected.status" 2>/dev/null || true)"
+            state="$(sed -n 's/^state=//p' "$status_root/${TIME_LAUNCH_ID}__${expected}.status" 2>/dev/null || true)"
+            exit_code="$(sed -n 's/^exit_code=//p' "$status_root/${TIME_LAUNCH_ID}__${expected}.status" 2>/dev/null || true)"
             [ "$state" = completed ] && [ "$exit_code" = 0 ] || incomplete+=("$expected")
         done
     fi
@@ -45,7 +45,7 @@ if [ "${#incomplete[@]}" -gt 0 ]; then
 fi
 
 tasks_root="$TIME_OUTPUTS/$experiment/tasks"
-summary_root="$TIME_OUTPUTS/reports/$experiment/$TIME_LAUNCH_ID"
+summary_root="$TIME_OUTPUTS/$experiment/reports"
 extra_artifacts=()
 config_policy=distinct
 
@@ -84,7 +84,7 @@ summary_command=(
     --models "${FOUNDATION_ABLATION_MODELS[@]}"
     --launch-id "$TIME_LAUNCH_ID"
     --config-policy "$config_policy"
-    --repeat-policy selected
+    --repeat-policy latest
     --csv "$summary_root/foundation_model_summary.csv"
     --markdown "$summary_root/foundation_model_summary.md"
 )

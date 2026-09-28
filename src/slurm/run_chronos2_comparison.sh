@@ -55,7 +55,7 @@ if [ "${TIME_REPORT_ONLY:-0}" != 1 ]; then
 fi
 
 time_stage_start summarize
-aggregate_dir="$TIME_OUTPUTS/reports/channels_comparison/$TIME_LAUNCH_ID/$comparison"
+aggregate_dir="$TIME_OUTPUTS/channels_comparison/reports/$comparison"
 mkdir -p "$aggregate_dir"
 summary_command=(
     uv run --no-sync python
@@ -66,8 +66,8 @@ summary_command=(
     --model-status chronos2=completed,0
     --launch-id "$TIME_LAUNCH_ID"
     --target-mode "$TIME_TARGET_MODE"
-    --config-policy "${TIME_CONFIG_POLICY:-error}"
-    --repeat-policy "${TIME_REPEAT_POLICY:-selected}"
+    --config-policy "${TIME_CONFIG_POLICY:-latest}"
+    --repeat-policy "${TIME_REPEAT_POLICY:-latest}"
     --csv "$aggregate_dir/foundation_model_summary.csv"
     --markdown "$aggregate_dir/foundation_model_summary.md"
 )
