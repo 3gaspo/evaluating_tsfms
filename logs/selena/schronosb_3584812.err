@@ -1,334 +1,0 @@
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:   6%|▌         | 16/269 [00:00<00:01, 159.07it/s]Loading weights:  14%|█▍        | 39/269 [00:00<00:01, 188.26it/s]Loading weights:  25%|██▌       | 68/269 [00:00<00:00, 230.67it/s]Loading weights:  36%|███▋      | 98/269 [00:00<00:00, 257.08it/s]Loading weights:  46%|████▌     | 124/269 [00:00<00:00, 255.44it/s]Loading weights:  58%|█████▊    | 155/269 [00:00<00:00, 267.13it/s]Loading weights:  68%|██████▊   | 182/269 [00:00<00:00, 238.99it/s]Loading weights:  77%|███████▋  | 207/269 [00:00<00:00, 230.64it/s]Loading weights:  86%|████████▌ | 231/269 [00:00<00:00, 231.65it/s]Loading weights:  96%|█████████▌| 258/269 [00:01<00:00, 233.65it/s]Loading weights: 100%|██████████| 269/269 [00:01<00:00, 238.39it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1000.83it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 932.68it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 910.03it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1007.06it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 939.95it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.51it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1002.80it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.67it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.43it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1015.05it/s]Loading weights:  76%|███████▌  | 205/269 [00:00<00:00, 929.85it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 917.87it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1001.53it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.15it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 909.49it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 100/269 [00:00<00:00, 997.87it/s]Loading weights:  74%|███████▍  | 200/269 [00:00<00:00, 929.36it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.59it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1003.55it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 941.70it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 917.99it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1008.96it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.90it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.11it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1009.68it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 928.53it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 912.99it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1011.61it/s]Loading weights:  76%|███████▌  | 205/269 [00:00<00:00, 932.76it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 921.60it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1005.87it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 922.75it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 913.05it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1002.87it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 938.33it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 915.28it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1005.88it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 937.45it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 913.95it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1004.20it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 941.02it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.66it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1006.74it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 939.71it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.79it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1009.91it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 938.46it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.43it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 999.01it/s]Loading weights:  75%|███████▌  | 203/269 [00:00<00:00, 931.57it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 912.99it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 100/269 [00:00<00:00, 985.64it/s]Loading weights:  74%|███████▍  | 199/269 [00:00<00:00, 920.21it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 907.74it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1002.82it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 939.10it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 915.00it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1007.27it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 944.25it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 921.21it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1004.36it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 935.11it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.76it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1001.53it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 938.91it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 915.38it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1003.20it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 936.10it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.49it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1005.22it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.07it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 909.58it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  19%|█▉        | 51/269 [00:00<00:00, 461.03it/s]Loading weights:  43%|████▎     | 117/269 [00:00<00:00, 529.01it/s]Loading weights:  65%|██████▌   | 176/269 [00:00<00:00, 554.57it/s]Loading weights:  86%|████████▌ | 232/269 [00:00<00:00, 471.53it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 493.93it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1003.20it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 939.45it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 917.30it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1001.85it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 935.96it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 913.62it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 999.78it/s]Loading weights:  75%|███████▌  | 203/269 [00:00<00:00, 933.07it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.18it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: Period with BDay freq is deprecated and will be removed in a future version. Use a DatetimeIndex with BDay freq instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/split.py:181: FutureWarning: Period with BDay freq is deprecated and will be removed in a future version. Use a DatetimeIndex with BDay freq instead.
-  sliced_entry[FieldName.START] += offset
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1017.65it/s]Loading weights:  76%|███████▌  | 205/269 [00:00<00:00, 928.52it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.90it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: Period with BDay freq is deprecated and will be removed in a future version. Use a DatetimeIndex with BDay freq instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/split.py:181: FutureWarning: Period with BDay freq is deprecated and will be removed in a future version. Use a DatetimeIndex with BDay freq instead.
-  sliced_entry[FieldName.START] += offset
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 100/269 [00:00<00:00, 998.77it/s]Loading weights:  74%|███████▍  | 200/269 [00:00<00:00, 925.70it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.67it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1003.08it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 937.47it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.93it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1007.34it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 929.37it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 913.53it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1004.62it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.02it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 910.42it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 999.48it/s]Loading weights:  75%|███████▌  | 203/269 [00:00<00:00, 927.82it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.18it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  19%|█▉        | 51/269 [00:00<00:00, 497.84it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 509.33it/s]Loading weights:  68%|██████▊   | 182/269 [00:00<00:00, 630.02it/s]Loading weights:  99%|█████████▊| 265/269 [00:00<00:00, 703.12it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 659.77it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1002.06it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 937.57it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.87it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1000.52it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 938.21it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 915.34it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 995.88it/s]Loading weights:  75%|███████▌  | 203/269 [00:00<00:00, 932.42it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 913.30it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1006.20it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 938.63it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 914.73it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'Q' is deprecated and will be removed in a future version, please use 'QE' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1000.04it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 940.84it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 917.31it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'Q' is deprecated and will be removed in a future version, please use 'QE' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1015.21it/s]Loading weights:  76%|███████▌  | 205/269 [00:00<00:00, 928.30it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.25it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'M' is deprecated and will be removed in a future version, please use 'ME' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1005.90it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 941.71it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 919.76it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 100/269 [00:00<00:00, 997.40it/s]Loading weights:  74%|███████▍  | 200/269 [00:00<00:00, 920.11it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 907.63it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1007.11it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 923.53it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 910.01it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 101/269 [00:00<00:00, 1002.76it/s]Loading weights:  75%|███████▌  | 202/269 [00:00<00:00, 925.47it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 911.14it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  19%|█▉        | 51/269 [00:00<00:00, 497.69it/s]Loading weights:  50%|█████     | 135/269 [00:00<00:00, 695.66it/s]Loading weights:  80%|███████▉  | 214/269 [00:00<00:00, 728.46it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 732.20it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1004.36it/s]Loading weights:  76%|███████▌  | 204/269 [00:00<00:00, 940.81it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 916.77it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  38%|███▊      | 103/269 [00:00<00:00, 1014.30it/s]Loading weights:  76%|███████▌  | 205/269 [00:00<00:00, 930.09it/s] Loading weights: 100%|██████████| 269/269 [00:00<00:00, 917.81it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
-  warnings.warn(
-Loading weights:   0%|          | 0/269 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 100/269 [00:00<00:00, 993.44it/s]Loading weights:  74%|███████▍  | 200/269 [00:00<00:00, 921.11it/s]Loading weights: 100%|██████████| 269/269 [00:00<00:00, 903.50it/s]
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  offset = pd.tseries.frequencies.to_offset(freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/dataset/common.py:263: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
-  return pd.Period(val, freq)
-/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/chronos/chronos_bolt.py:546: UserWarning: We recommend keeping prediction length <= 64. The quality of longer predictions may degrade since the model is not optimized for it. 
-  warnings.warn(msg)
