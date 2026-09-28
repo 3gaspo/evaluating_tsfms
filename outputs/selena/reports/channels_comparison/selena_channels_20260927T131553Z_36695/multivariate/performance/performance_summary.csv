@@ -1,3 +1,0 @@
-model,tasks,finite_MASE_tasks,mean_task_MASE,scaled_MASE,total_inference_seconds,timed_tasks,prediction_nan_values,prediction_values,prediction_nan_rate,relative_improvement_percent,relative_scaled_improvement_percent,relative_tasks,mean_paired_improvement_percent,paired_percentage_tasks,reference_mean_loss,reference_total_inference_seconds
-chronos2,74,74,1.0030163803901493,0.6900454053638673,339.96210142225027,74,0,62397621,0.0,26.55688060932827,30.995459463613273,74,29.202155180954495,74,1.3657050363761454,560.4859826061875
-seasonal_naive,74,74,1.3657050363761452,1.0,560.4859826061875,74,0,62397621,0.0,0.0,0.0,74,0.0,74,1.3657050363761452,560.4859826061875

@@ -1,8 +1,0 @@
-[2026-09-27 15:30:42 UTC] resources allocation {"CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "2", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3584824", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "16000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "TIME_DEVICE": "unset", "cpu_count": 2, "host": "sean0004"}
-[2026-09-27 15:30:42 UTC] resources RAM {"MemAvailable_MiB": 372008.64453125, "MemTotal_MiB": 386622.86328125, "cgroup_reason": "memory.max is unlimited", "cgroup_status": "unlimited"}
-[2026-09-27 15:30:42 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-638c0130-3dcc-bd87-d90d-4789fd8ad53b, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
-[2026-09-27 15:30:44 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
-[2026-09-27 15:30:44 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
-2026-09-27 17:30:44 | workflow context_size_summary started launch_id=selena_context_size_20260927T131553Z_36791 task=macro_mase_timing_and_plots slurm_job_id=3584824 slurm_array_job_id=none slurm_array_task_id=none
-2026-09-27 17:30:44 | stage context_horizon_plot started
-2026-09-27 17:30:44 | task context_horizon_grid output=/scratch/users/h61084/codes/evaluating_tsfms/outputs/reports/context_size/selena_context_size_20260927T131553Z_36791/performance/context_horizon_mase started

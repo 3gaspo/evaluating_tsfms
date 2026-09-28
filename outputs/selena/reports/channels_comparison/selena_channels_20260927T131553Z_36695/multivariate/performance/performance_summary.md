@@ -1,4 +1,0 @@
-| model | tasks | mean task MASE | scaled MASE | total inference seconds | prediction nan values | prediction values | prediction nan rate | relative improvement percent | relative scaled improvement percent | mean paired improvement percent |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| chronos2 | 74 | 1.00302 | 0.690045 | 339.962 | 0 | 62397621 | 0 | 26.5569 | 30.9955 | 29.2022 |
-| seasonal_naive | 74 | 1.36571 | 1 | 560.486 | 0 | 62397621 | 0 | 0 | 0 | 0 |
