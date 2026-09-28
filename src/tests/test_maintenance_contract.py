@@ -147,7 +147,7 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         ).read_text(encoding="utf-8")
 
         self.assertIn("dgx|selena", producer)
-        self.assertIn("OUTPUTS_ROOT=$TIME_SEASONAL_ROOT", producer)
+        self.assertIn("OUTPUTS_ROOT=$TIME_SEASONAL_OUTPUTS_ROOT", producer)
         self.assertIn("LOGS_ROOT=$TIME_SEASONAL_LOGS_ROOT", producer)
         runtime = (PROJECT_ROOT / "src/slurm/runtime_paths.sh").read_text(
             encoding="utf-8"
@@ -163,14 +163,14 @@ class EvaluatingTSFMsMaintenanceContractTest(unittest.TestCase):
         self.assertIn('--dependency="afterany:$dependency"', launcher)
         self.assertIn("FOUNDATION_LEARNED_MODELS=(", registry)
         self.assertIn(
-            '--seasonal-naive-results-dir "$TIME_SEASONAL_TASKS_ROOT"', summary
+            '--seasonal-naive-results-dir "$TIME_SEASONAL_EVALUATIONS_ROOT"', summary
         )
         self.assertIn(
-            '--seasonal-naive-results-dir "$TIME_SEASONAL_TASKS_ROOT"', channels
+            '--seasonal-naive-results-dir "$TIME_SEASONAL_EVALUATIONS_ROOT"', channels
         )
         self.assertIn("create_evaluation_grid=True", seasonal_experiment)
         self.assertIn("finite_ground_truth_and_seasonal_naive_mase", evaluation_grid)
-        self.assertIn("TIME_SEASONAL_TASKS_ROOT", grid_resolver)
+        self.assertIn("TIME_SEASONAL_EVALUATIONS_ROOT", grid_resolver)
         self.assertIn("evaluation_grid_path is required", saver)
 
     def test_seasonal_naive_uses_direct_deterministic_quantiles(self) -> None:

@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 from pathlib import Path
 from typing import Any
 
@@ -86,6 +87,17 @@ class Migration:
                 path.rmdir()
         if root.exists() and root.is_dir() and not any(root.iterdir()):
             root.rmdir()
+
+    def remove_tree(self, path: Path) -> None:
+        if not path.exists():
+            return
+        self.note(f"remove stale {path}")
+        if self.dry_run:
+            return
+        if path.is_file() or path.is_symlink():
+            path.unlink()
+            return
+        shutil.rmtree(path)
 
     def rewrite_value(self, value: Any) -> Any:
         if isinstance(value, dict):
@@ -167,6 +179,17 @@ def configured_root(explicit: Path | None, environment: str, kind: str) -> Path:
     return Path(configured) if configured else scratch_root(kind)
 
 
+def shared_seasonal_root() -> Path:
+    configured = os.environ.get("TIME_SEASONAL_ROOT")
+    if configured:
+        return Path(configured) / "outputs/seasonal_naive"
+    nni_file = Path(os.environ.get("TIME_NNI_FILE", Path.home() / "codes/.secrets/nni"))
+    nni = nni_file.read_text(encoding="utf-8").splitlines()[0].strip().lower()
+    if re.fullmatch(r"[a-z][a-z0-9_-]*", nni) is None:
+        raise ValueError(f"Invalid NNI in {nni_file}")
+    return Path("/scratch/users") / nni / "codes/seasonal/outputs/seasonal_naive"
+
+
 def report_time(path: Path) -> tuple[str, int]:
     manifests = list(path.rglob("*report_manifest.json"))
     values: list[str] = []
@@ -203,7 +226,15 @@ def flatten_reports(migration: Migration, source: Path, target: Path) -> None:
     migration.remove_empty(source)
 
 
-def migrate_evaluating_outputs(migration: Migration) -> None:
+def migrate_evaluating_outputs(migration: Migration, seasonal_root: Path) -> None:
+    stale_inference = migration.outputs / "foundation_models/inference/seasonal_naive"
+    stale_evaluations = migration.outputs / "foundation_models/tasks/seasonal_naive"
+    migration.moves.extend([
+        (str(stale_inference.resolve()), str((seasonal_root / "inference").resolve())),
+        (str(stale_evaluations.resolve()), str((seasonal_root / "evaluations").resolve())),
+    ])
+    migration.remove_tree(stale_inference)
+    migration.remove_tree(stale_evaluations)
     old_reports = migration.outputs / "reports"
     if old_reports.is_dir():
         for experiment_root in sorted(old_reports.iterdir(), key=lambda path: path.name):
@@ -469,7 +500,7 @@ def main() -> None:
     migration = Migration(outputs_root, logs_root, args.dry_run)
     if PROJECT == "evaluating_tsfms":
         evaluating_stream_plan(migration.logs)  # Validate every root stream before moving anything.
-        migrate_evaluating_outputs(migration)
+        migrate_evaluating_outputs(migration, shared_seasonal_root())
         migrate_logs(migration)
     elif PROJECT == "selectime":
         migrate_selectime_outputs(migration)
