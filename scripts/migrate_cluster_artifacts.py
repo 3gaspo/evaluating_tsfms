@@ -227,6 +227,18 @@ def flatten_reports(migration: Migration, source: Path, target: Path) -> None:
 
 
 def migrate_evaluating_outputs(migration: Migration, seasonal_root: Path) -> None:
+    seasonal_project = seasonal_root.parents[1]
+    legacy_shared = seasonal_project / "foundation_models"
+    migration.moves.extend([
+        (
+            str((legacy_shared / "inference/seasonal_naive").resolve()),
+            str((seasonal_root / "inference").resolve()),
+        ),
+        (
+            str((legacy_shared / "tasks/seasonal_naive").resolve()),
+            str((seasonal_root / "evaluations").resolve()),
+        ),
+    ])
     stale_inference = migration.outputs / "foundation_models/inference/seasonal_naive"
     stale_evaluations = migration.outputs / "foundation_models/tasks/seasonal_naive"
     migration.moves.extend([
