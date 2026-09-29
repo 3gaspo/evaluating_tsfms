@@ -1,97 +1,96 @@
 {
-  "dataset_config": "NE_China_Wind/H/short",
   "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "dataset_config": "NE_China_Wind/H/short",
   "evaluation_grid": {
     "definition": "finite_ground_truth_and_seasonal_naive_mase",
-    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/NE_China_Wind/H/short/run_0/evaluation_grid.npz",
-    "valid_values": 120,
-    "total_values": 120
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/NE_China_Wind/H/short/run_0/evaluation_grid.npz",
+    "total_values": 120,
+    "valid_values": 120
   },
-  "prediction_outputs": {
-    "total_values": 25920,
-    "nan_values": 0,
-    "nan_rate": 0.0,
-    "cells_with_nan": 0,
-    "total_cells": 120,
-    "evaluation_values": 25920,
-    "evaluation_nan_values": 0,
-    "evaluation_nan_rate": 0.0
-  },
+  "inference_seconds": 0.36287095956504345,
   "metrics": {
-    "MSE": {
-      "mean": 0.11190571931097922,
-      "std": 0.18437194125425058,
-      "variance": 0.033993012721860824,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "MAE": {
-      "mean": 0.226513161754863,
-      "std": 0.181082142983942,
-      "variance": 0.03279074250765682,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "RMSE": {
-      "mean": 0.2647044267956662,
-      "std": 0.2045416479491573,
-      "variance": 0.041837285745757,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "MAPE": {
-      "mean": 1.0140277439720122,
-      "std": 2.1830428946259133,
-      "variance": 4.765676279776687,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "sMAPE": {
-      "mean": 0.5011896678723938,
-      "std": 0.527670984933611,
-      "variance": 0.27843666834080716,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "MASE": {
-      "mean": 0.5312767844758193,
-      "std": 0.4007596701149594,
-      "variance": 0.16060831319065105,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
-    "ND": {
-      "mean": 0.4862624308663456,
-      "std": 0.600520159582233,
-      "variance": 0.3606244620646707,
-      "dispersion_ddof": 0,
-      "finite_values": 120,
-      "evaluation_values": 120,
-      "total_values": 120
-    },
     "CRPS": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
       "mean": 0.37495578799447504,
       "std": 0.44839172871367294,
-      "variance": 0.20105514237883607,
+      "total_values": 120,
+      "variance": 0.20105514237883607
+    },
+    "MAE": {
       "dispersion_ddof": 0,
-      "finite_values": 120,
       "evaluation_values": 120,
-      "total_values": 120
+      "finite_values": 120,
+      "mean": 0.226513161754863,
+      "std": 0.181082142983942,
+      "total_values": 120,
+      "variance": 0.03279074250765682
+    },
+    "MAPE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 1.0140277439720122,
+      "std": 2.1830428946259133,
+      "total_values": 120,
+      "variance": 4.765676279776687
+    },
+    "MASE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 0.5312767844758193,
+      "std": 0.4007596701149594,
+      "total_values": 120,
+      "variance": 0.16060831319065105
+    },
+    "MSE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 0.11190571931097922,
+      "std": 0.18437194125425058,
+      "total_values": 120,
+      "variance": 0.033993012721860824
+    },
+    "ND": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 0.4862624308663456,
+      "std": 0.600520159582233,
+      "total_values": 120,
+      "variance": 0.3606244620646707
+    },
+    "RMSE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 0.2647044267956662,
+      "std": 0.2045416479491573,
+      "total_values": 120,
+      "variance": 0.041837285745757
+    },
+    "sMAPE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 120,
+      "finite_values": 120,
+      "mean": 0.5011896678723938,
+      "std": 0.527670984933611,
+      "total_values": 120,
+      "variance": 0.27843666834080716
     }
   },
-  "launch_id": "selena_context_size_20260927T131553Z_36791",
   "model": "ts_icl",
-  "inference_seconds": 0.36287095956504345
+  "prediction_outputs": {
+    "cells_with_nan": 0,
+    "evaluation_nan_rate": 0.0,
+    "evaluation_nan_values": 0,
+    "evaluation_values": 25920,
+    "nan_rate": 0.0,
+    "nan_values": 0,
+    "total_cells": 120,
+    "total_values": 25920
+  }
 }

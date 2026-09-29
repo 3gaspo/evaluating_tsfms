@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/compute_foundation_summary.py", line 719, in <module>
+    main()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/compute_foundation_summary.py", line 668, in main
+    metric_rows = summarize_cells(summary_cells, seasonal_naive_cells)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/scripts/compute_foundation_summary.py", line 247, in summarize_cells
+    raise ValueError(
+ValueError: evaluation grid differs from Seasonal Naive for Australia_Solar/H/long
+srun: error: sean0009: task 0: Exited with exit code 1
+2026-09-29 01:37:21 | task foundation_ablation experiment=context_size outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/context_size/reports completed status=failed exit_code=1
+2026-09-29 01:37:21 | stage summarize completed status=failed exit_code=1
+2026-09-29 01:37:21 | workflow context_size_summary completed status=failed exit_code=1

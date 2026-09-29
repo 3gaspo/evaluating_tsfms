@@ -1,4 +1,67 @@
 {
+  "artifact_metadata": {
+    "evaluation": {
+      "context_length": 2048,
+      "covariate_channels": 0,
+      "covariate_mode": "none",
+      "covariate_source": "none",
+      "covariate_time_span": "none",
+      "dataset_config": "current_velocity/15T/short",
+      "evaluation_grid": {
+        "definition": "finite_ground_truth_and_seasonal_naive_mase",
+        "source": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/current_velocity/15T/short/run_0/evaluation_grid.npz",
+        "total_values": 3600,
+        "valid_values": 3600
+      },
+      "experiment": "context_size",
+      "freq": "15T",
+      "inference_seconds": 4.602680299431086,
+      "instance_normalization": "none",
+      "metric_names": [
+        "MSE",
+        "MAE",
+        "RMSE",
+        "MAPE",
+        "sMAPE",
+        "MASE",
+        "ND",
+        "CRPS"
+      ],
+      "metrics_summary_file": "metrics_summary.json",
+      "model": "chronos2",
+      "model_size": "chronos2",
+      "num_model_inputs": 600,
+      "num_quantiles": 9,
+      "num_series": 5,
+      "num_variates": 6,
+      "num_windows": 120,
+      "prediction_length": 12,
+      "prediction_outputs": {
+        "cells_with_nan": 0,
+        "evaluation_nan_rate": 0.0,
+        "evaluation_nan_values": 0,
+        "evaluation_values": 388800,
+        "nan_rate": 0.0,
+        "nan_values": 0,
+        "total_cells": 3600,
+        "total_values": 388800
+      },
+      "prediction_scale_factor": 1.0,
+      "quantile_levels": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "seasonality": 96,
+      "target_mode": "multivariate"
+    }
+  },
   "completed_at": "2026-09-27T13:39:32.732824+00:00",
   "experiment": "context_size",
   "experiment_config": {
@@ -80,13 +143,12 @@
   "project": "evaluating_tsfms",
   "provenance": {
     "dataset_config_path": null,
-    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/current_velocity/15T/short/run_0/evaluation_grid.npz",
+    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/current_velocity/15T/short/run_0/evaluation_grid.npz",
     "raw_inference_manifest": "/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/context_size/inference/chronos2/context_length/2048/multivariate/current_velocity/15T/short/run_0/manifest.json"
   },
   "required_artifacts": [
     "predictions.npz",
     "metrics.npz",
-    "config.json",
     "metrics_summary.json"
   ],
   "runtime_config": {

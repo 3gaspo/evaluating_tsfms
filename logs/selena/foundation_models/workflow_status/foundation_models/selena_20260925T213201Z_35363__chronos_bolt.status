@@ -1,0 +1,12 @@
+workflow=foundation_models
+launch_id=selena_20260925T213201Z_35363
+task=chronos_bolt
+state=failed
+stage=evaluate
+active_task=model=chronos_bolt runner=run_chronos_bolt.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none
+launched_at=2026-09-25T21:32:50Z
+updated_at=2026-09-25T21:33:35Z
+exit_code=1
+slurm_job_id=3574932
+slurm_array_job_id=none
+slurm_array_task_id=none

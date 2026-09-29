@@ -1,4 +1,67 @@
 {
+  "artifact_metadata": {
+    "evaluation": {
+      "context_length": 8192,
+      "covariate_channels": 0,
+      "covariate_mode": "none",
+      "covariate_source": "none",
+      "covariate_time_span": "none",
+      "dataset_config": "Coastal_T_S/5T/medium",
+      "evaluation_grid": {
+        "definition": "finite_ground_truth_and_seasonal_naive_mase",
+        "source": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/Coastal_T_S/5T/medium/run_0/evaluation_grid.npz",
+        "total_values": 810,
+        "valid_values": 810
+      },
+      "experiment": "instance_normalization",
+      "freq": "5T",
+      "inference_seconds": 4.066814675927162,
+      "instance_normalization": "none",
+      "metric_names": [
+        "MSE",
+        "MAE",
+        "RMSE",
+        "MAPE",
+        "sMAPE",
+        "MASE",
+        "ND",
+        "CRPS"
+      ],
+      "metrics_summary_file": "metrics_summary.json",
+      "model": "chronos2",
+      "model_size": "chronos2",
+      "num_model_inputs": 270,
+      "num_quantiles": 9,
+      "num_series": 18,
+      "num_variates": 3,
+      "num_windows": 15,
+      "prediction_length": 288,
+      "prediction_outputs": {
+        "cells_with_nan": 0,
+        "evaluation_nan_rate": 0.0,
+        "evaluation_nan_values": 0,
+        "evaluation_values": 2099520,
+        "nan_rate": 0.0,
+        "nan_values": 0,
+        "total_cells": 810,
+        "total_values": 2099520
+      },
+      "prediction_scale_factor": 1.0,
+      "quantile_levels": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "seasonality": 288,
+      "target_mode": "multivariate"
+    }
+  },
   "completed_at": "2026-09-27T14:04:44.024547+00:00",
   "experiment": "instance_normalization",
   "experiment_config": {
@@ -80,13 +143,12 @@
   "project": "evaluating_tsfms",
   "provenance": {
     "dataset_config_path": null,
-    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Coastal_T_S/5T/medium/run_0/evaluation_grid.npz",
+    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/Coastal_T_S/5T/medium/run_0/evaluation_grid.npz",
     "raw_inference_manifest": "/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/inference/chronos2/multivariate/Coastal_T_S/5T/medium/run_0/manifest.json"
   },
   "required_artifacts": [
     "predictions.npz",
     "metrics.npz",
-    "config.json",
     "metrics_summary.json"
   ],
   "runtime_config": {

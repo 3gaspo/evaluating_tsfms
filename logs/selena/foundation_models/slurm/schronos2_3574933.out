@@ -1,0 +1,34 @@
+[2026-09-25 21:33:39 UTC] resources allocation {"CUDA_VISIBLE_DEVICES": "0", "SLURM_CPUS_PER_TASK": "8", "SLURM_JOB_GPUS": "0,1,2,3", "SLURM_JOB_ID": "3574933", "SLURM_MEM_PER_CPU": "unset", "SLURM_MEM_PER_NODE": "80000", "SLURM_STEP_GPUS": "0", "SLURM_STEP_ID": "0", "TIME_DEVICE": "unset", "cpu_count": 8, "host": "sean0016"}
+[2026-09-25 21:33:39 UTC] resources RAM {"MemAvailable_MiB": 373356.8828125, "MemTotal_MiB": 386622.85546875, "cgroup_reason": "memory.max is unlimited", "cgroup_status": "unlimited"}
+[2026-09-25 21:33:39 UTC] resources nvidia_inventory {"columns": "index,uuid,name,driver,total_MiB,free_MiB,used_MiB", "devices": ["0, GPU-f621a382-04ce-ca49-ff7f-ebcfb1986068, NVIDIA H100 NVL, 560.35.05, 95830, 95350, 1"]}
+[2026-09-25 21:33:41 UTC] resources torch {"cuda_available": true, "note": "visibility probe; CPU-only stages need not use an allocated GPU", "version": "2.9.1+cu128", "visible_gpu_count": 1}
+[2026-09-25 21:33:41 UTC] resources cuda_device {"capability": "9.0", "free_MiB": 94825.125, "logical_index": 0, "name": "NVIDIA H100 NVL", "total_MiB": 95350.1875}
+2026-09-25 23:33:41 | workflow foundation_models started launch_id=selena_20260925T213201Z_35363 task=chronos2 slurm_job_id=3574933 slurm_array_job_id=none slurm_array_task_id=none
+2026-09-25 23:33:41 | stage evaluate started
+2026-09-25 23:33:41 | task model=chronos2 runner=run_chronos2.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none started
+[2026-09-25 23:33:41] TIME runner: run_chronos2.sh
+[2026-09-25 23:33:41] datasets: /scratch/users/h61084/datasets/hf_dataset
+[2026-09-25 23:33:41] weights: /scratch/users/h61084/weights
+[2026-09-25 23:33:41] outputs: /scratch/users/h61084/codes/evaluating_tsfms/outputs
+[2026-09-25 23:33:41] covariate mode: none
+[2026-09-25 23:33:41] target mode: auto
+[2026-09-25 23:33:41] context length: model_default
+[2026-09-25 23:33:41] instance normalization: none
+
+############################################################
+# Dataset 1/1: Water_Quality_Darwin/15T
+############################################################
+[2026-09-25 21:33:49 UTC] resources selected_device {"device": "cuda", "model": "chronos2", "stage": "forecast"}
+Loading configuration...
+
+============================================================
+Dataset: Water_Quality_Darwin/15T
+Model: amazon/chronos-2
+Checkpoint: /fslarge/scratch/users/h61084/weights/chronos2
+Terms: ['short', 'medium', 'long']
+Covariate mode: none
+Instance normalization: none
+============================================================
+
+--- Term: short ---
+  Config: prediction_length=16, test_length=1440, val_length=1440

@@ -1,0 +1,20 @@
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/json.py:102: UserWarning: Using `json`-module for json-handling. Consider installing one of `orjson`, `ujson` to speed up serialization and deserialization.
+  warnings.warn(
+/fssmall/home/h61084/codes/evaluating_tsfms/.venv/lib/python3.12/site-packages/gluonts/time_feature/seasonality.py:47: FutureWarning: 'T' is deprecated and will be removed in a future version, please use 'min' instead.
+  offset = pd.tseries.frequencies.to_offset(freq)
+Traceback (most recent call last):
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos2.py", line 598, in <module>
+    main()
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos2.py", line 578, in main
+    run_chronos2_experiment(
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/chronos2.py", line 199, in run_chronos2_experiment
+    evaluation_grid_path = resolve_shared_evaluation_grid(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/fssmall/home/h61084/codes/evaluating_tsfms/experiments/../src/timebench/pipeline/evaluation_grid.py", line 42, in resolve_shared_evaluation_grid
+    raise ManifestError(
+timebench.pipeline.runs.ManifestError: Expected one selected Seasonal Naive run below /fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Water_Quality_Darwin/15T/short, found 0
+srun: error: sean0016: task 0: Exited with exit code 1
+2026-09-25 23:33:50 | task model=chronos2 runner=run_chronos2.sh environment=uv covariate_mode=none target_mode=auto context_length=model_default instance_normalization=none completed status=failed exit_code=1
+2026-09-25 23:33:50 | stage evaluate completed status=failed exit_code=1
+TIME interrupted-launch recovery launch_id=selena_20260925T213201Z_35363 tasks=0 root=/scratch/users/h61084/codes/evaluating_tsfms/outputs/foundation_models/tasks/chronos2
+2026-09-25 23:33:50 | workflow foundation_models completed status=failed exit_code=1

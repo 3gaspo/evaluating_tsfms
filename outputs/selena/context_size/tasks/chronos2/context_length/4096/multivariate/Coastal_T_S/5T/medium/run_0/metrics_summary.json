@@ -1,97 +1,96 @@
 {
-  "dataset_config": "Coastal_T_S/5T/medium",
   "aggregation": "mean over the shared Seasonal Naive MASE evaluation grid",
+  "dataset_config": "Coastal_T_S/5T/medium",
   "evaluation_grid": {
     "definition": "finite_ground_truth_and_seasonal_naive_mase",
-    "source": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Coastal_T_S/5T/medium/run_0/evaluation_grid.npz",
-    "valid_values": 810,
-    "total_values": 810
+    "source": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/Coastal_T_S/5T/medium/run_0/evaluation_grid.npz",
+    "total_values": 810,
+    "valid_values": 810
   },
-  "prediction_outputs": {
-    "total_values": 2099520,
-    "nan_values": 0,
-    "nan_rate": 0.0,
-    "cells_with_nan": 0,
-    "total_cells": 810,
-    "evaluation_values": 2099520,
-    "evaluation_nan_values": 0,
-    "evaluation_nan_rate": 0.0
-  },
+  "inference_seconds": 2.269179565832019,
   "metrics": {
-    "MSE": {
-      "mean": 126.87797762806203,
-      "std": 554.8973362301017,
-      "variance": 307911.0537552626,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "MAE": {
-      "mean": 2.9635616374570004,
-      "std": 10.033971861935921,
-      "variance": 100.6805913261218,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "RMSE": {
-      "mean": 3.231287515202909,
-      "std": 10.790586574517432,
-      "variance": 116.43675862215585,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "MAPE": {
-      "mean": 0.08551592095936979,
-      "std": 0.2406417725483122,
-      "variance": 0.057908462695193626,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "sMAPE": {
-      "mean": 0.07046966402780615,
-      "std": 0.17947755739658613,
-      "variance": 0.03221219360904487,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "MASE": {
-      "mean": 1.017259852809125,
-      "std": 0.9797042020882318,
-      "variance": 0.9598203235893391,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
-    "ND": {
-      "mean": 0.06589145031130693,
-      "std": 0.16197808667854463,
-      "variance": 0.02623690056404212,
-      "dispersion_ddof": 0,
-      "finite_values": 810,
-      "evaluation_values": 810,
-      "total_values": 810
-    },
     "CRPS": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
       "mean": 0.04132008030162052,
       "std": 0.09557120507934028,
-      "variance": 0.009133855240317316,
+      "total_values": 810,
+      "variance": 0.009133855240317316
+    },
+    "MAE": {
       "dispersion_ddof": 0,
-      "finite_values": 810,
       "evaluation_values": 810,
-      "total_values": 810
+      "finite_values": 810,
+      "mean": 2.9635616374570004,
+      "std": 10.033971861935921,
+      "total_values": 810,
+      "variance": 100.6805913261218
+    },
+    "MAPE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 0.08551592095936979,
+      "std": 0.2406417725483122,
+      "total_values": 810,
+      "variance": 0.057908462695193626
+    },
+    "MASE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 1.017259852809125,
+      "std": 0.9797042020882318,
+      "total_values": 810,
+      "variance": 0.9598203235893391
+    },
+    "MSE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 126.87797762806203,
+      "std": 554.8973362301017,
+      "total_values": 810,
+      "variance": 307911.0537552626
+    },
+    "ND": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 0.06589145031130693,
+      "std": 0.16197808667854463,
+      "total_values": 810,
+      "variance": 0.02623690056404212
+    },
+    "RMSE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 3.231287515202909,
+      "std": 10.790586574517432,
+      "total_values": 810,
+      "variance": 116.43675862215585
+    },
+    "sMAPE": {
+      "dispersion_ddof": 0,
+      "evaluation_values": 810,
+      "finite_values": 810,
+      "mean": 0.07046966402780615,
+      "std": 0.17947755739658613,
+      "total_values": 810,
+      "variance": 0.03221219360904487
     }
   },
-  "launch_id": "selena_context_size_20260927T131553Z_36791",
   "model": "chronos2",
-  "inference_seconds": 2.269179565832019
+  "prediction_outputs": {
+    "cells_with_nan": 0,
+    "evaluation_nan_rate": 0.0,
+    "evaluation_nan_values": 0,
+    "evaluation_values": 2099520,
+    "nan_rate": 0.0,
+    "nan_values": 0,
+    "total_cells": 810,
+    "total_values": 2099520
+  }
 }

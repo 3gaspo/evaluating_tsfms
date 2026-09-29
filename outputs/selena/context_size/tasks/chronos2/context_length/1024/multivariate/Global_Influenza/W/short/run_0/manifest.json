@@ -1,4 +1,67 @@
 {
+  "artifact_metadata": {
+    "evaluation": {
+      "context_length": 1024,
+      "covariate_channels": 0,
+      "covariate_mode": "none",
+      "covariate_source": "none",
+      "covariate_time_span": "none",
+      "dataset_config": "Global_Influenza/W/short",
+      "evaluation_grid": {
+        "definition": "finite_ground_truth_and_seasonal_naive_mase",
+        "source": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/Global_Influenza/W/short/run_0/evaluation_grid.npz",
+        "total_values": 240,
+        "valid_values": 237
+      },
+      "experiment": "context_size",
+      "freq": "W",
+      "inference_seconds": 0.23584375716745853,
+      "instance_normalization": "none",
+      "metric_names": [
+        "MSE",
+        "MAE",
+        "RMSE",
+        "MAPE",
+        "sMAPE",
+        "MASE",
+        "ND",
+        "CRPS"
+      ],
+      "metrics_summary_file": "metrics_summary.json",
+      "model": "chronos2",
+      "model_size": "chronos2",
+      "num_model_inputs": 60,
+      "num_quantiles": 9,
+      "num_series": 15,
+      "num_variates": 4,
+      "num_windows": 4,
+      "prediction_length": 13,
+      "prediction_outputs": {
+        "cells_with_nan": 0,
+        "evaluation_nan_rate": 0.0,
+        "evaluation_nan_values": 0,
+        "evaluation_values": 27540,
+        "nan_rate": 0.0,
+        "nan_values": 0,
+        "total_cells": 240,
+        "total_values": 28080
+      },
+      "prediction_scale_factor": 10.0,
+      "quantile_levels": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9
+      ],
+      "seasonality": 1,
+      "target_mode": "multivariate"
+    }
+  },
   "completed_at": "2026-09-27T13:49:27.438995+00:00",
   "experiment": "context_size",
   "experiment_config": {
@@ -80,13 +143,12 @@
   "project": "evaluating_tsfms",
   "provenance": {
     "dataset_config_path": null,
-    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/foundation_models/tasks/seasonal_naive/univariate/Global_Influenza/W/short/run_0/evaluation_grid.npz",
+    "evaluation_grid": "/fslarge/scratch/users/h61084/codes/seasonal/outputs/seasonal_naive/evaluations/univariate/Global_Influenza/W/short/run_0/evaluation_grid.npz",
     "raw_inference_manifest": "/fslarge/scratch/users/h61084/codes/evaluating_tsfms/outputs/context_size/inference/chronos2/context_length/1024/multivariate/Global_Influenza/W/short/run_0/manifest.json"
   },
   "required_artifacts": [
     "predictions.npz",
     "metrics.npz",
-    "config.json",
     "metrics_summary.json"
   ],
   "runtime_config": {

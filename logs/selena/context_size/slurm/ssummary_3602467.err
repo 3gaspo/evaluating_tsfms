@@ -1,0 +1,26 @@
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:80: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(path, dpi=220, bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:82: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:149: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(path, dpi=220, bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:151: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:149: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(path, dpi=220, bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:151: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:250: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(path, dpi=220)
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:252: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:250: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(path, dpi=220)
+/fssmall/home/h61084/codes/evaluating_tsfms/src/timebench/visualization/performance.py:252: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or Axes decorations smaller.
+  figure.savefig(Path(path).with_suffix(".pdf"), bbox_inches="tight")
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 3602467.2 ON sean0011 CANCELLED AT 2026-09-29T03:13:14 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 3602467 ON sean0011 CANCELLED AT 2026-09-29T03:13:14 DUE TO TIME LIMIT ***
+2026-09-29 03:13:14 | task foundation_ablation experiment=context_size outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/context_size/reports completed status=failed exit_code=0
+2026-09-29 03:13:14 | stage summarize completed status=failed exit_code=0
+2026-09-29 03:13:14 | workflow context_size_summary completed status=failed exit_code=0

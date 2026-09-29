@@ -1,0 +1,12 @@
+workflow=context_size_summary
+launch_id=selena_context_size_20260927T131553Z_36791
+task=macro_mase_timing_and_plots
+state=failed
+stage=summarize
+active_task=foundation_ablation experiment=context_size outputs=/scratch/users/h61084/codes/evaluating_tsfms/outputs/context_size/reports
+launched_at=2026-09-29T10:50:48Z
+updated_at=2026-09-29T11:50:54Z
+exit_code=0
+slurm_job_id=3606857
+slurm_array_job_id=none
+slurm_array_task_id=none
