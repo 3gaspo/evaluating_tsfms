@@ -48,10 +48,17 @@ tasks_root="$TIME_OUTPUTS/$experiment/tasks"
 summary_root="$TIME_OUTPUTS/$experiment/reports"
 extra_artifacts=()
 config_policy=distinct
+if [ "$experiment" = context_size ]; then
+    config_axis=model_config.context_length
+else
+    config_axis=experiment_config.instance_normalization
+fi
 
 if [ "$experiment" = context_size ]; then
     time_stage_start context_horizon_plot
-    context_plot="$summary_root/performance/context_horizon_mase"
+    report_inputs="$(mktemp -d "$TIME_OUTPUTS/$experiment/.report-inputs.XXXXXX")"
+    trap 'rm -rf -- "$report_inputs"' EXIT
+    context_plot="$report_inputs/context_horizon_mase"
     time_task_start "context_horizon_grid output=$context_plot"
     plot_command=(
         uv run --no-sync python "$PROJECT_ROOT/scripts/plot_context_size.py"
@@ -84,6 +91,7 @@ summary_command=(
     --models "${FOUNDATION_ABLATION_MODELS[@]}"
     --launch-id "$TIME_LAUNCH_ID"
     --config-policy "$config_policy"
+    --config-axis "$config_axis"
     --repeat-policy latest
     --csv "$summary_root/foundation_model_summary.csv"
     --markdown "$summary_root/foundation_model_summary.md"
@@ -99,18 +107,10 @@ if [ -n "${SLURM_JOB_ID:-}" ]; then
 else
     "${summary_command[@]}"
 fi
-if [ "$experiment" = context_size ]; then
-    cat >> "$summary_root/foundation_model_summary.md" <<'EOF'
-
-## Context size by forecast horizon
-
-The figure places forecast horizon size on the x-axis and maximum context size
-on the y-axis. Color is the geometric mean task MASE divided by the matching
-Seasonal Naive MASE for each model/context/horizon-size cell.
-
-![Context size by forecast horizon](performance/context_horizon_mase.png)
-EOF
-fi
 time_task_complete
 time_stage_complete
 time_workflow_complete
+if [ -n "${report_inputs:-}" ]; then
+    rm -rf -- "$report_inputs"
+    trap - EXIT
+fi
